@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>A5E43E34-F4F2-4104-8204-C7324F8FE4B8</string>
+	<key>IDESourceControlProjectName</key>
+	<string>WifiCamMobileApp</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>284098f2-da88-11de-8585-8d488507ad20++2060</key>
+		<string>https://rsvn1.icatchtek.com/svn/misc/Customer/APP/iOS</string>
+		<key>284098f2-da88-11de-8585-8d488507ad20++6275</key>
+		<string>https://rsvn1.icatchtek.com/svn/misc/Customer/APP/iOS_WiFiCam</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>code/WifiCamMobileApp.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>284098f2-da88-11de-8585-8d488507ad20++2060</key>
+		<string>../../../../iOS</string>
+		<key>284098f2-da88-11de-8585-8d488507ad20++6275</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectRepositoryRootDictionary</key>
+	<dict>
+		<key>284098f2-da88-11de-8585-8d488507ad20++2060</key>
+		<string>https://rsvn1.icatchtek.com/svn/misc</string>
+		<key>284098f2-da88-11de-8585-8d488507ad20++6275</key>
+		<string>https://rsvn1.icatchtek.com/svn/misc</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://rsvn1.icatchtek.com/svn/misc/Customer/APP/iOS_WiFiCam/code/WifiCamMobileApp.xcodeproj</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>284098f2-da88-11de-8585-8d488507ad20++6275</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.subversion</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>284098f2-da88-11de-8585-8d488507ad20++2060</string>
+			<key>IDESourceControlWCCName</key>
+			<string>iOS</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.subversion</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>284098f2-da88-11de-8585-8d488507ad20++6275</string>
+			<key>IDESourceControlWCCName</key>
+			<string>WiFiCam</string>
+		</dict>
+	</array>
+</dict>
+</plist>
