@@ -40,6 +40,7 @@
 -(BOOL)changeHue:(unsigned int)value;
 -(BOOL)changeSaturation:(unsigned int)value;
 -(BOOL)changeBLC:(BOOL)value;
+-(BOOL)PhotoCapture;
 -(BOOL)saveIQvalue;
 
 - (BOOL)changeScreenSaver:(uint)curScreenSaver;

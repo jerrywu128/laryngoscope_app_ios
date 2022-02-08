@@ -27,6 +27,7 @@
 #include <net/if.h>
 #import <AVFoundation/AVFoundation.h>
 #import "ScanView.h"
+#import <ConnectCameraVC.h>
 
 #define kTitleLength 15
 
@@ -336,6 +337,8 @@ alpha:1.0]
     [self startScanning];
 }
 
+
+
 - (void)startScanning
 {
  self.captureSession = [[AVCaptureSession alloc] init];
@@ -387,7 +390,9 @@ alpha:1.0]
    dispatch_async(dispatch_get_main_queue(), ^{
           self->_mediaOnMyIphone.text = message;
    });
-  
+    if(![_Qr_info isEqualToString:message]){
+         self.Qr_info = message;
+    }
    //[self performSelectorOnMainThread:@selector(stopScanning) withObject:nil waitUntilDone:NO];
 
    self.isReading = NO;
@@ -1016,14 +1021,39 @@ struct ifaddrs *interfaces;
         vc.pwd = _cameraPWD;
     } else if ([segue.identifier isEqualToString:@"connectCMpreviewSegue"]) {
         UINavigationController *navController = [segue destinationViewController];
-        AddCameraVC *vc = (AddCameraVC *)navController.topViewController;
+        ConnectCameraVC *vc = (ConnectCameraVC *)navController.topViewController;
         NSArray *data = (NSArray *)sender;
         vc.idx = [[data objectAtIndex:0] unsignedIntegerValue];
 //        vc.cameraSSID = [data objectAtIndex:1];
         vc.cameraSSID = _cameraSSID;
         vc.managedObjectContext = _managedObjectContext;
+        vc.qrWifiInfo = _Qr_info;
+       
     }
 }
+
+- (void) ShowAlert:(NSString *)Message {
+    UIAlertController * alert=[UIAlertController alertControllerWithTitle:nil
+                                                                  message:@""
+                                                           preferredStyle:UIAlertControllerStyleAlert];
+    UIView *firstSubview = alert.view.subviews.firstObject;
+    UIView *alertContentView = firstSubview.subviews.firstObject;
+    for (UIView *subSubView in alertContentView.subviews) {
+        subSubView.backgroundColor = [UIColor colorWithRed:0/255.0f green:0/255.0f blue:0/255.0f alpha:1.0f];
+    }
+    [alertContentView addConstraint:([NSLayoutConstraint constraintWithItem: alertContentView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem: nil attribute:NSLayoutAttributeNotAnAttribute multiplier: 1 constant: 230])];
+    
+    NSMutableAttributedString *AS = [[NSMutableAttributedString alloc] initWithString:Message];
+    [AS addAttribute: NSFontAttributeName value: [UIFont systemFontOfSize:15]  range: NSMakeRange(0,AS.length)];
+    [alert setValue:AS forKey:@"attributedTitle"];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.7 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [alert dismissViewControllerAnimated:YES completion:^{
+        }];
+    });
+}
+
 
 - (IBAction)showLocalMediaBrowser:(UIButton *)sender {
     // Browser

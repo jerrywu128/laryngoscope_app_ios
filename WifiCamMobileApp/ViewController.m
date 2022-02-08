@@ -65,6 +65,7 @@ static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRef
     [self p_constructPreviewData];
     [self p_initPreviewGUI];
     
+    [self.settingButton setTintColor: [UIColor clearColor]];//test20220208
     self.enableAudioButton.hidden = YES;
     self.sizeButton.userInteractionEnabled = NO;
   
@@ -2258,7 +2259,7 @@ static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRef
     if (![self capableOf:WifiCamAbilityBurstNumber] || _burstCaptureCount == 0 || _burstCaptureCount > 0) {
         AudioServicesPlaySystemSound(_stillCaptureSound);
     }
-    if (![self capableOf:WifiCamAbilityNewCaptureWay]) {
+   /* if (![self capableOf:WifiCamAbilityNewCaptureWay]) {
         AppLog(@"Stop PV");
         self.PVRun = NO;
         dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, 10ull * NSEC_PER_SEC);
@@ -2270,8 +2271,8 @@ static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRef
             });
             return;
         }
-    }
-    
+    }*/
+    [_ctrl.propCtrl PhotoCapture];
 }
 
 - (void)startMovieRec {

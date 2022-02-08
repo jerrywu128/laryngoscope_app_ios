@@ -195,6 +195,16 @@
     return retVal;
 }
 
+- (BOOL)PhotoCapture
+{
+    __block BOOL retVal = NO;
+    dispatch_sync([[SDK instance] sdkQueue], ^{
+        retVal = [[SDK instance] setCustomizeIntProperty:0xD715 value:1];
+    });
+    
+    return retVal;
+}
+
 - (uint)parseAutoPowerOffInArray:(NSInteger)index
 {
     __block vector<uint> vAPOs = vector<uint>();

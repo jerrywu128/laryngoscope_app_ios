@@ -14,4 +14,5 @@
 -(void)showReconnectAlert;
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) NSTimer *theTimer;
+@property (weak, nonatomic) NSString *Qr_info;
 @end

@@ -14,6 +14,8 @@
 #import "Camera.h"
 #import "WiFiAPSetupVC.h"
 #import <SystemConfiguration/CaptiveNetwork.h>
+#import <NetworkExtension/NetworkExtension.h>
+
 
 @interface ConnectCameraVC ()
 <
@@ -59,10 +61,17 @@ NSFetchedResultsControllerDelegate
                                             otherButtonTitles:nil, nil];
     _customerIDAlert.tag = APP_CUSTOMER_ALERT_TAG;
    
+    [self splitQRInfo:_qrWifiInfo];
     [self wifiConnect];
+    
  
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+}
 /*
 #pragma mark - Navigation
 
@@ -73,11 +82,53 @@ NSFetchedResultsControllerDelegate
 }
 */
 
+- (void)splitQRInfo:(NSString *)Info
+{
+    NSArray *arrayOfComponents = [Info componentsSeparatedByString:@";"];
+    _wifi_SSID = [arrayOfComponents[0] componentsSeparatedByString:@":"][2];
+    _wifi_PASSWORD =[arrayOfComponents[2] componentsSeparatedByString:@":"][1];
+  
+}
+- (NSString *)getCurrentWifi
+{
+    NSString *ssid = nil;
+    NSArray *ifs = (__bridge id)CNCopySupportedInterfaces();
+    for (NSString *ifname in ifs) {
+        NSDictionary *info = (__bridge id)CNCopyCurrentNetworkInfo((__bridge CFStringRef)ifname);
+        if (info[@"SSID"])
+        {
+            ssid = info[@"SSID"];
+        }
+    }
+    return ssid;
+}
+
 - (void)wifiConnect{
     
-    NSString *ssid = @"Honestmc_25C59C";
-    [self _connect:@[@(_idx), ssid]];
+    NEHotspotConfiguration * hotspotConfig = [[NEHotspotConfiguration alloc] initWithSSID:_wifi_SSID passphrase:_wifi_PASSWORD isWEP:NO];
     
+    [[NEHotspotConfigurationManager sharedManager] applyConfiguration:hotspotConfig completionHandler:^(NSError * _Nullable error) {
+                NSLog(@"%@", error);
+                if (!error) {
+                    //根據名稱判斷是否鏈接成功
+                    if ([[self getCurrentWifi] isEqualToString:self->_wifi_SSID]) {
+                        NSLog(@"鏈接成功");
+                     
+                        [self _connect:@[@(self->_idx), self->_wifi_SSID]];
+                        
+                    }
+                }else{
+                    //
+                    NSLog(@"%@", error.localizedDescription);
+                    
+                    if ([[self getCurrentWifi] isEqualToString:self->_wifi_SSID]) {
+                        NSLog(@"鏈接成功");
+            
+                        [self _connect:@[@(self->_idx), self->_wifi_SSID]];
+                    }
+                  
+                }
+            }];
 }
 
 - (void)_connect:(id)sender
@@ -180,6 +231,27 @@ NSFetchedResultsControllerDelegate
         vc.savedCamera.id = [data firstObject];
         vc.savedCamera.wifi_ssid = [data lastObject];
     }
+}
+- (void) ShowAlert:(NSString *)Message {
+    UIAlertController * alert=[UIAlertController alertControllerWithTitle:nil
+                                                                  message:@""
+                                                           preferredStyle:UIAlertControllerStyleAlert];
+    UIView *firstSubview = alert.view.subviews.firstObject;
+    UIView *alertContentView = firstSubview.subviews.firstObject;
+    for (UIView *subSubView in alertContentView.subviews) {
+        subSubView.backgroundColor = [UIColor colorWithRed:0/255.0f green:0/255.0f blue:0/255.0f alpha:1.0f];
+    }
+    [alertContentView addConstraint:([NSLayoutConstraint constraintWithItem: alertContentView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem: nil attribute:NSLayoutAttributeNotAnAttribute multiplier: 1 constant: 230])];
+    
+    NSMutableAttributedString *AS = [[NSMutableAttributedString alloc] initWithString:Message];
+    [AS addAttribute: NSFontAttributeName value: [UIFont systemFontOfSize:15]  range: NSMakeRange(0,AS.length)];
+    [alert setValue:AS forKey:@"attributedTitle"];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.7 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [alert dismissViewControllerAnimated:YES completion:^{
+        }];
+    });
 }
 
 
