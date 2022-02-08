@@ -55,6 +55,7 @@
 		3A85E72F215CFE3C00D94C84 /* libswscale.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A85E722215CFE3C00D94C84 /* libswscale.a */; };
 		AE2D775E277353A6004909CF /* ConnectCameraVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AE2D775D277353A6004909CF /* ConnectCameraVC.m */; };
 		AE2D776127881C75004909CF /* ScanView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE2D776027881C75004909CF /* ScanView.m */; };
+		AE4AA345278EABCB00911023 /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE4AA344278EABCB00911023 /* NetworkExtension.framework */; };
 		AE8B4E91275B3B480067596D /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE8B4E90275B3B480067596D /* ExternalAccessory.framework */; };
 		BC0339EF1B26A0AC0042AE0A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC0339EE1B26A0AC0042AE0A /* Security.framework */; };
 		BC0339F21B26A0E20042AE0A /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6D5106218E9088B00A2EB3B /* CoreTelephony.framework */; };
@@ -288,6 +289,7 @@
 		AE2D775D277353A6004909CF /* ConnectCameraVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConnectCameraVC.m; sourceTree = "<group>"; };
 		AE2D775F27881C75004909CF /* ScanView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScanView.h; sourceTree = "<group>"; };
 		AE2D776027881C75004909CF /* ScanView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScanView.m; sourceTree = "<group>"; };
+		AE4AA344278EABCB00911023 /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
 		AE8B4E90275B3B480067596D /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
 		BC0339EE1B26A0AC0042AE0A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		BC2042881B0F084A0064B093 /* PortraitNavVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PortraitNavVC.h; sourceTree = "<group>"; };
@@ -481,6 +483,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE4AA345278EABCB00911023 /* NetworkExtension.framework in Frameworks */,
 				3A85E72F215CFE3C00D94C84 /* libswscale.a in Frameworks */,
 				3A23BEFC1F4913D500CB36B8 /* CoreText.framework in Frameworks */,
 				E627C6D51890C597001D2000 /* SystemConfiguration.framework in Frameworks */,
@@ -552,6 +555,7 @@
 		382462331E124E6B00C14B54 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AE4AA344278EABCB00911023 /* NetworkExtension.framework */,
 				AE8B4E90275B3B480067596D /* ExternalAccessory.framework */,
 				3A23BEFB1F4913D500CB36B8 /* CoreText.framework */,
 				38B0D2A61E35EDAA009BE4C5 /* GoogleAppUtilities.framework */,

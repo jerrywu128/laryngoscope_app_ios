@@ -361,11 +361,12 @@ alpha:1.0]
  // configure previewLayer
  self.previewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:self.captureSession];
  [self.previewLayer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
- [self.previewLayer setFrame:self.view.bounds];
+ [self.previewLayer setFrame:self.scanView.bounds];
  [self.view.layer addSublayer:self.previewLayer];
  
  // start scanning
  [self.captureSession startRunning];
+ [self.view bringSubviewToFront:self.scanView];
 }
 
 - (void)stopScanning
@@ -387,11 +388,14 @@ alpha:1.0]
           self->_mediaOnMyIphone.text = message;
    });
   
-   [self performSelectorOnMainThread:@selector(stopScanning) withObject:nil waitUntilDone:NO];
+   //[self performSelectorOnMainThread:@selector(stopScanning) withObject:nil waitUntilDone:NO];
 
    self.isReading = NO;
   }
  }
+    dispatch_async(dispatch_get_main_queue(), ^{
+       [self performSegueWithIdentifier:@"connectCMpreviewSegue" sender:nil];
+    });
 }
 
 - (void)displayMessage:(NSString *)message
