@@ -102,6 +102,7 @@
 - (WifiCamAlertTable *)prepareDataForFastMotionMovie:(uint)curFastMotionMovie;
 - (NSString *)calcFastMotionMovieRate:(uint)curFastMotionMovie;
 
+- (NSString *)retrieveDeviceInfo;
 - (NSString *)retrieveIQbrightnessValue;
 - (NSString *)retrieveIQhueValue;
 - (NSString *)retrieveIQsaturationValue;

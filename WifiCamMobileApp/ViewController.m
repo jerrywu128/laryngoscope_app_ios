@@ -1767,10 +1767,35 @@ static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRef
     return result;
 }
 
-- (IBAction)getmode:(id)sender
+- (IBAction)getDeviceInfoList:(id)sender
 {
    
-   
+    UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+
+        [actionSheet addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"cancel",nil) style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+
+            // Cancel button tappped.
+           
+        }]];
+
+    
+
+        [actionSheet addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"SETTING_ABOUT",nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            UIAlertController * alert = [UIAlertController
+                                         alertControllerWithTitle:NSLocalizedString(@"appName",nil)
+                                         message:[self->_ctrl.propCtrl retrieveDeviceInfo]
+                                         preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction* yesButton = [UIAlertAction
+                                        actionWithTitle:NSLocalizedString(@"sure",nil)
+                                        style:UIAlertActionStyleDefault
+                                        handler:^(UIAlertAction * action) {
+                                        }];
+            [alert addAction:yesButton];
+            [self presentViewController:alert animated:YES completion:nil];
+        }]];
+
+        // Present action sheet.
+        [self presentViewController:actionSheet animated:YES completion:nil];
     
 }
 

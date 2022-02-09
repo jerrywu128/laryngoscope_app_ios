@@ -301,6 +301,11 @@
     
 }
 
+- (NSString *)retrieveDeviceInfo
+{    
+    return [[SDK instance] getCustomizePropertyStringValue:0xD80A];
+}
+
 - (string)parseImageSizeInArray:(NSInteger)index
 {
     __block vector<string> vISs = vector<string>();

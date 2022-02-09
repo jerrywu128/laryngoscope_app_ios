@@ -73,7 +73,7 @@ AVCaptureMetadataOutputObjectsDelegate
 @property(weak, nonatomic) IBOutlet UIButton *videoBg;
 @property(weak, nonatomic) IBOutlet UIButton *photoThumb;
 @property(weak, nonatomic) IBOutlet UIButton *videoThumb;
-@property(weak, nonatomic) IBOutlet UILabel *mediaOnMyIphone;
+@property(weak, nonatomic) IBOutlet UILabel *pleaseScanQR;
 @property(weak, nonatomic) IBOutlet UINavigationItem *Navbar;
 @property(weak, nonatomic) IBOutlet UILabel *photosLabel;
 @property(weak, nonatomic) IBOutlet UILabel *videosLabel;
@@ -149,8 +149,8 @@ alpha:1.0]
     self.captureSession = nil;
    
     [self setButtonRadius:self.addCamBtn3 withRadius:5.0];
-   
-   
+    
+    
    
     [self setButtonRadius:self.photoBg withRadius:5.0];
     [self setButtonRadius:self.videoBg withRadius:5.0];
@@ -198,7 +198,9 @@ alpha:1.0]
     
     _photosLabel.text = NSLocalizedString(@"PhotosLabel", nil);
     _videosLabel.text = NSLocalizedString(@"Videos", nil);
-    _mediaOnMyIphone.text = NSLocalizedString(@"Media on My iPhone", nil);
+    _pleaseScanQR.text = NSLocalizedString(@"scan_text", nil);
+    _pleaseScanQR.textColor = [UIColor blackColor];
+    _pleaseScanQR.backgroundColor = [UIColor whiteColor];
    
   
     [_addCamBtn3 setTitle:NSLocalizedString(@"Add New Camera", nil) forState:UIControlStateNormal];
@@ -364,7 +366,7 @@ alpha:1.0]
  // configure previewLayer
  self.previewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:self.captureSession];
  [self.previewLayer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
- [self.previewLayer setFrame:self.scanView.bounds];
+ [self.previewLayer setFrame:CGRectMake(self.view.frame.origin.x , self.view.frame.origin.y , self.view.frame.size.width, self.view.frame.size.height*0.75)];
  [self.view.layer addSublayer:self.previewLayer];
  
  // start scanning
@@ -384,23 +386,34 @@ alpha:1.0]
 {
  if (metadataObjects != nil && metadataObjects.count > 0) {
   AVMetadataMachineReadableCodeObject *metadataObject = metadataObjects.firstObject;
-  if ([[metadataObject type] isEqualToString:AVMetadataObjectTypeQRCode]) {
-   NSString *message = [metadataObject stringValue];
-   
-   dispatch_async(dispatch_get_main_queue(), ^{
-          self->_mediaOnMyIphone.text = message;
-   });
-    if(![_Qr_info isEqualToString:message]){
-         self.Qr_info = message;
-    }
-   //[self performSelectorOnMainThread:@selector(stopScanning) withObject:nil waitUntilDone:NO];
-
-   self.isReading = NO;
-  }
+      if ([[metadataObject type] isEqualToString:AVMetadataObjectTypeQRCode]) {
+          NSString *message = [metadataObject stringValue];
+          if([self checkQrInfo:message]){
+                   dispatch_async(dispatch_get_main_queue(), ^{
+                       if(![self->_Qr_info isEqualToString:message]){
+                         self.Qr_info = message;
+                        [self performSegueWithIdentifier:@"connectCMpreviewSegue" sender:nil];
+                    }
+                   });
+                   //[self performSelectorOnMainThread:@selector(stopScanning) withObject:nil waitUntilDone:NO];
+                   self.isReading = NO;
+          }else{
+              dispatch_async(dispatch_get_main_queue(), ^{
+                   [self ShowAlert:NSLocalizedString(@"qrcode_tp_error", nil)];
+              });
+          }
+      }
  }
-    dispatch_async(dispatch_get_main_queue(), ^{
-       [self performSegueWithIdentifier:@"connectCMpreviewSegue" sender:nil];
-    });
+  
+}
+
+- (BOOL)checkQrInfo:(NSString *)Info
+{
+    if([Info containsString:@"WIFI"]&&[Info containsString:@"P:"]&&[Info containsString:@"S:"]){
+        return YES;
+    }else{
+        return NO;
+    }
 }
 
 - (void)displayMessage:(NSString *)message
@@ -541,10 +554,10 @@ alpha:1.0]
   
     
     AppLog(@"1: %f", _addCamBtn3.frame.origin.y);
-    AppLog(@"mediaOnMyIphone: %f", _mediaOnMyIphone.frame.origin.y);
+    AppLog(@"mediaOnMyIphone: %f", _pleaseScanQR.frame.origin.y);
     
 
-    float gap = (_mediaOnMyIphone.frame.origin.y - _addCamBtn3.frame.size.height *2) / 4;
+    float gap = (_pleaseScanQR.frame.origin.y - _addCamBtn3.frame.size.height *2) / 4;
 
     float h = _addCamBtn3.frame.size.height;
 
@@ -598,6 +611,7 @@ alpha:1.0]
     }*/
     [self.wifiReachability startNotifier];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkConnectionStatus) name:kReachabilityChangedNotification object:nil];
+       
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
@@ -1028,7 +1042,7 @@ struct ifaddrs *interfaces;
         vc.cameraSSID = _cameraSSID;
         vc.managedObjectContext = _managedObjectContext;
         vc.qrWifiInfo = _Qr_info;
-       
+        
     }
 }
 

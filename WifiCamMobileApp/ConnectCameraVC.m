@@ -113,23 +113,41 @@ NSFetchedResultsControllerDelegate
                     //根據名稱判斷是否鏈接成功
                     if ([[self getCurrentWifi] isEqualToString:self->_wifi_SSID]) {
                         NSLog(@"鏈接成功");
-                     
                         [self _connect:@[@(self->_idx), self->_wifi_SSID]];
                         
                     }
+                    if(error==nil){
+                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(6.7 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                            [self.view.window.rootViewController dismissViewControllerAnimated:YES completion: ^{
+                                [[SDK instance] destroySDK];
+                            }];
+                        });
+                        
+                    }
                 }else{
-                    //
-                    NSLog(@"%@", error.localizedDescription);
+                   
                     
+                    NSLog(@"%@", error.localizedDescription);
                     if ([[self getCurrentWifi] isEqualToString:self->_wifi_SSID]) {
                         NSLog(@"鏈接成功");
-            
                         [self _connect:@[@(self->_idx), self->_wifi_SSID]];
+                    }else{
+                        
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            [self.view.window.rootViewController dismissViewControllerAnimated:YES completion: ^{
+                                [[SDK instance] destroySDK];
+                            }];
+          
+                        });
+                        
                     }
-                  
+                   
                 }
+                    
             }];
 }
+
+
 
 - (void)_connect:(id)sender
 {

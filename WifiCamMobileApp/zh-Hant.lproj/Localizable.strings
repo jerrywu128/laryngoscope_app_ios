@@ -7,7 +7,7 @@
 */
 
 
-
+"appName" = "原妙醫學";
 "SetPhotoResolution" = "設定照片解析度";
 
 "Albums" = "相簿";
@@ -298,3 +298,6 @@
 "iq_password_error" = "請確認密碼是否輸入錯誤";
 "change_password_sucess" = "變更密碼成功";
 "new_password_null"="新密碼不可為空";
+"scan_text" =  "請掃描喉鏡上面的QrCode";
+"qrcode_tp_error" = "Qrcode格式錯誤";
+

@@ -53,7 +53,7 @@ SettingDelegate
 >
 @property(weak, nonatomic) IBOutlet UIImageView *preview;
 @property(nonatomic) IBOutlet UIView *h264View;
-@property(weak, nonatomic) IBOutlet UIButton *testBT;
+@property(weak, nonatomic) IBOutlet UIButton *Button_deviceInfo;
 @property(weak, nonatomic) IBOutlet UIButton    *cameraToggle;
 @property(weak, nonatomic) IBOutlet UIButton    *videoToggle;
 @property(weak, nonatomic) IBOutlet UIButton    *timelapseToggle;

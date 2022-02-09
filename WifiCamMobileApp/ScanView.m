@@ -32,38 +32,33 @@
 {
  CGContextRef context = UIGraphicsGetCurrentContext();
  
- // 绘制白色边框
- CGContextAddRect(context, self.bounds);
- CGContextSetStrokeColorWithColor(context, [UIColor whiteColor].CGColor);
- CGContextSetLineWidth(context, 2.0);
- CGContextStrokePath(context);
- 
+
  // 绘制四角：
- CGContextSetStrokeColorWithColor(context, [UIColor redColor].CGColor);
- CGContextSetLineWidth(context, 5.0);
+ CGContextSetStrokeColorWithColor(context, [UIColor whiteColor].CGColor);
+ CGContextSetLineWidth(context, 3.5);
  
  // 左上角：
- CGContextMoveToPoint(context, 0, 30);
+ CGContextMoveToPoint(context, 0, 47);
  CGContextAddLineToPoint(context, 0, 0);
- CGContextAddLineToPoint(context, 30, 0);
+ CGContextAddLineToPoint(context, 47, 0);
  CGContextStrokePath(context);
  
  // 右上角：
- CGContextMoveToPoint(context, self.bounds.size.width - 30, 0);
+ CGContextMoveToPoint(context, self.bounds.size.width - 47, 0);
  CGContextAddLineToPoint(context, self.bounds.size.width, 0);
- CGContextAddLineToPoint(context, self.bounds.size.width, 30);
+ CGContextAddLineToPoint(context, self.bounds.size.width, 47);
  CGContextStrokePath(context);
  
  // 右下角：
- CGContextMoveToPoint(context, self.bounds.size.width, self.bounds.size.height - 30);
+ CGContextMoveToPoint(context, self.bounds.size.width, self.bounds.size.height - 47);
  CGContextAddLineToPoint(context, self.bounds.size.width, self.bounds.size.height);
- CGContextAddLineToPoint(context, self.bounds.size.width - 30, self.bounds.size.height);
+ CGContextAddLineToPoint(context, self.bounds.size.width - 47, self.bounds.size.height);
  CGContextStrokePath(context);
  
  // 左下角：
- CGContextMoveToPoint(context, 30, self.bounds.size.height);
+ CGContextMoveToPoint(context, 47, self.bounds.size.height);
  CGContextAddLineToPoint(context, 0, self.bounds.size.height);
- CGContextAddLineToPoint(context, 0, self.bounds.size.height - 30);
+ CGContextAddLineToPoint(context, 0, self.bounds.size.height - 47);
  CGContextStrokePath(context);
 }
 
