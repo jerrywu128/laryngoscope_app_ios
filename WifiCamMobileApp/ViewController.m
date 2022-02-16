@@ -14,17 +14,55 @@
 
 #include "SignInViewController.h"
 #import <GoogleSignIn/GoogleSignIn.h>
-#import <VideoToolbox/VideoToolbox.h>
+#import <ImageIO/CGImageProperties.h>
+
+
 
 #define TimeInterval [[[NSUserDefaults standardUserDefaults] stringForKey:@"LivePostTimeoutInterval"] doubleValue]
-
+CVImageBufferRef photoImageBuffer;
+BOOL capturePhoto = NO;
 static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRefCon, OSStatus status, VTDecodeInfoFlags infoFlags, CVImageBufferRef pixelBuffer, CMTime presentationTimeStamp, CMTime presentationDuration ){
     
-    CVPixelBufferRef *outputPixelBuffer = (CVPixelBufferRef *)sourceFrameRefCon;
-    *outputPixelBuffer = CVPixelBufferRetain(pixelBuffer);
+ //   CVPixelBufferRef *outputPixelBuffer = (CVPixelBufferRef *)sourceFrameRefCon;
+//    *outputPixelBuffer = CVPixelBufferRetain(pixelBuffer);
+
+    
+       
+
+        if (status != noErr)
+        {
+            NSError *error = [NSError errorWithDomain:NSOSStatusErrorDomain code:status userInfo:nil];
+            NSLog(@"Decompressed error: %@", error);
+        }
+        else
+        {
+            NSLog(@"Decompressed sucessfully");
+            // do something with your resulting CVImageBufferRef that is your decompressed frame
+            CIImage *ciImage = [CIImage imageWithCVPixelBuffer:pixelBuffer];
+            CIContext *temporaryContext = [CIContext contextWithOptions:nil];
+            CGImageRef videoImage = [temporaryContext
+                                         createCGImage:ciImage
+                                         fromRect:CGRectMake(0, 0,
+                                         CVPixelBufferGetWidth(pixelBuffer),
+                                         CVPixelBufferGetHeight(pixelBuffer))];
+
+            UIImage *image = [[UIImage alloc] initWithCGImage:videoImage];
+            if(capturePhoto){
+               UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
+               capturePhoto = NO;
+            }
+            CGImageRelease(videoImage);
+        }
+   
+    
+    
 }
 
+
+
+
 @implementation ViewController {
+    
     /**
      * 20150630  guo.jiang
      * Deprecated ! (USE WifiCamObserver & WifiCamSDKEventListener.)
@@ -84,10 +122,10 @@ static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRef
     self.avslayer.bounds = _preview.bounds;
     self.avslayer.position = CGPointMake(CGRectGetMidX(_preview.bounds), CGRectGetMidY(_preview.bounds));
     self.avslayer.videoGravity = AVLayerVideoGravityResizeAspect;
-    self.avslayer.backgroundColor = [[UIColor blackColor] CGColor];
+    self.avslayer.backgroundColor = [[UIColor blueColor] CGColor];
     
     CMTimebaseRef controlTimebase;
-    CMTimebaseCreateWithMasterClock(CFAllocatorGetDefault(), CMClockGetHostTimeClock(), &controlTimebase);
+    CMTimebaseCreateWithSourceClock(CFAllocatorGetDefault(), CMClockGetHostTimeClock(), &controlTimebase);
     self.avslayer.controlTimebase = controlTimebase;
     //    CMTimebaseSetTime(self.avslayer.controlTimebase, CMTimeMake(5, 1));
     CMTimebaseSetRate(self.avslayer.controlTimebase, 1.0);
@@ -105,6 +143,9 @@ static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRef
     [self iniIQSetting];
    
 }
+
+
+
 
 - (void)iniIQSetting{
     
@@ -129,6 +170,9 @@ static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRef
     _setIQValueSlider.maximumValue = 255;
     _setIQValueSlider.continuous = NO;
 }
+
+
+
 
 - (void)showLiveGUIIfNeeded:(WifiCamPreviewMode)curMode
 {
@@ -1306,6 +1350,7 @@ static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRef
         callBackRecord.decompressionOutputCallback = didDecompress;
         callBackRecord.decompressionOutputRefCon = NULL;
         
+        
         VTDecompressionSessionCreate(kCFAllocatorDefault,
                                      _decoderFormatDescription,
                                      NULL, attrs,
@@ -1336,7 +1381,8 @@ static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRef
 -(void)decodeAndDisplayH264Frame:(NSData *)frame {
     CMBlockBufferRef blockBuffer = NULL;
     CMSampleBufferRef sampleBuffer = NULL;
-    
+
+   
     OSStatus status = CMBlockBufferCreateWithMemoryBlock(kCFAllocatorDefault,
                                                          (void*)frame.bytes, frame.length,
                                                          kCFAllocatorNull,
@@ -1351,10 +1397,17 @@ static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRef
                                            1, 0, NULL, 1, sampleSizeArray,
                                            &sampleBuffer);
         CFRelease(blockBuffer);
+        VTDecodeFrameFlags flags = kVTDecodeFrame_EnableAsynchronousDecompression;
+        VTDecodeInfoFlags flagOut;
+        NSDate* currentTime = [NSDate date];
+        VTDecompressionSessionDecodeFrame(_deocderSession, sampleBuffer, flags,
+                                          (void*)CFBridgingRetain(currentTime), &flagOut);
+ 
         CFArrayRef attachments = CMSampleBufferGetSampleAttachmentsArray(sampleBuffer, YES);
         CFMutableDictionaryRef dict = (CFMutableDictionaryRef)CFArrayGetValueAtIndex(attachments, 0);
         CFDictionarySetValue(dict, kCMSampleAttachmentKey_DisplayImmediately, kCFBooleanTrue);
         if (status == kCMBlockBufferNoErr) {
+          
             if ([_avslayer isReadyForMoreMediaData]) {
                 dispatch_sync(dispatch_get_main_queue(),^{
                     [_avslayer enqueueSampleBuffer:sampleBuffer];
@@ -1362,8 +1415,12 @@ static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRef
             }
             CFRelease(sampleBuffer);
         }
+        
     }
 }
+
+
+
 
 // MARK: - save last video frame
 - (CVPixelBufferRef)decodeToPixelBufferRef:(NSData*)vp {
@@ -1439,6 +1496,8 @@ static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRef
     UIGraphicsEndImageContext();
 }
 
+
+
 -(void)playbackVideoH264:(ICatchVideoFormat) format {
 //    NSMutableData *videoFrameData = nil;
 #ifdef HW_DECODE_H264
@@ -1450,7 +1509,7 @@ static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRef
     VideoFrameExtractor *ff_h264_decoder = [[VideoFrameExtractor alloc] initWithSize:format.getVideoW()
                                                                            andHeight:format.getVideoH()];
 #endif
-    
+   
     while (_PVRun) {
 #ifdef HW_DECODE_H264
         if (_readyGoToSetting) {
@@ -1519,7 +1578,7 @@ static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRef
                     [avData.data replaceBytesInRange:headerRange withBytes:lengthBytes];
                     self.videoPlayFlag = YES;
                     [self decodeAndDisplayH264Frame:avData.data];
-                    
+                    AppLog(@"nothing work");
                     [self recordCurrentVideoFrame:avData.data];
                 }
             }
@@ -1529,11 +1588,13 @@ static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRef
             [self saveLastVideoFrame:[self imageFromPixelBufferRef:self.currentVideoData]];
         }
         
+     
         [self clearH264Env];
 #else
         // Decode using FFmpeg
         videoFrameData = [[SDK instance] getVideoData];
         if (videoFrameData) {
+            
             [ff_h264_decoder fillData:(uint8_t *)videoFrameData.bytes
                                  size:videoFrameData.length];
             
@@ -1600,7 +1661,7 @@ static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRef
      NSMutableData *videoFrameData = nil;
      UIImage *receivedImage = nil;
      */
-    
+   
     ICatchVideoFormat format = [_ctrl.propCtrl retrieveVideoFormat];
     if (format.getCodec() == ICATCH_CODEC_JPEG) {
         AppLog(@"playbackVideoMJPEG");
@@ -1778,8 +1839,23 @@ static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRef
            
         }]];
 
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,   NSUserDomainMask, YES);
+        NSString *documentsDirectory = [paths objectAtIndex:0];
+      
+        [actionSheet addAction:[UIAlertAction actionWithTitle:@"測試" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            UIAlertController * alert = [UIAlertController
+                                         alertControllerWithTitle:@"測試"
+                                         message:documentsDirectory
+                                         preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction* yesButton = [UIAlertAction
+                                        actionWithTitle:NSLocalizedString(@"sure",nil)
+                                        style:UIAlertActionStyleDefault
+                                        handler:^(UIAlertAction * action) {
+                                        }];
+            [alert addAction:yesButton];
+            [self presentViewController:alert animated:YES completion:nil];
+        }]];
     
-
         [actionSheet addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"SETTING_ABOUT",nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
             UIAlertController * alert = [UIAlertController
                                          alertControllerWithTitle:NSLocalizedString(@"appName",nil)
@@ -2128,18 +2204,6 @@ static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRef
             break;
         case WifiCamPreviewModeCameraOn:
             break;
-        /*
-        case WifiCamPreviewModeTimelapseOff:
-            if (_camera.curTimelapseInterval != 0 && _camera.curTimelapseDuration>0) {
-                [self startTimelapseRec];
-            } else {
-                [self showTimelapseOffAlert];
-            }
-            break;
-        case WifiCamPreviewModeTimelapseOn:
-            [self stopTimelapseRec];
-            break;
-        */
         default:
             break;
     }
@@ -2277,7 +2341,6 @@ static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRef
         } else // use old capture procedure
             [_ctrl.actCtrl capturePhoto];
         
-
     });
 }
 - (void)PhotoCapture {
@@ -2297,8 +2360,39 @@ static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRef
             return;
         }
     }*/
+ 
+    //[self screenshotOfVideoStream:photoImageBuffer];
+    //[self screenshotOfVideoStream];
+   /* CFDictionaryRef attrs = NULL;
+    const void *keys[] = { kCVPixelBufferPixelFormatTypeKey };
+    //      kCVPixelFormatType_420YpCbCr8Planar is YUV420
+    //      kCVPixelFormatType_420YpCbCr8BiPlanarFullRange is NV12
+    uint32_t v = kCVPixelFormatType_32BGRA;
+    const void *values[] = { CFNumberCreate(NULL, kCFNumberSInt32Type, &v) };
+    attrs = CFDictionaryCreate(NULL, keys, values, 1, NULL, NULL);
+    
+    VTDecompressionOutputCallbackRecord callBackRecord;
+    callBackRecord.decompressionOutputCallback = didDecompress;
+    callBackRecord.decompressionOutputRefCon = NULL;
+    
+    
+    VTDecompressionSessionCreate(kCFAllocatorDefault,
+                                 _decoderFormatDescription,
+                                 NULL, attrs,
+                                 &callBackRecord,
+                                 &_deocderSession);
+    CFRelease(attrs);*/
+   
+    
+    capturePhoto = YES;
     [_ctrl.propCtrl PhotoCapture];
+    
+    
 }
+
+
+
+
 
 - (void)startMovieRec {
     AudioServicesPlaySystemSound(_videoCaptureSound);

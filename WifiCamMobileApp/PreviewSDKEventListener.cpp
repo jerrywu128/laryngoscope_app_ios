@@ -26,9 +26,9 @@ void PreviewSDKEventListener::showReconnectAlert(ICatchEvent *iCatchEvt) {
 void PreviewSDKEventListener::updateMovieRecState(ICatchEvent *iCatchEvt, MovieRecState state) {
   [controller updateMovieRecState:state];
 }
-void PreviewSDKEventListener::updateBatteryLevel(ICatchEvent *iCatchEvt) {
-  [controller updateBatteryLevel];
-}
+//void PreviewSDKEventListener::updateBatteryLevel(ICatchEvent *iCatchEvt) {
+  //[controller updateBatteryLevel];
+//}
 void PreviewSDKEventListener::stopStillCapture(ICatchEvent *icatchEvt) {
   [controller stopStillCapture];
 }

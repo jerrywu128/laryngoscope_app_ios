@@ -57,6 +57,7 @@
 		AE2D776127881C75004909CF /* ScanView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE2D776027881C75004909CF /* ScanView.m */; };
 		AE4AA345278EABCB00911023 /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE4AA344278EABCB00911023 /* NetworkExtension.framework */; };
 		AE8B4E91275B3B480067596D /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE8B4E90275B3B480067596D /* ExternalAccessory.framework */; };
+		B5CC60BCBDC1E4110FB38241 /* Pods_laryngoscope_app_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29173CAFD8007D4013E282ED /* Pods_laryngoscope_app_ios.framework */; };
 		BC0339EF1B26A0AC0042AE0A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC0339EE1B26A0AC0042AE0A /* Security.framework */; };
 		BC0339F21B26A0E20042AE0A /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6D5106218E9088B00A2EB3B /* CoreTelephony.framework */; };
 		BC20428A1B0F084A0064B093 /* PortraitNavVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BC2042891B0F084A0064B093 /* PortraitNavVC.m */; };
@@ -185,6 +186,7 @@
 		1D8BE2731D333E4E00E278DB /* UIActivityShare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIActivityShare.m; sourceTree = "<group>"; };
 		1DAE681C1D3487DA0033FB66 /* DiskSpaceTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiskSpaceTool.h; sourceTree = "<group>"; };
 		1DAE681D1D3487DA0033FB66 /* DiskSpaceTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiskSpaceTool.m; sourceTree = "<group>"; };
+		29173CAFD8007D4013E282ED /* Pods_laryngoscope_app_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_laryngoscope_app_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		382462341E124E6B00C14B54 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		382462361E124E8B00C14B54 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		382838AB1E481BF80014A29B /* PlaceholderAvatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlaceholderAvatar.png; sourceTree = "<group>"; };
@@ -285,6 +287,7 @@
 		3A85E721215CFE3C00D94C84 /* libcurl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcurl.a; sourceTree = "<group>"; };
 		3A85E722215CFE3C00D94C84 /* libswscale.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libswscale.a; sourceTree = "<group>"; };
 		3A85E731215E28E900D94C84 /* SBCapp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SBCapp.entitlements; sourceTree = "<group>"; };
+		AA61F7246359816170173ED5 /* Pods-laryngoscope_app_ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-laryngoscope_app_ios.debug.xcconfig"; path = "Target Support Files/Pods-laryngoscope_app_ios/Pods-laryngoscope_app_ios.debug.xcconfig"; sourceTree = "<group>"; };
 		AE2D775C277353A6004909CF /* ConnectCameraVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConnectCameraVC.h; sourceTree = "<group>"; };
 		AE2D775D277353A6004909CF /* ConnectCameraVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConnectCameraVC.m; sourceTree = "<group>"; };
 		AE2D775F27881C75004909CF /* ScanView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScanView.h; sourceTree = "<group>"; };
@@ -476,6 +479,7 @@
 		E6FCC2FA1959732F006159D0 /* WifiCamStaticData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WifiCamStaticData.h; sourceTree = "<group>"; };
 		E6FCC2FB1959732F006159D0 /* WifiCamStaticData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WifiCamStaticData.m; sourceTree = "<group>"; };
 		E6FF9734186D767F00D8511B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		E9C031257D657E24A801C8CD /* Pods-laryngoscope_app_ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-laryngoscope_app_ios.release.xcconfig"; path = "Target Support Files/Pods-laryngoscope_app_ios/Pods-laryngoscope_app_ios.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -483,6 +487,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E6FF9735186D767F00D8511B /* QuartzCore.framework in Frameworks */,
 				AE4AA345278EABCB00911023 /* NetworkExtension.framework in Frameworks */,
 				3A85E72F215CFE3C00D94C84 /* libswscale.a in Frameworks */,
 				3A23BEFC1F4913D500CB36B8 /* CoreText.framework in Frameworks */,
@@ -525,7 +530,6 @@
 				3A85E725215CFE3C00D94C84 /* libavutil.a in Frameworks */,
 				E61903591A022B4900718032 /* CFNetwork.framework in Frameworks */,
 				3A85E728215CFE3C00D94C84 /* libavresample.a in Frameworks */,
-				E6FF9735186D767F00D8511B /* QuartzCore.framework in Frameworks */,
 				E61903551A022B1100718032 /* MobileCoreServices.framework in Frameworks */,
 				38B0D33F1E360374009BE4C5 /* GoogleSymbolUtilities.framework in Frameworks */,
 				38B0D33E1E360374009BE4C5 /* GoogleSignInDependencies.framework in Frameworks */,
@@ -546,6 +550,7 @@
 				E609F4B91872850500BB1A0A /* MessageUI.framework in Frameworks */,
 				AE8B4E91275B3B480067596D /* ExternalAccessory.framework in Frameworks */,
 				E6BA7EB3185027C400FA101F /* Foundation.framework in Frameworks */,
+				B5CC60BCBDC1E4110FB38241 /* Pods_laryngoscope_app_ios.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -566,6 +571,7 @@
 				38B0D23D1E35E9A1009BE4C5 /* SafariServices.framework */,
 				382462361E124E8B00C14B54 /* libc++.tbd */,
 				382462341E124E6B00C14B54 /* JavaScriptCore.framework */,
+				29173CAFD8007D4013E282ED /* Pods_laryngoscope_app_ios.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -637,6 +643,16 @@
 				382838AD1E49CEC20014A29B /* DataPickerDictionary.plist */,
 			);
 			name = res;
+			sourceTree = "<group>";
+		};
+		3A4EA1F7865646AA55713CCA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AA61F7246359816170173ED5 /* Pods-laryngoscope_app_ios.debug.xcconfig */,
+				E9C031257D657E24A801C8CD /* Pods-laryngoscope_app_ios.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
 			sourceTree = "<group>";
 		};
 		3A85E6E5215CFE3C00D94C84 /* SDK */ = {
@@ -1006,6 +1022,7 @@
 				E6BA7EB8185027C400FA101F /* WifiCamMobileApp */,
 				E6BA7EB0185027C400FA101F /* Products */,
 				382462331E124E6B00C14B54 /* Frameworks */,
+				3A4EA1F7865646AA55713CCA /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1159,10 +1176,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E6BA7EE4185027C500FA101F /* Build configuration list for PBXNativeTarget "laryngoscope_app_ios" */;
 			buildPhases = (
+				3C82E399757F6BE6D5BDBE3B /* [CP] Check Pods Manifest.lock */,
 				E6BA7EAB185027C400FA101F /* Sources */,
 				E6BA7EAC185027C400FA101F /* Frameworks */,
 				E6BCD380188FAEEC00ACB899 /* Run Script */,
 				E6BA7EAD185027C400FA101F /* Resources */,
+				FDF6A7C2ED1E78128DCC1E0F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1298,6 +1317,28 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		3C82E399757F6BE6D5BDBE3B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-laryngoscope_app_ios-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		E6BCD380188FAEEC00ACB899 /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 12;
@@ -1311,6 +1352,38 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# xcode-build-bump.sh\n\n# @desc Auto-increment the build number every time the project is run.\n\n# @usage\n\n# 1. Select: your Target in Xcode\n\n# 2. Select: Build Phases Tab\n\n# 3. Select: Add Build Phase -> Add Run Script\n\n# 4. Paste code below in to new \"Run Script\" section\n\n# 5. Drag the \"Run Script\" below \"Link Binaries With Libraries\"\n\n# 6. Insure that your starting build number is set to a whole integer and not a float (e.g. 1, not 1.0)\n\n\n\n\nbuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\n\nbuildNumber=$(($buildNumber + 1))\n\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"\n\n# update build number and version number to Setting bundle\n/usr/libexec/PlistBuddy -c \"Set :PreferenceSpecifiers:2:DefaultValue $buildNumber\" \"${PROJECT_DIR}/${PROJECT_NAME}/Settings.bundle/Root.plist\"\n\n\n# update version number to Setting bundle\nVERSIONNUM=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\n\n/usr/libexec/PlistBuddy -c \"Set :CFBundleShortVersionString $VERSIONNUM\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"\n\n/usr/libexec/PlistBuddy -c \"Set :PreferenceSpecifiers:1:DefaultValue $VERSIONNUM\" \"${PROJECT_DIR}/WifiCamMobileApp/Settings.bundle/Root.plist\"\n\n";
+		};
+		FDF6A7C2ED1E78128DCC1E0F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-laryngoscope_app_ios/Pods-laryngoscope_app_ios-frameworks.sh",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ffmpeg-kit-ios-full/ffmpegkit.framework/ffmpegkit",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ffmpeg-kit-ios-full/libavcodec.framework/libavcodec",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ffmpeg-kit-ios-full/libavdevice.framework/libavdevice",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ffmpeg-kit-ios-full/libavfilter.framework/libavfilter",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ffmpeg-kit-ios-full/libavformat.framework/libavformat",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ffmpeg-kit-ios-full/libavutil.framework/libavutil",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ffmpeg-kit-ios-full/libswresample.framework/libswresample",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ffmpeg-kit-ios-full/libswscale.framework/libswscale",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ffmpegkit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libavcodec.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libavdevice.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libavfilter.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libavformat.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libavutil.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libswresample.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libswscale.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-laryngoscope_app_ios/Pods-laryngoscope_app_ios-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1534,6 +1607,7 @@
 		};
 		E6BA7EE5185027C500FA101F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AA61F7246359816170173ED5 /* Pods-laryngoscope_app_ios.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1591,6 +1665,7 @@
 		};
 		E6BA7EE6185027C500FA101F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E9C031257D657E24A801C8CD /* Pods-laryngoscope_app_ios.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;

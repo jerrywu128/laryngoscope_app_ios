@@ -16,12 +16,12 @@ typedef NS_ENUM(NSInteger, MovieRecState) {
 
 @class Camera;
 @interface ViewController : UIViewController
+
 /**
  * 20150630  guo.jiang
  * Deprecated !
  */
 - (void)updateMovieRecState:(MovieRecState)state;
-- (void)updateBatteryLevel;
 - (void)stopStillCapture;
 - (void)stopTimelapse;
 - (void)timelapseStartedNotice;
@@ -34,6 +34,3 @@ typedef NS_ENUM(NSInteger, MovieRecState) {
 
 @property (nonatomic, strong) Camera *savedCamera;
 @end
-
-
-

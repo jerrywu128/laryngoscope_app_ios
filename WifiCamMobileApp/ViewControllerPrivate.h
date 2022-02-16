@@ -27,6 +27,8 @@
 #import "Camera.h"
 #include "WifiCamSDKEventListener.h"
 #import "GCDiscreetNotificationView.h"
+#import <VideoToolbox/VideoToolbox.h>
+#import <malloc/malloc.h>
 
 enum SettingState{
   SETTING_DELAY_CAPTURE = 0,
@@ -42,6 +44,10 @@ typedef NS_ENUM(NSUInteger,IQMode){
   WHTIE_BALANCE,
   BLC
 };
+
+//test
+
+//end
 
 @interface ViewController ()
 <
@@ -145,6 +151,7 @@ SettingDelegate
 @property(nonatomic) WifiCamObserver *streamObserver;
 @property(nonatomic) BOOL readyGoToSetting;
 @property(nonatomic) AVSampleBufferDisplayLayer *avslayer;
+@property(nonatomic) VTDecompressionSessionRef vtdslayer;
 @property(nonatomic) double curVideoPTS;
 @property(nonatomic) BOOL videoPlayFlag;
 @property(nonatomic, retain) GCDiscreetNotificationView *notificationView;
@@ -169,6 +176,7 @@ SettingDelegate
 @property (nonatomic) BOOL isEnterBackground;
 @property (nonatomic) BOOL IQ_isCheckPassword;
 @property (nonatomic) NSUserDefaults *userDefaults;
+
 
 - (IBAction)liveSwitchClink:(id)sender;
 + (NSString *)formatTypeToString:(ICatchPreviewMode)formatType;
