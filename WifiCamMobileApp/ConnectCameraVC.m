@@ -39,7 +39,9 @@ NSFetchedResultsControllerDelegate
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     _ConnectLabel.text = NSLocalizedString(@"Video Connecting Please wait", nil);
-    _ActivityIndicator.transform = CGAffineTransformMakeScale(1.5, 1.5);
+    _ActivityIndicator.transform = CGAffineTransformMakeScale(2.0, 2.0);
+    _ActivityIndicator.color = [UIColor blackColor];
+    
     self.connErrAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"ConnectError", nil)
                                                    message:NSLocalizedString(@"NoWifiConnection", nil)
                                                   delegate:self

@@ -122,7 +122,7 @@ static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRef
     self.avslayer.bounds = _preview.bounds;
     self.avslayer.position = CGPointMake(CGRectGetMidX(_preview.bounds), CGRectGetMidY(_preview.bounds));
     self.avslayer.videoGravity = AVLayerVideoGravityResizeAspect;
-    self.avslayer.backgroundColor = [[UIColor blueColor] CGColor];
+    self.avslayer.backgroundColor = [[UIColor blackColor] CGColor];
     
     CMTimebaseRef controlTimebase;
     CMTimebaseCreateWithSourceClock(CFAllocatorGetDefault(), CMClockGetHostTimeClock(), &controlTimebase);
@@ -140,6 +140,10 @@ static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRef
     [_h264View addGestureRecognizer:tap1];
 #endif
     self.userDefaults = [NSUserDefaults standardUserDefaults];
+    [self.recordingLabel setText:NSLocalizedString(@"recording",nil)];
+    _ImageQualityButton.transform = CGAffineTransformMakeScale(1.3, 1.3);
+    _Button_deviceInfo.transform = CGAffineTransformMakeScale(1.3, 1.3);
+    _mpbToggle.transform = CGAffineTransformMakeScale(1.3, 1.3);
     [self iniIQSetting];
    
 }
@@ -871,6 +875,7 @@ static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRef
     [self.settingButton setEnabled:YES];
     [self.enableAudioButton setEnabled:YES];
     [self.ImageQualityButton setEnabled:YES];
+    [self.recordingLabel setHidden:YES];
 
     
     // CaptureSize Item
@@ -959,6 +964,7 @@ static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRef
     if ([self capableOf:WifiCamAbilityStillCapture]) {
         self.cameraToggle.enabled = NO;
     }
+    self.recordingLabel.hidden=NO;
     self.videoToggle.enabled = NO;
     self.mpbToggle.enabled = NO;
     self.settingButton.enabled = NO;

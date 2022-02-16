@@ -300,4 +300,4 @@
 "new_password_null"="新密碼不可為空";
 "scan_text" =  "請掃描喉鏡上面的QrCode";
 "qrcode_tp_error" = "Qrcode格式錯誤";
-
+"recording" = "錄製中";

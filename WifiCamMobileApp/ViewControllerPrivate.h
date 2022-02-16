@@ -104,6 +104,7 @@ SettingDelegate
 @property(weak, nonatomic) IBOutlet UIButton *setWB_INCADESCENT;
 @property(weak, nonatomic) IBOutlet UIButton *setWB_FLOURESCENT_H;
 @property(weak, nonatomic) IBOutlet UIButton *changeIqPwdButton;
+@property(weak, nonatomic) IBOutlet UILabel  *recordingLabel;
 
 
 

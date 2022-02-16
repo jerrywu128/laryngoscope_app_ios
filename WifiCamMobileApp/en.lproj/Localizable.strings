@@ -302,3 +302,4 @@
 "new_password_null"="新密码不可为空";
 "scan_text" = "Please Scan the Qrcode on the laryngoscope";
 "qrcode_tp_error" = "Qrcode Type Error";
+"recording" = "Recording";

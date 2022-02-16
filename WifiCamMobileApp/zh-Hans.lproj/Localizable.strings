@@ -301,4 +301,4 @@
 "new_password_null"="新密码不可为空";
 "scan_text" = "请扫描喉镜上的二维码";
 "qrcode_tp_error" = "二维码格式错误";
-
+"recording" = "录制中";
