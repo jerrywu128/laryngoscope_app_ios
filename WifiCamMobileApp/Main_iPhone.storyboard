@@ -422,35 +422,35 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="Button_deviceInfo" destination="ITy-IJ-Vee" id="SYN-aw-mqb"/>
-                        <outlet property="CloseIQButton" destination="qnK-PV-rcP" id="L2W-BE-fKU"/>
-                        <outlet property="CloseIQSlider" destination="iVx-Af-fWE" id="Iab-vn-nOY"/>
+                        <outlet property="BLCSwitch" destination="Z0Y-Fo-60d" id="3zO-DA-tPS"/>
+                        <outlet property="CloseIQSettingViewButton" destination="iVx-Af-fWE" id="Iab-vn-nOY"/>
+                        <outlet property="CloseIQViewButton" destination="qnK-PV-rcP" id="L2W-BE-fKU"/>
+                        <outlet property="IQBLCButton" destination="90K-KI-z6M" id="vvm-Pn-PQd"/>
+                        <outlet property="IQCurValueLabel" destination="DFy-qu-upC" id="T3r-66-kbV"/>
+                        <outlet property="IQSettingView" destination="jwD-I2-DJo" id="22F-UX-BEV"/>
+                        <outlet property="IQValueSlider" destination="f0d-Ib-8KH" id="QKP-b9-QfY"/>
+                        <outlet property="IQWhiteBalanceButton" destination="9qk-BT-W6H" id="XH6-Bs-aZm"/>
+                        <outlet property="IQbrightnessButton" destination="tjf-Nl-8d6" id="JCV-Ya-T3u"/>
+                        <outlet property="IQhueButton" destination="fN7-Ap-ODd" id="894-rk-Xyh"/>
+                        <outlet property="IQsaturationButton" destination="3bZ-qv-LN4" id="Pl9-Ce-Yvb"/>
+                        <outlet property="IQsilderLabel" destination="zFY-bq-elQ" id="2VD-Ee-VcY"/>
                         <outlet property="ImageQualityButton" destination="IO2-Ub-4H7" id="jYu-OF-WAn"/>
                         <outlet property="ImageQualityView" destination="Ynj-Ih-OUc" id="ZXZ-th-yTm"/>
+                        <outlet property="WB_AUTO" destination="rG5-jk-Xvk" id="lgm-Xg-HKZ"/>
+                        <outlet property="WB_CLOUDY" destination="QxK-Ig-MUj" id="229-xu-erI"/>
+                        <outlet property="WB_DAYLIGHT" destination="m4I-cT-Hvo" id="o9n-Oq-m68"/>
+                        <outlet property="WB_FLOURESCENT_H" destination="icj-dX-Q1e" id="Zlq-Ov-aCZ"/>
+                        <outlet property="WB_INCADESCENT" destination="bO9-9b-vST" id="RF8-kd-Si2"/>
                         <outlet property="autoDownloadThumbImage" destination="AyE-9h-Mg5" id="Spn-2E-fL4"/>
                         <outlet property="cameraToggle" destination="AyM-ar-j4c" id="V8q-8l-glF"/>
                         <outlet property="changeIqPwdButton" destination="nkU-Yn-Wxt" id="Pzc-TV-IQ8"/>
+                        <outlet property="deviceInfoButton" destination="ITy-IJ-Vee" id="SYN-aw-mqb"/>
                         <outlet property="movieRecordTimerLabel" destination="YoN-Lx-0I7" id="hMI-xJ-SXe"/>
                         <outlet property="mpbToggle" destination="rD4-Uf-phs" id="lNc-nt-gnM"/>
                         <outlet property="noPreviewLabel" destination="9Up-tX-fnw" id="POm-pH-TOb"/>
                         <outlet property="preview" destination="Mrz-kh-ZEE" id="k7v-sK-Lyc"/>
                         <outlet property="recordingLabel" destination="q8P-B9-7cK" id="wfV-il-wZj"/>
-                        <outlet property="setBLCSwitch" destination="Z0Y-Fo-60d" id="3zO-DA-tPS"/>
-                        <outlet property="setIQBLC" destination="90K-KI-z6M" id="vvm-Pn-PQd"/>
-                        <outlet property="setIQValueSlider" destination="f0d-Ib-8KH" id="QKP-b9-QfY"/>
-                        <outlet property="setIQValueView" destination="jwD-I2-DJo" id="22F-UX-BEV"/>
-                        <outlet property="setIQWhiteBalance" destination="9qk-BT-W6H" id="XH6-Bs-aZm"/>
-                        <outlet property="setIQbrightness" destination="tjf-Nl-8d6" id="JCV-Ya-T3u"/>
-                        <outlet property="setIQhue" destination="fN7-Ap-ODd" id="894-rk-Xyh"/>
-                        <outlet property="setIQsaturation" destination="3bZ-qv-LN4" id="Pl9-Ce-Yvb"/>
-                        <outlet property="setWB_AUTO" destination="rG5-jk-Xvk" id="lgm-Xg-HKZ"/>
-                        <outlet property="setWB_CLOUDY" destination="QxK-Ig-MUj" id="229-xu-erI"/>
-                        <outlet property="setWB_DAYLIGHT" destination="m4I-cT-Hvo" id="o9n-Oq-m68"/>
-                        <outlet property="setWB_FLOURESCENT_H" destination="icj-dX-Q1e" id="Zlq-Ov-aCZ"/>
-                        <outlet property="setWB_INCADESCENT" destination="bO9-9b-vST" id="RF8-kd-Si2"/>
                         <outlet property="settingButton" destination="KrK-8h-LjT" id="i4k-Nz-o3S"/>
-                        <outlet property="showIQValueLabel" destination="DFy-qu-upC" id="T3r-66-kbV"/>
-                        <outlet property="showIQsilderLabel" destination="zFY-bq-elQ" id="2VD-Ee-VcY"/>
                         <outlet property="snapButton" destination="jF1-we-R9f" id="0ed-dZ-cI0"/>
                         <outlet property="videoToggle" destination="Oft-r1-5Jv" id="a6H-Rf-Yqi"/>
                         <segue destination="IVY-c8-sTW" kind="modal" identifier="goMpbSegue" id="cLF-Gp-eMs"/>

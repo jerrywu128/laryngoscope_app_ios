@@ -55,8 +55,7 @@ CBPeripheralDelegate,
 AVCaptureMetadataOutputObjectsDelegate
 >
 
-@property(weak, nonatomic) IBOutlet UIButton *addCamBtn3;
-@property(weak, nonatomic) IBOutlet UIButton *remCamBtn3;
+
 @property (weak, nonatomic) IBOutlet ScanView *scanView;
 // properties
 @property (assign, nonatomic) BOOL isReading;
@@ -64,13 +63,6 @@ AVCaptureMetadataOutputObjectsDelegate
 @property (strong, nonatomic) AVCaptureVideoPreviewLayer *previewLayer;
 
 
-
-
-
-
-
-@property(weak, nonatomic) IBOutlet UIButton *photoBg;
-@property(weak, nonatomic) IBOutlet UIButton *videoBg;
 @property(weak, nonatomic) IBOutlet UIButton *photoThumb;
 @property(weak, nonatomic) IBOutlet UIButton *videoThumb;
 @property(weak, nonatomic) IBOutlet UILabel *pleaseScanQR;
@@ -148,25 +140,13 @@ alpha:1.0]
     self.isReading = NO;
     self.captureSession = nil;
    
-    [self setButtonRadius:self.addCamBtn3 withRadius:5.0];
-    
     
    
-    [self setButtonRadius:self.photoBg withRadius:5.0];
-    [self setButtonRadius:self.videoBg withRadius:5.0];
+
     [self setButtonRadius:self.photoThumb withRadius:10.0];
     [self setButtonRadius:self.videoThumb withRadius:10.0];
     
    
- 
-    _addCamBtn3.tag = 3;
-
-   
-    _addCamBtn3.isRecorded = @NO;
-
-   
-    _remCamBtn3.tag = 2;
-    
     self.connErrAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"ConnectError", nil)
                                                    message:NSLocalizedString(@"NoWifiConnection", nil)
                                                   delegate:self
@@ -203,8 +183,7 @@ alpha:1.0]
     _pleaseScanQR.backgroundColor = [UIColor whiteColor];
    
   
-    [_addCamBtn3 setTitle:NSLocalizedString(@"Add New Camera", nil) forState:UIControlStateNormal];
-    
+   
     
     // register timer for check SSID
     //_theTimer = [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(checkConnectionStatus) userInfo:nil repeats:YES];
@@ -410,8 +389,8 @@ alpha:1.0]
           NSString *message = [metadataObject stringValue];
           if([self checkQrInfo:message]){
                    dispatch_async(dispatch_get_main_queue(), ^{
-                       if(![self->_Qr_info isEqualToString:message]){
-                         self.Qr_info = message;
+                       if(![self->_qrInfo isEqualToString:message]){
+                         self.qrInfo = message;
                         [self performSegueWithIdentifier:@"connectCMpreviewSegue" sender:nil];
                     }
                    });
@@ -501,38 +480,6 @@ alpha:1.0]
                     NSString *showTitle = [self cacheSSID:title];
                     
                     UIImage *image = (UIImage *)camera.thumbnail;
-                    switch (id0) {
-                        case 0:
-                           
-                           
-   
-                            
-                           
-                            
-                            break;
-                        case 1:
-                          
-                
-                            break;
-                        case 2:
-                            if (image) {
-                               
-                            }
-                            [_addCamBtn3 setTitle:showTitle forState:UIControlStateNormal];
-                            if( [title isEqualToString:current_ssid]){
-                                [_addCamBtn3 setTitleColor:UIColorFromRGB(0x32A3DE) forState:UIControlStateNormal];
-                                
-                            }else{
-                                [_addCamBtn3 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-                               
-                            }
-                            
-                            _addCamBtn3.isRecorded = @YES;
-                            [_remCamBtn3 setHidden:NO];
-                            break;
-                        default:
-                            break;
-                    }
                 }
             }
         }
@@ -573,21 +520,14 @@ alpha:1.0]
     
   
     
-    AppLog(@"1: %f", _addCamBtn3.frame.origin.y);
+  
     AppLog(@"mediaOnMyIphone: %f", _pleaseScanQR.frame.origin.y);
     
 
-    float gap = (_pleaseScanQR.frame.origin.y - _addCamBtn3.frame.size.height *2) / 4;
-
-    float h = _addCamBtn3.frame.size.height;
-
- 
-    _remCamBtn3.transform = CGAffineTransformTranslate(_remCamBtn3.transform, 0, 0);
-
   
     
-    CGFloat ty3 = _addCamBtn3.frame.origin.y - (gap*3 + h*2);
-    _addCamBtn3.transform = _remCamBtn3.transform = CGAffineTransformTranslate(_addCamBtn3.transform, 0, -ty3);
+
+  
     
     [self.view needsUpdateConstraints];
     
@@ -693,7 +633,7 @@ alpha:1.0]
 - (void)enableButtons:(BOOL)value {
    
 
-    self.addCamBtn3.userInteractionEnabled = value;
+  
     self.videoThumb.userInteractionEnabled = value;
     self.photoThumb.userInteractionEnabled = value;
 }
@@ -775,35 +715,7 @@ struct ifaddrs *interfaces;
     }
 }
 
-- (IBAction)removeCameraByBtn:(UIButton*)sender{
-        self.cameraTobeRemoved = sender.tag-100.0;
-    
-        BOOL showAlert = YES;
-        switch (_cameraTobeRemoved) {
-            case 0:
-              
-                break;
-            case 1:
-              
-                break;
-            case 2:
-                if ([_addCamBtn3.titleLabel.text isEqualToString:NSLocalizedString(@"Add New Camera", nil)]) {
-                    showAlert = NO;
-                }
-                break;
-            default:
-                break;
-        }
-        if (showAlert == YES) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Warning",nil)
-                                                            message:NSLocalizedString(@"Are you sure you want to remove this record", nil)
-                                                           delegate:self
-                                                  cancelButtonTitle:NSLocalizedString(@"Cancel",nil)
-                                                  otherButtonTitles:NSLocalizedString(@"Sure",nil), nil];
-            alert.tag = 5;
-            [alert show];
-        }
-}
+
 - (IBAction)removeCamera:(id)sender {
     /*
     UIButton *testBtn = sender;
@@ -877,13 +789,7 @@ struct ifaddrs *interfaces;
               
 
             } else {
-                [_addCamBtn3 setTitle:nullTitle forState:UIControlStateNormal];
-                
-                [_addCamBtn3 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-                
-                _addCamBtn3.isRecorded = @NO;
-                _remCamBtn3.hidden = YES;
-
+            
             }
         }
     } else {
@@ -1061,7 +967,7 @@ struct ifaddrs *interfaces;
 //        vc.cameraSSID = [data objectAtIndex:1];
         vc.cameraSSID = _cameraSSID;
         vc.managedObjectContext = _managedObjectContext;
-        vc.qrWifiInfo = _Qr_info;
+        vc.qrWifiInfo = _qrInfo;
         
     }
 }
@@ -1924,65 +1830,4 @@ didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic
     }
 }
 
-//-(void)peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error {
-//    if (error) {
-//        NSLog(@"Error update characteristic value %@", [error localizedDescription]);
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            [self showGCDNoteWithMessage:@"Failed" andTime:1.0 withAcvity:NO];
-//        });
-//        return;
-//    }
-//    
-//    NSData *data = characteristic.value;
-//    NSString *info = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-//    if (!_receivedCmd) {
-//        self.receivedCmd = [[NSMutableString alloc] init];
-//    }
-//    
-//    [_receivedCmd appendString:info];
-//    if ([info containsString:@"\0"]) {
-//        NSLog(@"%@", _receivedCmd);
-//        NSArray *items = [_receivedCmd componentsSeparatedByString:@" "];
-//        if ([items[1] isEqualToString:@"wifi"]
-//                   && [items[2] isEqualToString:@"info"]) {
-//            NSArray *subs = [items[4] componentsSeparatedByString:@"="];
-//            uint err = [subs[1] unsignedIntValue];
-//            if (err == 0) {
-//                NSArray *s1 = [items[3] componentsSeparatedByString:@","];
-//                NSArray *ss1 = [s1[0] componentsSeparatedByString:@"="];
-//                self.cameraSSID = ss1[1];
-//                NSLog(@"SSID: %@", ss1[1]);
-//                NSArray *ss2 = [s1[1] componentsSeparatedByString:@"="];
-//                self.cameraPWD = ss2[1];
-//                NSLog(@"Password: %@", ss2[1]);
-//                
-//                dispatch_async(dispatch_get_main_queue(), ^{
-//                    [self hideGCDiscreetNoteView:NO];
-//                    [self performSegueWithIdentifier:@"PortalSegue" sender:nil];
-//                });
-//            } else {
-//                NSLog(@"Error: %u", err);
-//            }
-//        } else if ([items[1] isEqualToString:@"wifi"]
-//                   && [items[2] isEqualToString:@"enable"]) {
-//            NSArray *subs = [items[4] componentsSeparatedByString:@"="];
-//            uint err = [subs[1] unsignedIntValue];
-//            if (err == 0) {
-//                NSString *cmd = @"bt wifi enable ap\0";
-//                NSData *data = [[NSData alloc] initWithBytes:[cmd UTF8String]
-//                                                      length:cmd.length];
-//                [peripheral writeValue:data
-//                     forCharacteristic:characteristic
-//                                  type:CBCharacteristicWriteWithResponse];
-//                
-//                dispatch_async(dispatch_get_main_queue(), ^{
-//                    [self checkConnectionStatus];
-//                });
-//            } else {
-//                NSLog(@"Error: %u", err);
-//            }
-//        }
-//        _receivedCmd = nil;
-//    }
-//}
 @end

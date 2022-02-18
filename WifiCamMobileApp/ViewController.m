@@ -20,7 +20,9 @@
 
 #define TimeInterval [[[NSUserDefaults standardUserDefaults] stringForKey:@"LivePostTimeoutInterval"] doubleValue]
 CVImageBufferRef photoImageBuffer;
+NSMutableArray *videotemp = [NSMutableArray array];
 BOOL capturePhoto = NO;
+BOOL recordVideo = NO;
 static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRefCon, OSStatus status, VTDecodeInfoFlags infoFlags, CVImageBufferRef pixelBuffer, CMTime presentationTimeStamp, CMTime presentationDuration ){
     
  //   CVPixelBufferRef *outputPixelBuffer = (CVPixelBufferRef *)sourceFrameRefCon;
@@ -49,8 +51,20 @@ static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRef
             UIImage *image = [[UIImage alloc] initWithCGImage:videoImage];
             if(capturePhoto){
                UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
+                /*
+               NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,   NSUserDomainMask, YES);
+               NSString *documentsDirectory = [paths objectAtIndex:0];
+               NSString *dataFilePath = [documentsDirectory stringByAppendingPathComponent:@"photo"];
+               NSString *filePath = [dataFilePath stringByAppendingPathComponent:
+                                          [NSString stringWithFormat:@"test.png"]];
+               [UIImagePNGRepresentation(image)writeToFile:filePath   atomically:YES];
+              */
                capturePhoto = NO;
             }
+            if(recordVideo){
+                [videotemp addObject:image];
+            }
+            
             CGImageRelease(videoImage);
         }
    
@@ -142,7 +156,7 @@ static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRef
     self.userDefaults = [NSUserDefaults standardUserDefaults];
     [self.recordingLabel setText:NSLocalizedString(@"recording",nil)];
     _ImageQualityButton.transform = CGAffineTransformMakeScale(1.3, 1.3);
-    _Button_deviceInfo.transform = CGAffineTransformMakeScale(1.3, 1.3);
+    _deviceInfoButton.transform = CGAffineTransformMakeScale(1.3, 1.3);
     _mpbToggle.transform = CGAffineTransformMakeScale(1.3, 1.3);
     [self iniIQSetting];
    
@@ -153,26 +167,26 @@ static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRef
 
 - (void)iniIQSetting{
     
-    _CloseIQButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
-    _CloseIQButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentFill;
-    _CloseIQButton.contentVerticalAlignment = UIControlContentVerticalAlignmentFill;
-    _CloseIQButton.imageEdgeInsets = UIEdgeInsetsMake(40,40,40,40);
+    _CloseIQViewButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
+    _CloseIQViewButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentFill;
+    _CloseIQViewButton.contentVerticalAlignment = UIControlContentVerticalAlignmentFill;
+    _CloseIQViewButton.imageEdgeInsets = UIEdgeInsetsMake(40,40,40,40);
     
-    _CloseIQSlider.imageView.contentMode = UIViewContentModeScaleAspectFit;
-    _CloseIQSlider.contentHorizontalAlignment = UIControlContentHorizontalAlignmentFill;
-    _CloseIQSlider.contentVerticalAlignment = UIControlContentVerticalAlignmentFill;
-    _CloseIQSlider.imageEdgeInsets = UIEdgeInsetsMake(40,40,40,40);
+    _CloseIQSettingViewButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
+    _CloseIQSettingViewButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentFill;
+    _CloseIQSettingViewButton.contentVerticalAlignment = UIControlContentVerticalAlignmentFill;
+    _CloseIQSettingViewButton.imageEdgeInsets = UIEdgeInsetsMake(40,40,40,40);
     
-    [_setIQbrightness setTitle:NSLocalizedString(@"SETTING_BRIGHTNESS",nil) forState:UIControlStateNormal];
-    [_setIQhue setTitle:NSLocalizedString(@"SETTING_HUE",nil) forState:UIControlStateNormal];
-    [_setIQsaturation setTitle:NSLocalizedString(@"SETTING_SATURATION",nil) forState:UIControlStateNormal];
-    [_setIQWhiteBalance setTitle:NSLocalizedString(@"SETTING_AWB",nil) forState:UIControlStateNormal];
-    [_setIQBLC setTitle:NSLocalizedString(@"SETTING_BLC",nil) forState:UIControlStateNormal];
+    [_IQbrightnessButton setTitle:NSLocalizedString(@"SETTING_BRIGHTNESS",nil) forState:UIControlStateNormal];
+    [_IQhueButton setTitle:NSLocalizedString(@"SETTING_HUE",nil) forState:UIControlStateNormal];
+    [_IQsaturationButton setTitle:NSLocalizedString(@"SETTING_SATURATION",nil) forState:UIControlStateNormal];
+    [_IQWhiteBalanceButton setTitle:NSLocalizedString(@"SETTING_AWB",nil) forState:UIControlStateNormal];
+    [_IQBLCButton setTitle:NSLocalizedString(@"SETTING_BLC",nil) forState:UIControlStateNormal];
     [_changeIqPwdButton setTitle:NSLocalizedString(@"change_password",nil) forState:UIControlStateNormal];
     _changeIqPwdButton.titleLabel.font = [UIFont systemFontOfSize:14];
-    _setIQValueSlider.minimumValue = 0;
-    _setIQValueSlider.maximumValue = 255;
-    _setIQValueSlider.continuous = NO;
+    _IQValueSlider.minimumValue = 0;
+    _IQValueSlider.maximumValue = 255;
+    _IQValueSlider.continuous = NO;
 }
 
 
@@ -876,6 +890,7 @@ static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRef
     [self.enableAudioButton setEnabled:YES];
     [self.ImageQualityButton setEnabled:YES];
     [self.recordingLabel setHidden:YES];
+    [self.deviceInfoButton setEnabled:YES];
 
     
     // CaptureSize Item
@@ -970,6 +985,7 @@ static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRef
     self.settingButton.enabled = NO;
     self.enableAudioButton.enabled = NO;
     self.ImageQualityButton.enabled = NO;
+    self.deviceInfoButton.enabled = NO;
     if ([self capableOf:WifiCamAbilityTimeLapse]) {
         self.timelapseToggle.enabled = NO;
     }
@@ -1844,10 +1860,24 @@ static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRef
             // Cancel button tappped.
            
         }]];
-
+        
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,   NSUserDomainMask, YES);
         NSString *documentsDirectory = [paths objectAtIndex:0];
-      
+        /*
+        NSString *dataFilePath = [documentsDirectory stringByAppendingPathComponent:@"photo"];
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+
+        BOOL isDir = NO;
+
+       
+        BOOL existed = [fileManager fileExistsAtPath:dataFilePath isDirectory:&isDir];
+
+        if (!(isDir && existed)) {
+     
+            [fileManager createDirectoryAtPath:dataFilePath withIntermediateDirectories:YES attributes:nil error:nil];
+        }
+        */
+    
         [actionSheet addAction:[UIAlertAction actionWithTitle:@"測試" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
             UIAlertController * alert = [UIAlertController
                                          alertControllerWithTitle:@"測試"
@@ -1948,7 +1978,7 @@ static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRef
                                         }
         
                                         if([temp isEqualToString:string]){
-                                            self->_IQ_isCheckPassword = YES;
+                                            self->_isCheckIQPassword = YES;
                                             view.hidden = NO;
                                         }
                                         else{
@@ -2020,7 +2050,7 @@ static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRef
        
                                
                                if([old_pwd isEqualToString:string]){
-                                    self->_IQ_isCheckPassword = NO;
+                                    self->_isCheckIQPassword = NO;
                                    [self->_userDefaults setObject:new_pwd forKey:@"IQ_password"];
                                    [self->_userDefaults synchronize];
                                    [self ShowAlert:NSLocalizedString(@"change_password_sucess", nil)];
@@ -2053,7 +2083,7 @@ static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRef
     
 - (IBAction)showViewImageQuality:(id)sender
 {
-    if(![self IQ_isCheckPassword]){
+    if(![self isCheckIQPassword]){
         [self checkIQPassword:_ImageQualityView];
     }else{
         _ImageQualityView.hidden = NO;
@@ -2070,7 +2100,7 @@ static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRef
 
 - (IBAction)closeSetIQValueView:(id)sender
 {
-    _setIQValueView.hidden = YES;
+    _IQSettingView.hidden = YES;
     _ImageQualityView.hidden = NO;
 }
 
@@ -2078,82 +2108,82 @@ static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRef
 - (IBAction)setIQtype:(id)sender
 {
    // [_ctrl.propCtrl changeBrightness:128];
-    _setBLCSwitch.hidden = YES;
-    _setWB_AUTO.hidden = YES;
-    _setWB_DAYLIGHT.hidden = YES;
-    _setWB_CLOUDY.hidden = YES;
-    _setWB_INCADESCENT.hidden = YES;
-    _setWB_FLOURESCENT_H.hidden = YES;
+    _BLCSwitch.hidden = YES;
+    _WB_AUTO.hidden = YES;
+    _WB_DAYLIGHT.hidden = YES;
+    _WB_CLOUDY.hidden = YES;
+    _WB_INCADESCENT.hidden = YES;
+    _WB_FLOURESCENT_H.hidden = YES;
     switch ([sender tag]){
         case 0:{
             _curIQMode = BRIGHTNESS;
-            _setIQValueSlider.maximumValue = 255;
-            _setIQValueView.hidden = NO;
-            _setIQValueSlider.hidden = NO;
-            _showIQValueLabel.hidden = NO;
-            _showIQsilderLabel.hidden = NO;
+            _IQValueSlider.maximumValue = 255;
+            _IQSettingView.hidden = NO;
+            _IQValueSlider.hidden = NO;
+            _IQCurValueLabel.hidden = NO;
+            _IQsilderLabel.hidden = NO;
             NSString *tempvalue = [_ctrl.propCtrl retrieveIQbrightnessValue];
-            _showIQValueLabel.text = tempvalue;
-            _setIQValueSlider.value = [tempvalue floatValue];
-            [_showIQsilderLabel setText:NSLocalizedString(@"SETTING_BRIGHTNESS",nil)];
+            _IQCurValueLabel.text = tempvalue;
+            _IQValueSlider.value = [tempvalue floatValue];
+            [_IQsilderLabel setText:NSLocalizedString(@"SETTING_BRIGHTNESS",nil)];
             break;
             
         }
         case 1:{
             _curIQMode = HUE;
-            _setIQValueSlider.maximumValue = 360;
-            _setIQValueView.hidden = NO;
-            _setIQValueSlider.hidden = NO;
-            _showIQValueLabel.hidden = NO;
-            _showIQsilderLabel.hidden = NO;
+            _IQValueSlider.maximumValue = 360;
+            _IQSettingView.hidden = NO;
+            _IQValueSlider.hidden = NO;
+            _IQCurValueLabel.hidden = NO;
+            _IQsilderLabel.hidden = NO;
             NSString *tempvalue1 = [_ctrl.propCtrl retrieveIQhueValue];
-            _showIQValueLabel.text = tempvalue1;
-            _setIQValueSlider.value = [tempvalue1 floatValue];
-            [_showIQsilderLabel setText:NSLocalizedString(@"SETTING_HUE",nil)];
+            _IQCurValueLabel.text = tempvalue1;
+            _IQValueSlider.value = [tempvalue1 floatValue];
+            [_IQsilderLabel setText:NSLocalizedString(@"SETTING_HUE",nil)];
             break;
             
         }
         case 2:{
             _curIQMode = SATURATION;
-            _setIQValueSlider.maximumValue = 255;
-            _setIQValueView.hidden = NO;
-            _setIQValueSlider.hidden = NO;
-            _showIQValueLabel.hidden = NO;
-            _showIQsilderLabel.hidden = NO;
+            _IQValueSlider.maximumValue = 255;
+            _IQSettingView.hidden = NO;
+            _IQValueSlider.hidden = NO;
+            _IQCurValueLabel.hidden = NO;
+            _IQsilderLabel.hidden = NO;
             NSString *tempvalue2 = [_ctrl.propCtrl retrieveIQsaturationValue];
-            _showIQValueLabel.text = tempvalue2;
-            _setIQValueSlider.value = [tempvalue2 floatValue];
-            [_showIQsilderLabel setText:NSLocalizedString(@"SETTING_SATURATION",nil)];
+            _IQCurValueLabel.text = tempvalue2;
+            _IQValueSlider.value = [tempvalue2 floatValue];
+            [_IQsilderLabel setText:NSLocalizedString(@"SETTING_SATURATION",nil)];
             break;
         }
         case 3:{
             _curIQMode = WHTIE_BALANCE;
-            _setIQValueView.hidden = NO;
-            _setIQValueSlider.hidden = YES;
-            _showIQValueLabel.hidden = YES;
-            _showIQsilderLabel.hidden = YES;
-            _setWB_AUTO.hidden = NO;
-            _setWB_DAYLIGHT.hidden = NO;
-            _setWB_CLOUDY.hidden = NO;
-            _setWB_INCADESCENT.hidden = NO;
-            _setWB_FLOURESCENT_H.hidden = NO;
-            [_setWB_AUTO setTitle:NSLocalizedString(@"SETTING_AWB_AUTO",nil) forState:UIControlStateNormal];
-            [_setWB_DAYLIGHT setTitle:NSLocalizedString(@"SETTING_AWB_DAYLIGHT",nil) forState:UIControlStateNormal];
-            [_setWB_CLOUDY setTitle:NSLocalizedString(@"SETTING_AWB_CLOUDY",nil) forState:UIControlStateNormal];
-            [_setWB_INCADESCENT setTitle:NSLocalizedString(@"SETTING_AWB_INCANDESCENT",nil) forState:UIControlStateNormal];
-            [_setWB_FLOURESCENT_H setTitle:NSLocalizedString(@"SETTING_AWB_FLUORESECENT",nil) forState:UIControlStateNormal];
+            _IQSettingView.hidden = NO;
+            _IQValueSlider.hidden = YES;
+            _IQCurValueLabel.hidden = YES;
+            _IQsilderLabel.hidden = YES;
+            _WB_AUTO.hidden = NO;
+            _WB_DAYLIGHT.hidden = NO;
+            _WB_CLOUDY.hidden = NO;
+            _WB_INCADESCENT.hidden = NO;
+            _WB_FLOURESCENT_H.hidden = NO;
+            [_WB_AUTO setTitle:NSLocalizedString(@"SETTING_AWB_AUTO",nil) forState:UIControlStateNormal];
+            [_WB_DAYLIGHT setTitle:NSLocalizedString(@"SETTING_AWB_DAYLIGHT",nil) forState:UIControlStateNormal];
+            [_WB_CLOUDY setTitle:NSLocalizedString(@"SETTING_AWB_CLOUDY",nil) forState:UIControlStateNormal];
+            [_WB_INCADESCENT setTitle:NSLocalizedString(@"SETTING_AWB_INCANDESCENT",nil) forState:UIControlStateNormal];
+            [_WB_FLOURESCENT_H setTitle:NSLocalizedString(@"SETTING_AWB_FLUORESECENT",nil) forState:UIControlStateNormal];
             break;
         }
         case 4:{
             _curIQMode = BLC;
-            _setIQValueView.hidden = NO;
-            _setIQValueSlider.hidden = YES;
-            _showIQValueLabel.hidden = YES;
-            _showIQsilderLabel.hidden = NO;
-            _setBLCSwitch.hidden = NO;
+            _IQSettingView.hidden = NO;
+            _IQValueSlider.hidden = YES;
+            _IQCurValueLabel.hidden = YES;
+            _IQsilderLabel.hidden = NO;
+            _BLCSwitch.hidden = NO;
             BOOL tempvalue3 = [_ctrl.propCtrl retrieveIQBLCValue];
-            [_setBLCSwitch setOn:(BOOL)tempvalue3];
-            [_showIQsilderLabel setText:NSLocalizedString(@"SETTING_BLC",nil)];
+            [_BLCSwitch setOn:(BOOL)tempvalue3];
+            [_IQsilderLabel setText:NSLocalizedString(@"SETTING_BLC",nil)];
             break;
         }
        
@@ -2171,18 +2201,18 @@ static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRef
 {
     switch (_curIQMode){
         case BRIGHTNESS:{
-            [_ctrl.propCtrl changeBrightness:_setIQValueSlider.value];
-            _showIQValueLabel.text = [[NSString alloc] initWithFormat:@"%d",(int)_setIQValueSlider.value];
+            [_ctrl.propCtrl changeBrightness:_IQValueSlider.value];
+            _IQCurValueLabel.text = [[NSString alloc] initWithFormat:@"%d",(int)_IQValueSlider.value];
             break;
         }
         case HUE:{
-            [_ctrl.propCtrl changeHue:_setIQValueSlider.value];
-            _showIQValueLabel.text = [[NSString alloc] initWithFormat:@"%d",(int)_setIQValueSlider.value];
+            [_ctrl.propCtrl changeHue:_IQValueSlider.value];
+            _IQCurValueLabel.text = [[NSString alloc] initWithFormat:@"%d",(int)_IQValueSlider.value];
             break;
         }
         case SATURATION:{
-            [_ctrl.propCtrl changeSaturation:_setIQValueSlider.value];
-            _showIQValueLabel.text = [[NSString alloc] initWithFormat:@"%d",(int)_setIQValueSlider.value];
+            [_ctrl.propCtrl changeSaturation:_IQValueSlider.value];
+            _IQCurValueLabel.text = [[NSString alloc] initWithFormat:@"%d",(int)_IQValueSlider.value];
             break;
         }
     }
@@ -2423,7 +2453,7 @@ static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRef
             });
             return;
         }
-        
+        /*
         if ([self capableOf:WifiCamAbilityGetMovieRecordedTime]) {
             AppLog(@"Support to get recorded time!");
             videoRecPostTimeListener = new VideoRecPostTimeListener(self);
@@ -2465,6 +2495,22 @@ static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRef
                     }
                 }
             }
+        });test20220218*/
+        dispatch_async(dispatch_get_main_queue(), ^{
+            recordVideo = YES;
+            [self hideProgressHUD:YES];
+            [self updatePreviewSceneByMode:WifiCamPreviewModeVideoOn];
+            _Recording = YES;
+            if (![self capableOf:WifiCamAbilityGetMovieRecordedTime]) {
+                if (![_videoCaptureTimer isValid]) {
+                     self.videoCaptureTimer = [NSTimer scheduledTimerWithTimeInterval:1.0
+                                                                         target  :self
+                                                                         selector:@selector(movieRecordingTimerCallback:)
+                                                                         userInfo:nil
+                                                                         repeats :YES];
+                }
+            }
+            
         });
     });
 }
@@ -2484,6 +2530,7 @@ static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRef
                 videoRecPostTimeListener = NULL;
             }
         }
+        /*
         TRACE();
         BOOL ret = [_ctrl.actCtrl stopMovieRecord];
         TRACE();
@@ -2505,6 +2552,19 @@ static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRef
                 [self showProgressHUDNotice:@"Failed to stop movie recording."
                                    showTime:2.0];
             }
+        });*/
+        dispatch_async(dispatch_get_main_queue(), ^{
+            recordVideo = NO;
+            [self updatePreviewSceneByMode:WifiCamPreviewModeVideoOff];
+            [self hideProgressHUD:YES];
+            [self remMovieRecListener];
+            if ([_videoCaptureTimer isValid]) {
+                [_videoCaptureTimer invalidate];
+                self.movieRecordElapsedTimeInSeconds = 0;
+            }
+            _Recording = NO;
+            [self videoWrite];
+            [self ShowAlert:[[NSString alloc] initWithFormat:@"%lu", (unsigned long)videotemp.count]];
         });
     });
 }
@@ -2591,6 +2651,141 @@ static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRef
         });
     });
 }
+
+-(void)videoWrite{
+    NSString *betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/Movie.mp4"];
+    CGSize size = CGSizeMake(800,1120);
+
+    NSError *error = nil;
+
+    unlink([betaCompressionDirectory UTF8String]);
+
+    //—-initialize compression engine
+    AVAssetWriter *videoWriter = [[AVAssetWriter alloc] initWithURL:[NSURL fileURLWithPath:betaCompressionDirectory]
+    fileType:AVFileTypeQuickTimeMovie
+    error:&error];
+    NSParameterAssert(videoWriter);
+    if(error){
+        AppLog(@"error = %@", [error localizedDescription]);
+    }
+    NSDictionary *videoSettings = [NSDictionary dictionaryWithObjectsAndKeys:AVVideoCodecH264, AVVideoCodecKey,
+    [NSNumber numberWithInt:size.width], AVVideoWidthKey,
+    [NSNumber numberWithInt:size.height], AVVideoHeightKey, nil];
+    AppLog(@"video size = %f %f",size.width,size.height);
+    AVAssetWriterInput *writerInput = [AVAssetWriterInput assetWriterInputWithMediaType:AVMediaTypeVideo outputSettings:videoSettings];
+    
+    NSDictionary *sourcePixelBufferAttributesDictionary = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:kCVPixelFormatType_32ARGB], kCVPixelBufferPixelFormatTypeKey, nil];
+
+    AVAssetWriterInputPixelBufferAdaptor *adaptor = [AVAssetWriterInputPixelBufferAdaptor
+    assetWriterInputPixelBufferAdaptorWithAssetWriterInput:writerInput sourcePixelBufferAttributes:sourcePixelBufferAttributesDictionary];
+    NSParameterAssert(writerInput);
+    NSParameterAssert([videoWriter canAddInput:writerInput]);
+
+    if ([videoWriter canAddInput:writerInput]){
+        AppLog(@"Can add this input");
+    }
+    else{
+        AppLog(@"Can't add this input");
+    }
+    
+    [videoWriter addInput:writerInput];
+
+    [videoWriter startWriting];
+    [videoWriter startSessionAtSourceTime:kCMTimeZero];
+    // insert demo debugging code to write the same image repeated as a movie
+
+    dispatch_queue_t dispatchQueue = dispatch_queue_create("mediaInputQueue", NULL);
+
+    int __block frame = 0;
+
+    [writerInput requestMediaDataWhenReadyOnQueue:dispatchQueue usingBlock:^{
+        
+        
+    while ([writerInput isReadyForMoreMediaData])
+    {
+       if(++frame >= videotemp.count )
+       {
+             [writerInput markAsFinished];
+             [videoWriter finishWriting];
+             break;
+       }
+       int idx = frame;
+       UIImage *uiImage=[videotemp objectAtIndex:idx];
+       CGImageRef cgRef=uiImage.CGImage;
+       CVPixelBufferRef buffer = (CVPixelBufferRef)[self pixelBufferFromCGImage:cgRef size:size];
+           if (buffer)
+           {
+               if(![adaptor appendPixelBuffer:buffer withPresentationTime:CMTimeMake(frame, 20)]){
+                      AppLog(@"Fail appendPixelBuffer");
+               }
+               else{
+                      AppLog(@"Success appendPixelBuffer:%d", frame);
+               }
+                    CFRelease(buffer);
+
+           }
+
+    }
+
+    }];
+}
+
+- (CVPixelBufferRef )pixelBufferFromCGImage:(CGImageRef)image size:(CGSize)size
+
+{
+
+    NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
+
+                             [NSNumber numberWithBool:YES], kCVPixelBufferCGImageCompatibilityKey,
+
+                             [NSNumber numberWithBool:YES], kCVPixelBufferCGBitmapContextCompatibilityKey, nil];
+
+    CVPixelBufferRef pxbuffer = NULL;
+
+    CVReturn status = CVPixelBufferCreate(kCFAllocatorDefault, size.width, size.height, kCVPixelFormatType_32ARGB, (__bridge CFDictionaryRef) options, &pxbuffer);
+
+    // CVReturn status = CVPixelBufferPoolCreatePixelBuffer(NULL, adaptor.pixelBufferPool, &pxbuffer);
+
+    
+
+    NSParameterAssert(status == kCVReturnSuccess && pxbuffer != NULL);
+
+    
+
+    CVPixelBufferLockBaseAddress(pxbuffer, 0);
+
+    void *pxdata = CVPixelBufferGetBaseAddress(pxbuffer);
+
+    NSParameterAssert(pxdata != NULL);
+
+    
+
+    CGColorSpaceRef rgbColorSpace = CGColorSpaceCreateDeviceRGB();
+
+    CGContextRef context = CGBitmapContextCreate(pxdata, size.width, size.height, 8, 4*size.width, rgbColorSpace, kCGImageAlphaPremultipliedFirst);
+
+    NSParameterAssert(context);
+
+    
+
+    CGContextDrawImage(context, CGRectMake(0, 0, CGImageGetWidth(image), CGImageGetHeight(image)), image);
+
+    
+
+    CGColorSpaceRelease(rgbColorSpace);
+
+    CGContextRelease(context);
+
+    
+
+    CVPixelBufferUnlockBaseAddress(pxbuffer, 0);
+
+    
+
+    return pxbuffer;
+
+}
+
 
 - (void)movieRecordingTimerCallback:(NSTimer *)sender {
     UIImage *image = nil;

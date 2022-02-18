@@ -59,7 +59,7 @@ SettingDelegate
 >
 @property(weak, nonatomic) IBOutlet UIImageView *preview;
 @property(nonatomic) IBOutlet UIView *h264View;
-@property(weak, nonatomic) IBOutlet UIButton *Button_deviceInfo;
+@property(weak, nonatomic) IBOutlet UIButton *deviceInfoButton;
 @property(weak, nonatomic) IBOutlet UIButton    *cameraToggle;
 @property(weak, nonatomic) IBOutlet UIButton    *videoToggle;
 @property(weak, nonatomic) IBOutlet UIButton    *timelapseToggle;
@@ -86,23 +86,23 @@ SettingDelegate
 @property(weak, nonatomic) IBOutlet UIButton *enableAudioButton;
 @property(weak, nonatomic) IBOutlet UIButton *ImageQualityButton;
 @property(weak, nonatomic) IBOutlet UIView *ImageQualityView;
-@property(weak, nonatomic) IBOutlet UIView *setIQValueView;
-@property(weak, nonatomic) IBOutlet UIButton *CloseIQButton;
-@property(weak, nonatomic) IBOutlet UIButton *CloseIQSlider;
-@property(weak, nonatomic) IBOutlet UIButton *setIQbrightness;
-@property(weak, nonatomic) IBOutlet UIButton *setIQhue;
-@property(weak, nonatomic) IBOutlet UIButton *setIQsaturation;
-@property(weak, nonatomic) IBOutlet UIButton *setIQWhiteBalance;
-@property(weak, nonatomic) IBOutlet UIButton *setIQBLC;
-@property(weak, nonatomic) IBOutlet UISlider *setIQValueSlider;
-@property(weak, nonatomic) IBOutlet UILabel  *showIQValueLabel;
-@property(weak, nonatomic) IBOutlet UILabel  *showIQsilderLabel;
-@property(weak, nonatomic) IBOutlet UISwitch *setBLCSwitch;
-@property(weak, nonatomic) IBOutlet UIButton *setWB_AUTO;
-@property(weak, nonatomic) IBOutlet UIButton *setWB_DAYLIGHT;
-@property(weak, nonatomic) IBOutlet UIButton *setWB_CLOUDY;
-@property(weak, nonatomic) IBOutlet UIButton *setWB_INCADESCENT;
-@property(weak, nonatomic) IBOutlet UIButton *setWB_FLOURESCENT_H;
+@property(weak, nonatomic) IBOutlet UIView *IQSettingView;
+@property(weak, nonatomic) IBOutlet UIButton *CloseIQViewButton;
+@property(weak, nonatomic) IBOutlet UIButton *CloseIQSettingViewButton;
+@property(weak, nonatomic) IBOutlet UIButton *IQbrightnessButton;
+@property(weak, nonatomic) IBOutlet UIButton *IQhueButton;
+@property(weak, nonatomic) IBOutlet UIButton *IQsaturationButton;
+@property(weak, nonatomic) IBOutlet UIButton *IQWhiteBalanceButton;
+@property(weak, nonatomic) IBOutlet UIButton *IQBLCButton;
+@property(weak, nonatomic) IBOutlet UISlider *IQValueSlider;
+@property(weak, nonatomic) IBOutlet UILabel  *IQCurValueLabel;
+@property(weak, nonatomic) IBOutlet UILabel  *IQsilderLabel;
+@property(weak, nonatomic) IBOutlet UISwitch *BLCSwitch;
+@property(weak, nonatomic) IBOutlet UIButton *WB_AUTO;
+@property(weak, nonatomic) IBOutlet UIButton *WB_DAYLIGHT;
+@property(weak, nonatomic) IBOutlet UIButton *WB_CLOUDY;
+@property(weak, nonatomic) IBOutlet UIButton *WB_INCADESCENT;
+@property(weak, nonatomic) IBOutlet UIButton *WB_FLOURESCENT_H;
 @property(weak, nonatomic) IBOutlet UIButton *changeIqPwdButton;
 @property(weak, nonatomic) IBOutlet UILabel  *recordingLabel;
 
@@ -152,7 +152,6 @@ SettingDelegate
 @property(nonatomic) WifiCamObserver *streamObserver;
 @property(nonatomic) BOOL readyGoToSetting;
 @property(nonatomic) AVSampleBufferDisplayLayer *avslayer;
-@property(nonatomic) VTDecompressionSessionRef vtdslayer;
 @property(nonatomic) double curVideoPTS;
 @property(nonatomic) BOOL videoPlayFlag;
 @property(nonatomic, retain) GCDiscreetNotificationView *notificationView;
@@ -175,7 +174,7 @@ SettingDelegate
 
 @property (nonatomic) NSMutableData *currentVideoData;
 @property (nonatomic) BOOL isEnterBackground;
-@property (nonatomic) BOOL IQ_isCheckPassword;
+@property (nonatomic) BOOL isCheckIQPassword;
 @property (nonatomic) NSUserDefaults *userDefaults;
 
 
