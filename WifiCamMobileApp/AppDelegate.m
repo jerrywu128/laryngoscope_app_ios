@@ -575,7 +575,7 @@ static NSString * const kClientID = @"759186550079-prbjm58kcrideo6lh4uukdqqp2q9b
     } else {
         if (!_reconnectionAlertView.visible) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                [_reconnectionAlertView show];
+                //[_reconnectionAlertView show];
                 _isReconnecting = YES;
             });
         }
@@ -675,7 +675,7 @@ static NSString * const kClientID = @"759186550079-prbjm58kcrideo6lh4uukdqqp2q9b
                         if (_current_ssid && ![ssid isEqualToString:_current_ssid]) {
                             [_connectionErrorAlertView1 show];
                         } else {
-                            [_reconnectionAlertView show];
+                            //[_reconnectionAlertView show];
                         }
                     }
                 });

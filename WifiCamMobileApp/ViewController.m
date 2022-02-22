@@ -15,14 +15,17 @@
 #include "SignInViewController.h"
 #import <GoogleSignIn/GoogleSignIn.h>
 #import <ImageIO/CGImageProperties.h>
+#import <AssetsLibrary/AssetsLibrary.h>
 
 
 
 #define TimeInterval [[[NSUserDefaults standardUserDefaults] stringForKey:@"LivePostTimeoutInterval"] doubleValue]
 CVImageBufferRef photoImageBuffer;
 NSMutableArray *videotemp = [NSMutableArray array];
+
 BOOL capturePhoto = NO;
 BOOL recordVideo = NO;
+int tt = 0;
 static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRefCon, OSStatus status, VTDecodeInfoFlags infoFlags, CVImageBufferRef pixelBuffer, CMTime presentationTimeStamp, CMTime presentationDuration ){
     
  //   CVPixelBufferRef *outputPixelBuffer = (CVPixelBufferRef *)sourceFrameRefCon;
@@ -63,6 +66,7 @@ static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRef
             }
             if(recordVideo){
                 [videotemp addObject:image];
+                tt++;
             }
             
             CGImageRelease(videoImage);
@@ -71,6 +75,8 @@ static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRef
     
     
 }
+
+
 
 
 
@@ -2498,6 +2504,10 @@ static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRef
         });test20220218*/
         dispatch_async(dispatch_get_main_queue(), ^{
             recordVideo = YES;
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self videoWrite];
+            });
+            
             [self hideProgressHUD:YES];
             [self updatePreviewSceneByMode:WifiCamPreviewModeVideoOn];
             _Recording = YES;
@@ -2555,6 +2565,7 @@ static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRef
         });*/
         dispatch_async(dispatch_get_main_queue(), ^{
             recordVideo = NO;
+           // [self videoWrite];
             [self updatePreviewSceneByMode:WifiCamPreviewModeVideoOff];
             [self hideProgressHUD:YES];
             [self remMovieRecListener];
@@ -2563,8 +2574,8 @@ static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRef
                 self.movieRecordElapsedTimeInSeconds = 0;
             }
             _Recording = NO;
-            [self videoWrite];
-            [self ShowAlert:[[NSString alloc] initWithFormat:@"%lu", (unsigned long)videotemp.count]];
+            
+            [self ShowAlert:[[NSString alloc] initWithFormat:@"%lu", (unsigned long)tt]];
         });
     });
 }
@@ -2653,8 +2664,21 @@ static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRef
 }
 
 -(void)videoWrite{
-    NSString *betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/Movie.mp4"];
-    CGSize size = CGSizeMake(800,1120);
+    
+    NSDate *date = [NSDate date];
+    AppLogDebug(AppLogTagAPP, @"date ----> %@", date);
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    NSTimeZone* GTMzone = [NSTimeZone timeZoneForSecondsFromGMT:0];
+    [dateFormatter setTimeZone:GTMzone];
+    [dateFormatter setDateFormat:@"yyyyMMddHHmmss"];
+    
+    NSString *actualStartTime = [dateFormatter stringFromDate:date];
+    NSString *temp =[actualStartTime stringByAppendingString:@".mp4"];
+    NSString *document = @"Documents/";
+    NSString *result = [document stringByAppendingString:temp];
+    NSString *betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:result];
+    
+    CGSize size = CGSizeMake(816,1120);
 
     NSError *error = nil;
 
@@ -2665,10 +2689,10 @@ static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRef
     fileType:AVFileTypeQuickTimeMovie
     error:&error];
     NSParameterAssert(videoWriter);
-    if(error){
+    if (error){
         AppLog(@"error = %@", [error localizedDescription]);
     }
-    NSDictionary *videoSettings = [NSDictionary dictionaryWithObjectsAndKeys:AVVideoCodecH264, AVVideoCodecKey,
+    NSDictionary *videoSettings = [NSDictionary dictionaryWithObjectsAndKeys:AVVideoCodecTypeH264, AVVideoCodecKey,
     [NSNumber numberWithInt:size.width], AVVideoWidthKey,
     [NSNumber numberWithInt:size.height], AVVideoHeightKey, nil];
     AppLog(@"video size = %f %f",size.width,size.height);
@@ -2697,40 +2721,55 @@ static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRef
     dispatch_queue_t dispatchQueue = dispatch_queue_create("mediaInputQueue", NULL);
 
     int __block frame = 0;
-
+    UIImage  * __block uiImage=[videotemp objectAtIndex:0];
     [writerInput requestMediaDataWhenReadyOnQueue:dispatchQueue usingBlock:^{
         
+        while ([writerInput isReadyForMoreMediaData]){
+            @autoreleasepool {
         
-    while ([writerInput isReadyForMoreMediaData])
-    {
-       if(++frame >= videotemp.count )
-       {
-             [writerInput markAsFinished];
-             [videoWriter finishWriting];
-             break;
-       }
-       int idx = frame;
-       UIImage *uiImage=[videotemp objectAtIndex:idx];
-       CGImageRef cgRef=uiImage.CGImage;
-       CVPixelBufferRef buffer = (CVPixelBufferRef)[self pixelBufferFromCGImage:cgRef size:size];
-           if (buffer)
-           {
-               if(![adaptor appendPixelBuffer:buffer withPresentationTime:CMTimeMake(frame, 20)]){
-                      AppLog(@"Fail appendPixelBuffer");
-               }
-               else{
-                      AppLog(@"Success appendPixelBuffer:%d", frame);
-               }
-                    CFRelease(buffer);
-
-           }
-
-    }
-
+                if ((videotemp.count==0)&&(!recordVideo)){
+                    [writerInput markAsFinished];
+                    [videoWriter finishWriting];
+                    [videotemp removeAllObjects];
+                    [self saveVideotoAlbum:betaCompressionDirectory];
+                    break;
+                }
+          
+                if (videotemp.count>0){
+                    ++frame;
+                    uiImage=[videotemp objectAtIndex:0];
+                    CVPixelBufferRef buffer = (CVPixelBufferRef)[self pixelBufferFromCGImage:uiImage size:size];
+                    if (buffer){
+                        if (![adaptor appendPixelBuffer:buffer withPresentationTime:CMTimeMake(frame, 20)]){
+                            AppLog(@"Fail appendPixelBuffer");
+                        }
+                        else{
+                            AppLog(@"Success appendPixelBuffer:%d", frame);
+                            [videotemp removeObjectAtIndex:0];
+                        }
+                        CFRelease(buffer);
+                    }
+                }
+            }
+        }
     }];
 }
 
-- (CVPixelBufferRef )pixelBufferFromCGImage:(CGImageRef)image size:(CGSize)size
+- (void)saveVideotoAlbum:(NSString *)urlString
+{
+       ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+       [library writeVideoAtPathToSavedPhotosAlbum:[NSURL fileURLWithPath:urlString]
+                                   completionBlock:^(NSURL *assetURL, NSError *error) {
+                                       if (error) {
+                                           NSLog(@"Save video fail:%@",error);
+                                       } else {
+                                           NSLog(@"Save video succeed.");
+                                       }
+                                   }];
+   
+}
+
+- (CVPixelBufferRef )pixelBufferFromCGImage:(UIImage *)image size:(CGSize)size
 
 {
 
@@ -2768,7 +2807,7 @@ static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRef
 
     
 
-    CGContextDrawImage(context, CGRectMake(0, 0, CGImageGetWidth(image), CGImageGetHeight(image)), image);
+    CGContextDrawImage(context, CGRectMake(0, 0, CGImageGetWidth(image.CGImage), CGImageGetHeight(image.CGImage)), image.CGImage);
 
     
 
@@ -2776,6 +2815,7 @@ static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRef
 
     CGContextRelease(context);
 
+    
     
 
     CVPixelBufferUnlockBaseAddress(pxbuffer, 0);
