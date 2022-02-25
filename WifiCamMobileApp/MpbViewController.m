@@ -72,7 +72,7 @@ static NSString *kCellID = @"cellID";
     self.downloadQueue = dispatch_queue_create("WifiCam.GCD.Queue.Playback.Download", 0);
     self.downloadPercentQueue = dispatch_queue_create("WifiCam.GCD.Queue.Playback.DownloadPercent", 0);
     self.collDataArray = [[NSMutableDictionary alloc] init];
-    //self.browser = [_ctrl.fileCtrl createOneMWPhotoBrowserWithDelegate:self];
+   
     self.selItemsTable = [_ctrl.fileCtrl createOneCellsTable];
     self.mpbCache = [_ctrl.fileCtrl createCacheForMultiPlaybackWithCountLimit:100
                                                                totalCostLimit:4096];
@@ -101,6 +101,7 @@ static NSString *kCellID = @"cellID";
         [_selItemsTable.selectedCells removeAllObjects];
         [self postButtonStateChangeNotification:NO];
     }
+    [self loadAssets];
 }
 
 -(void)destroySDKNotification
@@ -252,6 +253,90 @@ static NSString *kCellID = @"cellID";
     
     //[[NSNotificationCenter defaultCenter] removeObserver:self name:@"kCameraNetworkConnectedNotification" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (MWPhotoBrowser *)test
+{
+    //--test
+    
+    NSMutableArray *photos = [[NSMutableArray alloc] init];
+    NSMutableArray *thumbs = [[NSMutableArray alloc] init];
+    MWPhoto *photo, *thumb;
+    BOOL displayActionButton = YES;
+    BOOL displaySelectionButtons = NO;
+    BOOL displayNavArrows = NO;
+    BOOL enableGrid = YES;
+    BOOL startOnGrid = YES;
+    BOOL autoPlayOnAppear = NO;
+    @synchronized(_assets) {
+        NSMutableArray *copy = [_assets copy];
+        if (NSClassFromString(@"PHAsset")) {
+            // Photos library
+            UIScreen *screen = [UIScreen mainScreen];
+            CGFloat scale = screen.scale;
+            // Sizing is very rough... more thought required in a real implementation
+            CGFloat imageSize = MAX(screen.bounds.size.width, screen.bounds.size.height) * 1.5;
+            CGSize imageTargetSize = CGSizeMake(imageSize * scale, imageSize * scale);
+            CGSize thumbTargetSize = CGSizeMake(imageSize / 3.0 * scale, imageSize / 3.0 * scale);
+            for (PHAsset *asset in copy) {
+                
+                    [photos addObject:[MWPhoto photoWithAsset:asset targetSize:imageTargetSize]];
+                    [thumbs addObject:[MWPhoto photoWithAsset:asset targetSize:thumbTargetSize]];
+               
+            }
+        } else {
+            // Assets library
+            for (ALAsset *asset in copy) {
+               
+                    photo = [MWPhoto photoWithURL:asset.defaultRepresentation.url];
+                    [photos addObject:photo];
+                    thumb = [MWPhoto photoWithImage:[UIImage imageWithCGImage:asset.thumbnail]];
+                    [thumbs addObject:thumb];
+                
+
+            }
+        }
+    }
+    
+    self.photos = photos;
+    self.thumbs = thumbs;
+    
+    // Create browser
+    MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
+    browser.displayActionButton = displayActionButton;
+    browser.displayNavArrows = displayNavArrows;
+    browser.displaySelectionButtons = displaySelectionButtons;
+    browser.alwaysShowControls = displaySelectionButtons;
+    browser.zoomPhotosToFill = YES;
+    browser.enableGrid = enableGrid;
+    browser.startOnGrid = startOnGrid;
+    browser.enableSwipeToDismiss = NO;
+    browser.autoPlayOnAppear = autoPlayOnAppear;
+    [browser setCurrentPhotoIndex:0];
+    
+    // Test custom selection images
+    //    browser.customImageSelectedIconName = @"ImageSelected.png";
+    //    browser.customImageSelectedSmallIconName = @"ImageSelectedSmall.png";
+    
+    // Reset selections
+    if (displaySelectionButtons) {
+        _selections = [NSMutableArray new];
+        for (int i = 0; i < photos.count; i++) {
+            [_selections addObject:[NSNumber numberWithBool:NO]];
+        }
+    }
+    
+    
+    // Modal
+ 
+
+    
+    // Test reloading of data after delay
+    double delayInSeconds = 3;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+    });
+    return browser;
 }
 
 - (void)didReceiveMemoryWarning
@@ -867,7 +952,6 @@ static NSString *kCellID = @"cellID";
     if (_popController.popoverVisible) {
         [_popController dismissPopoverAnimated:YES];
     }
-    
     uint shareNum = (uint)[self.shareFiles count];
     uint assetNum = (uint)[[SDK instance] retrieveCameraRollAssetsResult].count;
     
@@ -2032,7 +2116,7 @@ referenceSizeForFooterInSection:(NSInteger)section
 - (void)photoSinglePlaybackCallback:(NSIndexPath *)indexPath {
     self.browser = [_ctrl.fileCtrl createOneMWPhotoBrowserWithDelegate:self];
     [_browser setCurrentPhotoIndex:indexPath.item];
-    
+  
     [self.navigationController pushViewController:self.browser animated:YES];
     //    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:_browser];
     //    nc.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
@@ -2118,6 +2202,7 @@ referenceSizeForFooterInSection:(NSInteger)section
 - (void)collectionView          :(UICollectionView *)cv
         didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     AppLog(@"%s, curMpbState: %d", __func__, _curMpbState);
     if (_curMpbState == MpbStateNor) {
         NSString *callbackName = [[_collDataArray objectForKey:@(indexPath.section)] objectForKey:@(SectionPlaybackCallback)];
@@ -2243,6 +2328,7 @@ referenceSizeForFooterInSection:(NSInteger)section
 - (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser
 {
     AppLog(@"%s", __func__);
+  
     /*
      NSUInteger retVal = 0;
      if (_enableHeader) {
@@ -2259,6 +2345,7 @@ referenceSizeForFooterInSection:(NSInteger)section
 - (id <MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser
                 photoAtIndex:(NSUInteger)index
 {
+    
     AppLog(@"%s(%lu)", __func__, (unsigned long)index);
     MWPhoto *photo = nil;
     unsigned long listSize = 0;
@@ -2292,6 +2379,7 @@ referenceSizeForFooterInSection:(NSInteger)section
  */
 - (void)showShareConfirmForphotoBrowser
 {
+    
     NSIndexPath *ip = [_selItemsTable.selectedCells firstObject];
     WifiCamFileTable *fileTable = [[_collDataArray objectForKey:@(ip.section)] objectForKey:@(SectionDataTable)];
     ICatchFile f = fileTable.fileList.at(ip.item);
@@ -2322,6 +2410,7 @@ referenceSizeForFooterInSection:(NSInteger)section
 #pragma mark - MWPhotoBrowserDelegate
 -(void)photoBrowser:(MWPhotoBrowser *)photoBrowser actionButtonPressedForPhotoAtIndex:(NSUInteger)index {
     AppLog(@"%s", __func__);
+ 
     if (!self.shareFiles) {
         self.shareFiles = [NSMutableArray array];
     } else {
@@ -2459,6 +2548,133 @@ referenceSizeForFooterInSection:(NSInteger)section
     dispatch_async(dispatch_get_main_queue(), ^{
         [self showProgressHUDNotice:NSLocalizedString(@"CARD_REMOVED", nil) showTime:2.0];
     });
+}
+
+#pragma mark - Load Assets
+- (void)loadAssets {
+    // get current SSID
+
+    
+    if (NSClassFromString(@"PHAsset")) {
+        // Check library permissions
+        PHAuthorizationStatus status = [PHPhotoLibrary authorizationStatus];
+        if (status == PHAuthorizationStatusNotDetermined) {
+            [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
+                if (status == PHAuthorizationStatusAuthorized) {
+                    [self performLoadAssets];
+                }
+            }];
+        } else if (status == PHAuthorizationStatusAuthorized) {
+            [self performLoadAssets];
+        }
+    } else {
+        // Assets library
+        [self performLoadAssets];
+    }
+}
+
+- (void)performLoadAssets {
+    
+    // Initialise
+    if (!_assets) {
+        _assets = [NSMutableArray new];
+    } else {
+        [_assets removeAllObjects];
+    }
+    
+  
+    // Load
+    if (NSClassFromString(@"PHAsset")) {
+        
+        // Photos library iOS >= 8
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            PHFetchResult *assetsFetchResult = nil;
+            PHFetchResult *topLevelUserCollections = [PHCollectionList fetchTopLevelUserCollectionsWithOptions:nil];
+            for (int i=0; i<topLevelUserCollections.count; ++i) {
+                PHCollection *collection = [topLevelUserCollections objectAtIndex:i];
+                if ([collection.localizedTitle isEqualToString:NSLocalizedString(@"appName",nil)]) {
+                    if (![collection isKindOfClass:[PHAssetCollection class]]) {
+                        continue;
+                    }
+                    // Configure the AAPLAssetGridViewController with the asset collection.
+                    PHAssetCollection *assetCollection = (PHAssetCollection *)collection;
+                    PHFetchOptions *options = [PHFetchOptions new];
+                    options.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:NO]];
+                    assetsFetchResult = [PHAsset fetchAssetsInAssetCollection:assetCollection options:options];
+                    break;
+                }
+            }
+            if (!assetsFetchResult) {
+                AppLog(@"assetsFetchResult was nil.");
+                return;
+            }
+            
+            [assetsFetchResult enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                //Add
+                [_assets addObject:obj];
+            }];
+        });
+        
+    } else {
+        
+        /*
+         ALAssetsLibrary：代表整个PhotoLibrary，我们可以生成一个它的实例对象，这个实例对象就相当于是照片库的句柄。
+         ALAssetsGroup：照片库的分组，我们可以通过ALAssetsLibrary的实例获取所有的分组的句柄。
+         ALAsset：一个ALAsset的实例代表一个资产，也就是一个photo或者video，我们可以通过他的实例获取对应的缩略图或者原图等等。
+         */
+        
+        // Assets Library iOS < 8
+        _ALAssetsLibrary = [[ALAssetsLibrary alloc] init];
+        // Run in the background as it takes a while to get all assets from the library
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            
+            NSMutableArray *assetGroups = [[NSMutableArray alloc] init];
+            NSMutableArray *assetURLDictionaries = [[NSMutableArray alloc] init];
+            
+            // Process assets
+            void (^assetEnumerator)(ALAsset *, NSUInteger, BOOL *) = ^(ALAsset *result, NSUInteger index, BOOL *stop) {
+                if (result) {
+                    NSString *assetType = [result valueForProperty:ALAssetPropertyType];
+                    
+                   
+                    
+                    if ([assetType isEqualToString:ALAssetTypePhoto] || [assetType isEqualToString:ALAssetTypeVideo]) {
+                        [assetURLDictionaries addObject:[result valueForProperty:ALAssetPropertyURLs]];
+                        NSURL *url = result.defaultRepresentation.url;
+                        [_ALAssetsLibrary assetForURL:url
+                                          resultBlock:^(ALAsset *asset) {
+                                              if (asset) {
+                                                  @synchronized(_assets) {
+                                                      [_assets addObject:asset];
+                                                  }
+                                              }
+                                          }
+                                         failureBlock:^(NSError *error){
+                                             NSLog(@"operation was not successfull!");
+                                         }];
+                    }
+                }
+            };
+            
+            // Process groups
+            void (^ assetGroupEnumerator) (ALAssetsGroup *, BOOL *) = ^(ALAssetsGroup *group, BOOL *stop) {
+                if (group) {
+                    [group enumerateAssetsWithOptions:NSEnumerationReverse usingBlock:assetEnumerator];
+                    [assetGroups addObject:group];
+                }
+            };
+            
+            // Process!
+            [_ALAssetsLibrary enumerateGroupsWithTypes:ALAssetsGroupSavedPhotos
+                                            usingBlock:assetGroupEnumerator
+                                          failureBlock:^(NSError *error) {
+                                              NSLog(@"There is an error");
+                                          }];
+            
+        });
+        
+    }
+    
 }
 
 @end

@@ -29,6 +29,8 @@
 #import "GCDiscreetNotificationView.h"
 #import <VideoToolbox/VideoToolbox.h>
 #import <malloc/malloc.h>
+#import <AssetsLibrary/AssetsLibrary.h>
+#import <Photos/Photos.h>
 
 enum SettingState{
   SETTING_DELAY_CAPTURE = 0,
@@ -55,8 +57,10 @@ UIAlertViewDelegate,
 UITableViewDelegate,
 UITableViewDataSource,
 AppDelegateProtocol,
+MWPhotoBrowserDelegate,
 SettingDelegate
 >
+
 @property(weak, nonatomic) IBOutlet UIImageView *preview;
 @property(nonatomic) IBOutlet UIView *h264View;
 @property(weak, nonatomic) IBOutlet UIButton *deviceInfoButton;
@@ -176,6 +180,11 @@ SettingDelegate
 @property (nonatomic) BOOL isEnterBackground;
 @property (nonatomic) BOOL isCheckIQPassword;
 @property (nonatomic) NSUserDefaults *userDefaults;
+@property(nonatomic, strong) NSMutableArray *assets;
+@property(nonatomic, strong) NSMutableArray *photos;
+@property(nonatomic, strong) NSMutableArray *thumbs;
+@property(nonatomic) NSMutableArray *selections;
+@property(nonatomic, strong) ALAssetsLibrary *ALAssetsLibrary;
 
 
 - (IBAction)liveSwitchClink:(id)sender;

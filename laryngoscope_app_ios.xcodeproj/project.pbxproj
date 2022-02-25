@@ -57,6 +57,7 @@
 		AE2D776127881C75004909CF /* ScanView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE2D776027881C75004909CF /* ScanView.m */; };
 		AE4AA345278EABCB00911023 /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE4AA344278EABCB00911023 /* NetworkExtension.framework */; };
 		AE8B4E91275B3B480067596D /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE8B4E90275B3B480067596D /* ExternalAccessory.framework */; };
+		AEA9F9AB27C7351200B92237 /* SaveMediaInAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = AEA9F9AA27C7351200B92237 /* SaveMediaInAlbum.m */; };
 		B5CC60BCBDC1E4110FB38241 /* Pods_laryngoscope_app_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29173CAFD8007D4013E282ED /* Pods_laryngoscope_app_ios.framework */; };
 		BC0339EF1B26A0AC0042AE0A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC0339EE1B26A0AC0042AE0A /* Security.framework */; };
 		BC0339F21B26A0E20042AE0A /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6D5106218E9088B00A2EB3B /* CoreTelephony.framework */; };
@@ -294,6 +295,8 @@
 		AE2D776027881C75004909CF /* ScanView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScanView.m; sourceTree = "<group>"; };
 		AE4AA344278EABCB00911023 /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
 		AE8B4E90275B3B480067596D /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
+		AEA9F9A927C7351200B92237 /* SaveMediaInAlbum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SaveMediaInAlbum.h; sourceTree = "<group>"; };
+		AEA9F9AA27C7351200B92237 /* SaveMediaInAlbum.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SaveMediaInAlbum.m; sourceTree = "<group>"; };
 		BC0339EE1B26A0AC0042AE0A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		BC2042881B0F084A0064B093 /* PortraitNavVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PortraitNavVC.h; sourceTree = "<group>"; };
 		BC2042891B0F084A0064B093 /* PortraitNavVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PortraitNavVC.m; sourceTree = "<group>"; };
@@ -651,7 +654,6 @@
 				AA61F7246359816170173ED5 /* Pods-laryngoscope_app_ios.debug.xcconfig */,
 				E9C031257D657E24A801C8CD /* Pods-laryngoscope_app_ios.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -736,6 +738,15 @@
 				3A85E711215CFE3C00D94C84 /* ICatchMJPGStreamParam.h */,
 			);
 			path = type;
+			sourceTree = "<group>";
+		};
+		AEA9F9A827C7346500B92237 /* Function */ = {
+			isa = PBXGroup;
+			children = (
+				AEA9F9A927C7351200B92237 /* SaveMediaInAlbum.h */,
+				AEA9F9AA27C7351200B92237 /* SaveMediaInAlbum.m */,
+			);
+			path = Function;
 			sourceTree = "<group>";
 		};
 		BC330CF01B0B3768006CF592 /* Home */ = {
@@ -944,6 +955,7 @@
 		E6466FF1185839A400E5324E /* Preview */ = {
 			isa = PBXGroup;
 			children = (
+				AEA9F9A827C7346500B92237 /* Function */,
 				38B0D3341E360300009BE4C5 /* Live */,
 				BCF500291B4FA2BB008DBEB5 /* Views */,
 				BCF500281B4FA2AA008DBEB5 /* ViewControllers */,
@@ -1392,6 +1404,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AEA9F9AB27C7351200B92237 /* SaveMediaInAlbum.m in Sources */,
 				E6A97D4A19EE8CBB00039028 /* UIActivityFacebook.m in Sources */,
 				E6BA7EF918505E1C00FA101F /* MpbCollectionViewCell.m in Sources */,
 				E6546C8C1963A6F000253791 /* WifiCamAVData.m in Sources */,

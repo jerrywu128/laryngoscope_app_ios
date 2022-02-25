@@ -21,6 +21,11 @@
 @property(nonatomic, getter = isEnableHeader) BOOL enableFooter;
 @property int observerNo;
 @property(nonatomic) BOOL isSend;
+@property(nonatomic, strong) NSMutableArray *photos;
+@property(nonatomic, strong) NSMutableArray *thumbs;
+@property(nonatomic) NSMutableArray *selections;
+@property(nonatomic, strong) NSMutableArray *assets;
+@property(nonatomic, strong) ALAssetsLibrary *ALAssetsLibrary;
 
 @property(nonatomic) MpbMediaType curMpbMediaType;
 + (instancetype)mpbViewControllerWithIdentifier:(NSString *)identifier;

@@ -136,6 +136,7 @@ alpha:1.0]
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    [self checkFristInApp];
   
     self.isReading = NO;
     self.captureSession = nil;
@@ -316,6 +317,8 @@ alpha:1.0]
     _navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editClink)];
 #endif
     [self startScanning];
+    NSString *path_header = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    AppLog(@"local==%@",path_header);
 }
 
 
@@ -329,7 +332,7 @@ alpha:1.0]
  AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
  AVCaptureDeviceInput *deviceInput = [[AVCaptureDeviceInput alloc] initWithDevice:device error:&error];
  if (!deviceInput) {
-  NSLog(@"%@", [error localizedDescription]);
+  AppLog(@"%@", [error localizedDescription]);
  }
  [self.captureSession addInput:deviceInput];
  
@@ -501,7 +504,7 @@ alpha:1.0]
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self loadAssets];
+    //[self loadAssets];
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     appDelegate.isReconnecting = YES;
     /*
@@ -583,6 +586,36 @@ alpha:1.0]
     [self.wifiReachability stopNotifier];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kReachabilityChangedNotification object:nil];
 }
+
+- (void)checkFristInApp
+{
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"isFirstIn"]){
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"isFirstIn"];
+           
+            NSString *photoFilePath = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:@"photo"];
+            NSString *videoFilePath = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:@"video"];
+            NSFileManager *fileManager = [NSFileManager defaultManager];
+
+            BOOL isphDir = NO;
+            BOOL isvdDir = NO;
+           
+            BOOL phExisted = [fileManager fileExistsAtPath:photoFilePath isDirectory:&isphDir];
+            BOOL vdExisted = [fileManager fileExistsAtPath:videoFilePath isDirectory:&isvdDir];
+            if (!(isphDir && phExisted)) {
+         
+                [fileManager createDirectoryAtPath:photoFilePath withIntermediateDirectories:YES attributes:nil error:nil];
+            }
+            if (!(isvdDir && vdExisted)) {
+         
+                [fileManager createDirectoryAtPath:videoFilePath withIntermediateDirectories:YES attributes:nil error:nil];
+            }
+            
+        });
+    }
+}
+
+
 
 - (void)setButtonRadius:(UIButton *)button withRadius:(CGFloat)radius {
     button.layer.cornerRadius = radius;
@@ -997,7 +1030,6 @@ struct ifaddrs *interfaces;
 
 - (IBAction)showLocalMediaBrowser:(UIButton *)sender {
     // Browser
-    [self performSegueWithIdentifier:@"connectCMpreviewSegue" sender:nil];
     NSMutableArray *photos = [[NSMutableArray alloc] init];
     NSMutableArray *thumbs = [[NSMutableArray alloc] init];
     MWPhoto *photo, *thumb;

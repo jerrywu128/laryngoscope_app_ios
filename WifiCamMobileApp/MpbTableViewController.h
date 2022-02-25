@@ -13,6 +13,8 @@
 @interface MpbTableViewController : UITableViewController <MpbSegmentViewControllerDelegate, MWPhotoBrowserDelegate, AppDelegateProtocol, VideoPlaybackControllerDelegate>
 
 @property(nonatomic) MpbMediaType curMpbMediaType;
+@property(nonatomic, strong) NSMutableArray *assets;
+@property(nonatomic, strong) ALAssetsLibrary *ALAssetsLibrary;
 
 + (instancetype)tableViewControllerWithIdentifier:(NSString *)identifier;
 

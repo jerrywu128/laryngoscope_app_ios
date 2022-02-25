@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AssetsLibrary/AssetsLibrary.h>
 
 enum MpbState{
     MpbStateNor = 0,
@@ -34,14 +35,21 @@ enum MpbShowState {
 
 @end
 
-@interface MpbSegmentViewController : UIViewController <UIScrollViewDelegate>
+@interface MpbSegmentViewController : UIViewController <UIScrollViewDelegate,MWPhotoBrowserDelegate>
 {
     int pageIndex;
     NSMutableArray *viewControllers;
 }
 
 @property(weak, nonatomic) IBOutlet UIBarButtonItem *actionButton;
-
+@property(nonatomic, strong) ALAssetsLibrary *ALAssetsLibrary;
 @property (nonatomic, weak) IBOutlet id<MpbSegmentViewControllerDelegate> delegate;
+@property(nonatomic, strong) NSMutableArray *photos;
+@property(nonatomic, strong) NSMutableArray *thumbs;
+@property(nonatomic) NSMutableArray *selections;
+@property(nonatomic, strong) NSMutableArray *assets;
+
+
+
 
 @end
