@@ -116,7 +116,6 @@
     if (_mpbSemaphore == nil) {
         _mpbSemaphore = dispatch_semaphore_create(1);
     }
-    
     return _mpbSemaphore;
 }
 
@@ -1596,7 +1595,7 @@
     ICatchFile file = _gallery.imageTable.fileList.at(index);
     
     if (index < listSize) {
-        photo = [MWPhoto photoWithURL:[NSURL URLWithString:@"sdk://test"] funcBlock:^{
+        photo = [MWPhoto photoWithURL:[NSURL URLWithString:@"sdk://JPG"] funcBlock:^{
             return [_ctrl.fileCtrl requestImage:(ICatchFile *)&file];
         }];
     }

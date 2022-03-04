@@ -55,16 +55,11 @@ static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRef
             if(capturePhoto){
                //UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
                [saveMedia savePhoto:image];
-              
-                
-                
-               
                capturePhoto = NO;
             }
             if(recordVideo){
                 [videotemp addObject:image];
             }
-            
             CGImageRelease(videoImage);
         }
    
@@ -1870,6 +1865,24 @@ static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRef
                                         actionWithTitle:NSLocalizedString(@"sure",nil)
                                         style:UIAlertActionStyleDefault
                                         handler:^(UIAlertAction * action) {
+                NSString *temp =@"Test.png";
+                NSString *document = @"Documents/";
+                NSString *result = [document stringByAppendingString:temp];
+                NSString *betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:result];
+                NSString *path1=[[NSBundle mainBundle]pathForResource:@"ori" ofType:@"png"];
+                NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
+                NSString *filePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:[NSString stringWithFormat:@"Test.png"]];// 保存文件的名称
+                NSData *img = [[NSData alloc] initWithContentsOfFile:filePath];
+                UIImage * t =[[UIImage alloc] initWithContentsOfFile:path1];
+                if(img==nil){
+                    AppLog(@"filePathnil!");
+                }
+                else{
+                    AppLog(@"filePathnonil!");
+                }
+            
+                [saveMedia ddes:@"test" imageData:img];
+                
                                         }];
             [alert addAction:yesButton];
             [self presentViewController:alert animated:YES completion:nil];
