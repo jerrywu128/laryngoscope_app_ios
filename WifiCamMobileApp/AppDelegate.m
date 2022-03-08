@@ -320,8 +320,8 @@ static NSString * const kClientID = @"759186550079-prbjm58kcrideo6lh4uukdqqp2q9b
     for (NSString *fileName in  documentsDirectoryContents) {
         if (![fileName isEqualToString:@"Camera.sqlite"] && ![fileName isEqualToString:@"Camera.sqlite-shm"] && ![fileName isEqualToString:@"Camera.sqlite-wal"]) {
             
-            logFilePath = [documentsDirectory stringByAppendingPathComponent:fileName];
-            [[NSFileManager defaultManager] removeItemAtPath:logFilePath error:nil];
+           //test logFilePath = [documentsDirectory stringByAppendingPathComponent:fileName];
+           // [[NSFileManager defaultManager] removeItemAtPath:logFilePath error:nil];
         }
         
     }

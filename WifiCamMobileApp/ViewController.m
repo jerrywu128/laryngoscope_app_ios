@@ -16,6 +16,7 @@
 #import <GoogleSignIn/GoogleSignIn.h>
 #import <ImageIO/CGImageProperties.h>
 #import "SavemediaInAlbum.h"
+#import "FileDes.h"
 
 
 
@@ -26,6 +27,7 @@ NSMutableArray *videotemp = [NSMutableArray array];
 BOOL capturePhoto = NO;
 BOOL recordVideo = NO;
 SaveMediaInAlbum * saveMedia = [[SaveMediaInAlbum alloc] init];
+
 static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRefCon, OSStatus status, VTDecodeInfoFlags infoFlags, CVImageBufferRef pixelBuffer, CMTime presentationTimeStamp, CMTime presentationDuration ){
     
  //   CVPixelBufferRef *outputPixelBuffer = (CVPixelBufferRef *)sourceFrameRefCon;
@@ -1840,7 +1842,7 @@ static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRef
         }]];
         
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,   NSUserDomainMask, YES);
-        NSString *documentsDirectory = [paths objectAtIndex:0];
+        NSString *documentsDirectory = [paths lastObject];
         /*
         NSString *dataFilePath = [documentsDirectory stringByAppendingPathComponent:@"photo"];
         NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -1864,8 +1866,7 @@ static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRef
             UIAlertAction* yesButton = [UIAlertAction
                                         actionWithTitle:NSLocalizedString(@"sure",nil)
                                         style:UIAlertActionStyleDefault
-                                        handler:^(UIAlertAction * action) {
-                NSString *temp =@"Test.png";
+                                        handler:^(UIAlertAction * action) { NSString *temp =@"Test.png";
                 NSString *document = @"Documents/";
                 NSString *result = [document stringByAppendingString:temp];
                 NSString *betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:result];
@@ -1881,7 +1882,16 @@ static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRef
                     AppLog(@"filePathnonil!");
                 }
             
-                [saveMedia ddes:@"test" imageData:img];
+                //[FileDes desDecrypt:@"test" imageData:img];
+                //---t2
+                NSArray *tpaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+                NSString *documentsDirectory = [tpaths objectAtIndex:0];
+                NSArray *documentsDirectoryContents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:documentsDirectory error:nil];
+                for (NSString *fileName in  documentsDirectoryContents) {
+                    if (![fileName isEqualToString:@"Camera.sqlite"] && ![fileName isEqualToString:@"Camera.sqlite-shm"] && ![fileName isEqualToString:@"Camera.sqlite-wal"]) {
+                        AppLog(@"test!ff%@",fileName);
+                    }
+                }
                 
                                         }];
             [alert addAction:yesButton];
@@ -2434,7 +2444,7 @@ static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRef
         dispatch_async(dispatch_get_main_queue(), ^{
             [self updateVideoSizeOnScreen:_camera.curVideoSize];
         });
-        
+        /*
         if (![_ctrl.propCtrl checkSDExist]) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self showProgressHUDNotice:NSLocalizedString(@"NoCard", nil)
@@ -2448,7 +2458,7 @@ static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRef
                                    showTime:1.0];
             });
             return;
-        }
+        }*/
         dispatch_async(dispatch_get_main_queue(), ^{
             recordVideo = YES;
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -2603,6 +2613,20 @@ static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRef
 
 -(void)videoWrite{
     
+    /*---Check video folder existed---*/
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,   NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths lastObject];
+    
+    NSString *dataFilePath = [documentsDirectory stringByAppendingPathComponent:@"video"];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+
+    BOOL isDir = NO;
+    BOOL existed = [fileManager fileExistsAtPath:dataFilePath isDirectory:&isDir];
+
+    if (!(isDir && existed)) {
+        [fileManager createDirectoryAtPath:dataFilePath withIntermediateDirectories:YES attributes:nil error:nil];
+    }
+    /*--- video write---*/
     NSDate *date = [NSDate date];
     AppLogDebug(AppLogTagAPP, @"date ----> %@", date);
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -2612,7 +2636,7 @@ static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRef
     
     NSString *actualStartTime = [dateFormatter stringFromDate:date];
     NSString *temp =[actualStartTime stringByAppendingString:@".mp4"];
-    NSString *document = @"Documents/";
+    NSString *document = @"Documents/video/";
     NSString *result = [document stringByAppendingString:temp];
     NSString *betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:result];
     
@@ -2670,7 +2694,10 @@ static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRef
                     [videoWriter finishWritingWithCompletionHandler:^(){
                             AppLog (@"finished writing");
                     }];                    [videotemp removeAllObjects];
-                    [saveMedia saveVideo:[NSURL fileURLWithPath:betaCompressionDirectory]];
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.7 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        [saveMedia saveVideo:[NSURL fileURLWithPath:betaCompressionDirectory]];
+                    });
+                    
                     break;
                 }
           
@@ -2693,7 +2720,7 @@ static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRef
         }
     }];
 }
-
+/*
 - (void)saveVideotoAlbum:(NSString *)urlString
 {
        ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
@@ -2705,7 +2732,7 @@ static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRef
                                            NSLog(@"Save video succeed.");
                                        }
                                    }];
-}
+}*/
 
 - (CVPixelBufferRef )pixelBufferFromUIImage:(UIImage *)image size:(CGSize)size
 {
@@ -2869,9 +2896,43 @@ static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRef
     //    dispatch_resume(_videoQueue);
 }
 
+-(void)decryptphotofile{
+    /*---Check photo folder existed---*/
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,   NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths lastObject];
+    
+    NSString *dataFilePath = [documentsDirectory stringByAppendingPathComponent:@"media"];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+
+    BOOL isDir = NO;
+    BOOL existed = [fileManager fileExistsAtPath:dataFilePath isDirectory:&isDir];
+
+    if (!(isDir && existed)) {
+        [fileManager createDirectoryAtPath:dataFilePath withIntermediateDirectories:YES attributes:nil error:nil];
+    }
+    
+        /*---media decrypt---*/
+        NSString *document = @"Documents/photo/";
+        NSString  *photoPath = [NSHomeDirectory() stringByAppendingPathComponent:document];
+
+        NSArray *documentsDirectoryContents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:photoPath error:nil];
+        for (NSString *fileName in  documentsDirectoryContents) {
+            NSString  *temp = [photoPath stringByAppendingPathComponent:fileName];
+            NSData *img = [[NSData alloc] initWithContentsOfFile:temp];
+            if(img==nil){
+                AppLog(@"filePathnil!");
+            }
+            else{
+                AppLog(@"filePathnonil!");
+            }
+            [FileDes desDecrypt:@"test" imageData:img fileName:fileName];
+        }
+    
+}
+
 - (IBAction)mpbAction:(id)sender
 {
-    
+    [self decryptphotofile];
     [self showProgressHUDWithMessage:NSLocalizedString(@"STREAM_ERROR_CAPTURING_CAPTURE", nil)];
     
     [self loadAssets];
@@ -2889,6 +2950,7 @@ static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRef
         BOOL enableGrid = YES;
         BOOL startOnGrid = YES;
         BOOL autoPlayOnAppear = NO;
+        /*
         @synchronized(_assets) {
             NSMutableArray *copy = [_assets copy];
             if (NSClassFromString(@"PHAsset")) {
@@ -2915,7 +2977,21 @@ static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRef
 
                 }
             }
+               }
+         */
+     
+        
+        NSString *document = @"Documents/media/";
+        NSString  *photoPath = [NSHomeDirectory() stringByAppendingPathComponent:document];
+
+        NSArray *documentsDirectoryContents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:photoPath error:nil];
+        for (NSString *fileName in  documentsDirectoryContents) {
+            NSString  *temp = [photoPath stringByAppendingPathComponent:fileName];
+            [photos addObject:[MWPhoto photoWithURL:[NSURL fileURLWithPath:temp]]];
+            [thumbs addObject:[MWPhoto photoWithURL:[NSURL fileURLWithPath:temp]]];
         }
+        
+        
         
         self.photos = photos;
         self.thumbs = thumbs;
@@ -2949,7 +3025,7 @@ static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRef
         // Modal
         UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:browser];
         nc.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-        
+        nc.modalPresentationStyle = UIModalPresentationOverFullScreen;
         [self presentViewController:nc animated:YES completion:nil];
 
         
@@ -2959,6 +3035,7 @@ static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRef
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         });
     });
+    
     /*
     [self showProgressHUDWithMessage:NSLocalizedString(@"STREAM_ERROR_CAPTURING_CAPTURE", nil)];
     
@@ -4547,13 +4624,21 @@ static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRef
 
 - (void)photoBrowserDidFinishModalPresentation:(MWPhotoBrowser *)photoBrowser {
     // If we subscribe to this method we must dismiss the view controller ourselves
-    NSLog(@"Did finish modal presentation");
+    AppLog(@"Did finish modal presentation");
+    NSString *document = @"Documents/media/";
+    NSString  *photoPath = [NSHomeDirectory() stringByAppendingPathComponent:document];
+
+    NSArray *documentsDirectoryContents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:photoPath error:nil];
+    for (NSString *fileName in  documentsDirectoryContents) {
+        NSString  *temp = [photoPath stringByAppendingPathComponent:fileName];
+        [[NSFileManager defaultManager] removeItemAtPath:temp error:nil];
+    }
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - Load Assets
 - (void)loadAssets {
-    // get current SSID
+
 
     
     if (NSClassFromString(@"PHAsset")) {
@@ -4671,7 +4756,6 @@ static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRef
                                           failureBlock:^(NSError *error) {
                                               NSLog(@"There is an error");
                                           }];
-            
         });
         
     }

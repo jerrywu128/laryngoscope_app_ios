@@ -58,6 +58,7 @@
 		AE4AA345278EABCB00911023 /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE4AA344278EABCB00911023 /* NetworkExtension.framework */; };
 		AE8B4E91275B3B480067596D /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE8B4E90275B3B480067596D /* ExternalAccessory.framework */; };
 		AEA9F9AB27C7351200B92237 /* SaveMediaInAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = AEA9F9AA27C7351200B92237 /* SaveMediaInAlbum.m */; };
+		AEA9F9AE27D6FA4D00B92237 /* FileDes.m in Sources */ = {isa = PBXBuildFile; fileRef = AEA9F9AD27D6FA4B00B92237 /* FileDes.m */; };
 		B5CC60BCBDC1E4110FB38241 /* Pods_laryngoscope_app_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29173CAFD8007D4013E282ED /* Pods_laryngoscope_app_ios.framework */; };
 		BC0339EF1B26A0AC0042AE0A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC0339EE1B26A0AC0042AE0A /* Security.framework */; };
 		BC0339F21B26A0E20042AE0A /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6D5106218E9088B00A2EB3B /* CoreTelephony.framework */; };
@@ -297,6 +298,8 @@
 		AE8B4E90275B3B480067596D /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
 		AEA9F9A927C7351200B92237 /* SaveMediaInAlbum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SaveMediaInAlbum.h; sourceTree = "<group>"; };
 		AEA9F9AA27C7351200B92237 /* SaveMediaInAlbum.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SaveMediaInAlbum.m; sourceTree = "<group>"; };
+		AEA9F9AC27D6FA4B00B92237 /* FileDes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileDes.h; sourceTree = "<group>"; };
+		AEA9F9AD27D6FA4B00B92237 /* FileDes.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileDes.m; sourceTree = "<group>"; };
 		BC0339EE1B26A0AC0042AE0A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		BC2042881B0F084A0064B093 /* PortraitNavVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PortraitNavVC.h; sourceTree = "<group>"; };
 		BC2042891B0F084A0064B093 /* PortraitNavVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PortraitNavVC.m; sourceTree = "<group>"; };
@@ -745,6 +748,8 @@
 			children = (
 				AEA9F9A927C7351200B92237 /* SaveMediaInAlbum.h */,
 				AEA9F9AA27C7351200B92237 /* SaveMediaInAlbum.m */,
+				AEA9F9AC27D6FA4B00B92237 /* FileDes.h */,
+				AEA9F9AD27D6FA4B00B92237 /* FileDes.m */,
 			);
 			path = Function;
 			sourceTree = "<group>";
@@ -1432,6 +1437,7 @@
 				38B0D3481E3603BE009BE4C5 /* DataPickerState.m in Sources */,
 				BCDFB23D1B3D1AAC006AF36C /* WifiCamSDKEventListener.cpp in Sources */,
 				E642AE5E1862BF9F004A1C07 /* SettingDetailViewController.m in Sources */,
+				AEA9F9AE27D6FA4D00B92237 /* FileDes.m in Sources */,
 				38B000B81E88AC2400ECCF18 /* WifiCamTableViewSelectedCellTable.m in Sources */,
 				BC330CF31B0B3783006CF592 /* HomeVC.m in Sources */,
 				E627C6D41890BBAB001D2000 /* Reachability.m in Sources */,
