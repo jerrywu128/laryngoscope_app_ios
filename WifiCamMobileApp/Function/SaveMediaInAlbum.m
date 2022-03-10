@@ -25,28 +25,24 @@
          [fileManager createDirectoryAtPath:dataFilePath withIntermediateDirectories:YES attributes:nil error:nil];
      }
      /*--- photo save ---*/
-     [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
+     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+     NSString *key;
+     if([defaults stringForKey:@"PB_password"].length==0){
+         key = [FileDes randomStringWithLength:10];
+         [defaults setObject:key forKey:@"PB_password"];
+         [defaults synchronize];
+     }else{
+         key = [defaults stringForKey:@"PB_password"];
+     }
+     
+     [FileDes desEncrypt:key imageData:image];
+    /* [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
          
          PHAssetCreationRequest *assetCreationRequest = [PHAssetCreationRequest creationRequestForAssetFromImage:image];
 
          
-         [FileDes desEncrypt:@"test" imageData:image];
+        
          
-         /*
-         NSDate *date = [NSDate date];
-         AppLogDebug(AppLogTagAPP, @"date ----> %@", date);
-         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-         NSTimeZone* GTMzone = [NSTimeZone timeZoneForSecondsFromGMT:0];
-         [dateFormatter setTimeZone:GTMzone];
-         [dateFormatter setDateFormat:@"yyyyMMddHHmmss"];
-         
-         NSString *actualStartTime = [dateFormatter stringFromDate:date];
-         NSString *temp =[actualStartTime stringByAppendingString:@".png"];
-         NSString *document = @"Documents/photo/";
-         NSString *result = [document stringByAppendingString:temp];
-         NSData *imgData = UIImagePNGRepresentation(image);
-         NSString  *pngPath = [NSHomeDirectory() stringByAppendingPathComponent:result];
-         [imgData writeToFile:pngPath atomically:YES];*/
          PHAssetCollectionChangeRequest *assetCollectionChangeRequest = nil;
 
 
@@ -71,7 +67,7 @@
              AppLog(@"failed savePhoto");
          }
 
-     }];
+     }];*/
  }
 
 - (void)saveVideo:(NSURL *)videoUrl
