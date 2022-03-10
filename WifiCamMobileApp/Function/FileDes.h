@@ -15,7 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)desDecrypt:(NSString *)key imageData:(NSData *)image fileName:(NSString *)fileName;
 + (void)desEncrypt:(NSString *)key imageData:(UIImage *)image ;
 + (NSString *) randomStringWithLength: (int) len;
-+ (void)EncryptVideo:(NSURL *)videoUrl;
++ (void)EncryptVideo:(NSString *) key videoUrl:(NSURL *)videoUrl fileName:(NSString *)filename;
++ (void)DecryptVideo:(NSString *) key videoUrl:(NSString *)videoUrl fileName:(NSString *)filename;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -62,12 +62,13 @@
             AppLog(@"failed encryptPhoto");
         }
     }
+    free(dataOut);
 }
 
 + (void) desDecrypt:(NSString*) key imageData:(NSData *)image fileName:(NSString *)fileName
 {
     
-    
+    @autoreleasepool {
     NSData *data = image;
     
     CCCryptorStatus ccStatus;
@@ -96,7 +97,7 @@
                        (void *)dataOut,          // 用于返回数据
                        dataOutAvailable,
                        &dataOutMoved);
-    @autoreleasepool {
+    
         NSString *document = @"Documents/media/";
         NSString *result = [document stringByAppendingPathComponent:fileName];
         NSString  *pngPath = [NSHomeDirectory() stringByAppendingPathComponent:result];
@@ -108,13 +109,17 @@
         }else{
             AppLog(@"failed decryptPhoto");
         }
+        free(dataOut);
     }
 }
 
-+ (void)EncryptVideo:(NSURL *)videoUrl
++ (void)EncryptVideo:(NSString*) key videoUrl:(NSURL *)videoUrl fileName:(NSString *)filename
  {
-     NSData *data = [NSData dataWithContentsOfURL:videoUrl];
      
+       
+     
+     NSData *data = [NSData dataWithContentsOfURL:videoUrl];
+    
      CCCryptorStatus ccStatus;
      
      uint8_t *dataOut = NULL;
@@ -124,7 +129,6 @@
      dataOutAvailable = (data.length + kCCBlockSizeDES) & ~(kCCBlockSizeDES - 1);
      dataOut = static_cast<uint8_t *>(malloc( dataOutAvailable * sizeof(uint8_t)));
      memset((void *)dataOut, 0x0, dataOutAvailable);//将已开辟内存空间buffer的首 1 个字节的值设为值 0
-     NSString *key = @"test";
      NSString *initIv = key;
      const void *vkey = (const void *) [key UTF8String];
      const void *iv = (const void *) [initIv UTF8String];
@@ -141,16 +145,9 @@
                         (void *)dataOut,          // 用于返回数据
                         dataOutAvailable,
                         &dataOutMoved);
-     @autoreleasepool {
-         NSDate *date = [NSDate date];
-         AppLogDebug(AppLogTagAPP, @"date ----> %@", date);
-         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-         NSTimeZone* GTMzone = [NSTimeZone timeZoneForSecondsFromGMT:0];
-         [dateFormatter setTimeZone:GTMzone];
-         [dateFormatter setDateFormat:@"yyyyMMddHHmmss"];
+     
          
-         NSString *actualStartTime = [dateFormatter stringFromDate:date];
-         NSString *temp =[actualStartTime stringByAppendingString:@"E.mp4"];
+         NSString *temp =[filename stringByAppendingString:@"E.mp4"];
          NSString *document = @"Documents/video/";
          NSString *result = [document stringByAppendingString:temp];
          NSString  *vdoPath = [NSHomeDirectory() stringByAppendingPathComponent:result];
@@ -158,19 +155,21 @@
          [[NSData dataWithBytes:(const void *)dataOut length:(NSUInteger)dataOutMoved] writeToFile:vdoPath atomically:YES];
          
          if (ccStatus == kCCSuccess) {
-             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.7 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                  
-                  [self DecryptVideo:vdoPath fileName:actualStartTime];
-             });
              AppLog(@"success encryptVideo");
+             NSString *temp_ori =[filename stringByAppendingString:@".mp4"];
+             NSString *result_ori = [document stringByAppendingString:temp_ori];
+             NSString  *vdoPath_ori = [NSHomeDirectory() stringByAppendingPathComponent:result_ori];
+             [[NSFileManager defaultManager] removeItemAtPath:vdoPath_ori error:nil];
          }else{
              AppLog(@"failed encryptVideo");
          }
-     }
+     free(dataOut);
+    
+     
      
  }
 
-+ (void)DecryptVideo:(NSString *)videoUrl fileName:(NSString *)filename
++ (void)DecryptVideo:(NSString *)key videoUrl:(NSString *)videoUrl fileName:(NSString *)filename
 {
      NSData *data = [[NSData alloc]  initWithContentsOfFile:videoUrl];
      if(data==nil){
@@ -187,7 +186,6 @@
      dataOutAvailable = (data.length + kCCBlockSizeDES) & ~(kCCBlockSizeDES - 1);
      dataOut = static_cast<uint8_t *>(malloc( dataOutAvailable * sizeof(uint8_t)));
      memset((void *)dataOut, 0x0, dataOutAvailable);//将已开辟内存空间buffer的首 1 个字节的值设为值 0
-     NSString *key = @"test";
      NSString *initIv = key;
      const void *vkey = (const void *) [key UTF8String];
      const void *iv = (const void *) [initIv UTF8String];
@@ -206,9 +204,8 @@
                         &dataOutMoved);
      @autoreleasepool {
     
-         NSString *temp =[filename stringByAppendingString:@"dE.mp4"];
          NSString *document = @"Documents/media/";
-         NSString *result = [document stringByAppendingString:temp];
+         NSString *result = [document stringByAppendingString:filename];
          NSString  *vdoPath = [NSHomeDirectory() stringByAppendingPathComponent:result];
          
          [[NSData dataWithBytes:(const void *)dataOut length:(NSUInteger)dataOutMoved] writeToFile:vdoPath atomically:YES];
@@ -219,6 +216,7 @@
              AppLog(@"failed encryptPhoto");
          }
      }
+    free(dataOut);
      
  }
 
