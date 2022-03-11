@@ -8,6 +8,7 @@
 
 
 "appName" = "原妙医学";
+"appVersion" = "版本号";
 "SetPhotoResolution" = "设置照片分辨率";
 
 "Albums" = "相簿";
