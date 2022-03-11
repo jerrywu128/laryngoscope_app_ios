@@ -2424,7 +2424,7 @@ referenceSizeForFooterInSection:(NSInteger)section
     //    [self showActivityViewController:@[sharedImage] delegate:photoBrowser];
 }
 
-- (BOOL)photoBrowser      :(MWPhotoBrowser *)photoBrowser
+- (BOOL)photoBrowser:(MWPhotoBrowser *)photoBrowser
         deletePhotoAtIndex:(NSUInteger)index
 {
     AppLog(@"%s", __func__);

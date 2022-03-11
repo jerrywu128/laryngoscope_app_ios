@@ -4645,6 +4645,31 @@ static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRef
     NSLog(@"Photo at index %lu selected %@", (unsigned long)index, selected ? @"YES" : @"NO");
 }
 
+- (BOOL)photoBrowser:(MWPhotoBrowser *)photoBrowser
+        deletePhotoAtIndex:(NSUInteger)index PhotoUrl:(NSURL *)photoUrl
+{
+    BOOL success = NO;
+    NSArray  * fileName = [photoUrl.absoluteString componentsSeparatedByString:@"/media/"];
+    NSString * document = @"Documents/media/";
+    NSString * photoPath = [NSHomeDirectory() stringByAppendingPathComponent:document];
+    NSString * mediaPath = [photoPath stringByAppendingPathComponent:fileName[1]];
+    [[NSFileManager defaultManager] removeItemAtPath:mediaPath error:nil];
+    if([fileName[1] containsString:@".png"]){
+        NSString * photo = @"Documents/photo/";
+        NSString * photoAlbumPath = [NSHomeDirectory() stringByAppendingPathComponent:photo];
+        NSString * totalPath = [photoAlbumPath stringByAppendingPathComponent:fileName[1]];
+        success = [[NSFileManager defaultManager] removeItemAtPath:totalPath error:nil];
+    }else if([fileName[1] containsString:@".mp4"]){
+        NSString * video = @"Documents/video/";
+        NSString * videoAlbumPath = [NSHomeDirectory() stringByAppendingPathComponent:video];
+        NSString * totalPath = [videoAlbumPath stringByAppendingPathComponent:fileName[1]];
+        success = [[NSFileManager defaultManager] removeItemAtPath:totalPath error:nil];
+    }
+    [self.photos removeObjectAtIndex:index];
+    [self.thumbs removeObjectAtIndex:index];
+    return success;
+}
+
 - (void)photoBrowserDidFinishModalPresentation:(MWPhotoBrowser *)photoBrowser {
     // If we subscribe to this method we must dismiss the view controller ourselves
     AppLog(@"Did finish modal presentation");
