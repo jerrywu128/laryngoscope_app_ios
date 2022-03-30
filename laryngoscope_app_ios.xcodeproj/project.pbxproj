@@ -1665,7 +1665,7 @@
 					"\"$(SRCROOT)/../SDK\"",
 				);
 				LLVM_LTO = NO;
-				MARKETING_VERSION = V0.04.05;
+				MARKETING_VERSION = V0.04.06;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1723,7 +1723,7 @@
 					"\"$(SRCROOT)/../SDK\"",
 				);
 				LLVM_LTO = NO;
-				MARKETING_VERSION = V0.04.05;
+				MARKETING_VERSION = V0.04.06;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-ObjC",

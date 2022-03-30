@@ -177,7 +177,7 @@ static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRef
     [_IQhueButton setTitle:NSLocalizedString(@"SETTING_HUE",nil) forState:UIControlStateNormal];
     [_IQsaturationButton setTitle:NSLocalizedString(@"SETTING_SATURATION",nil) forState:UIControlStateNormal];
     [_IQWhiteBalanceButton setTitle:NSLocalizedString(@"SETTING_AWB",nil) forState:UIControlStateNormal];
-    [_IQBLCButton setTitle:NSLocalizedString(@"SETTING_BLC",nil) forState:UIControlStateNormal];
+
     [_changeIqPwdButton setTitle:NSLocalizedString(@"change_password",nil) forState:UIControlStateNormal];
     _changeIqPwdButton.titleLabel.font = [UIFont systemFontOfSize:14];
     _IQValueSlider.minimumValue = 0;
@@ -2075,7 +2075,7 @@ static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRef
 - (IBAction)setIQtype:(id)sender
 {
    // [_ctrl.propCtrl changeBrightness:128];
-    _BLCSwitch.hidden = YES;
+    
     _WB_AUTO.hidden = YES;
     _WB_DAYLIGHT.hidden = YES;
     _WB_CLOUDY.hidden = YES;
@@ -2141,28 +2141,14 @@ static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRef
             [_WB_FLOURESCENT_H setTitle:NSLocalizedString(@"SETTING_AWB_FLUORESECENT",nil) forState:UIControlStateNormal];
             break;
         }
-        case 4:{
-            _curIQMode = BLC;
-            _IQSettingView.hidden = NO;
-            _IQValueSlider.hidden = YES;
-            _IQCurValueLabel.hidden = YES;
-            _IQsilderLabel.hidden = NO;
-            _BLCSwitch.hidden = NO;
-            BOOL tempvalue3 = [_ctrl.propCtrl retrieveIQBLCValue];
-            [_BLCSwitch setOn:(BOOL)tempvalue3];
-            [_IQsilderLabel setText:NSLocalizedString(@"SETTING_BLC",nil)];
-            break;
-        }
+      
        
         
     }
     
 }
 
-- (IBAction)changeIQ_BLC_Switch:(id)sender
-{
-    ([sender isOn])?[_ctrl.propCtrl changeBLC:YES]:[_ctrl.propCtrl changeBLC:NO];
-}
+
 
 - (IBAction)changeIQvalueSlider:(id)sender
 {
