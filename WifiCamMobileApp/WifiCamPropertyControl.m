@@ -528,9 +528,11 @@
 -(BOOL)resetIQvalue
 {
     __block BOOL retVal = NO;
-    dispatch_sync([[SDK instance] sdkQueue], ^{
-        retVal = [[SDK instance] setCustomizeIntProperty:0xD71A value:1];
-    });
+   
+        [self changeHue:0];
+        [self changeSaturation:128];
+        [self changeBrightness:128];
+        [self changeWhiteBalance:1];
     
     return retVal;
 }
