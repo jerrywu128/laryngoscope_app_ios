@@ -525,6 +525,16 @@
     return retVal;
 }
 
+-(BOOL)resetIQvalue
+{
+    __block BOOL retVal = NO;
+    dispatch_sync([[SDK instance] sdkQueue], ^{
+        retVal = [[SDK instance] setCustomizeIntProperty:0xD71A value:1];
+    });
+    
+    return retVal;
+}
+
 // Modify by Allen.Chuang 2014.10.3
 // parse imagesize string from camera and calucate as M size
 - (WifiCamAlertTable *)prepareDataForImageSize:(string)curImageSize

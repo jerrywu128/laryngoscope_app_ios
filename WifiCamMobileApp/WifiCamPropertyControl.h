@@ -42,6 +42,7 @@
 -(BOOL)changeBLC:(BOOL)value;
 -(BOOL)PhotoCapture;
 -(BOOL)saveIQvalue;
+-(BOOL)resetIQvalue;
 
 - (BOOL)changeScreenSaver:(uint)curScreenSaver;
 - (uint)parseScreenSaverInArray:(NSInteger)index;

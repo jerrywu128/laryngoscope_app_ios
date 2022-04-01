@@ -279,6 +279,8 @@
 "SETTING_HUE" = "hue";
 "SETTING_SATURATION" = "saturation";
 "SETTING_BLC" = "BLC";
+"RESET_IQ"="Reset IQ";
+"RESET_IQ_SUCCESS" = "RESET IQ SUCCESS";
 
 "please_input_password" = "Please Input Password";
 "change_password" = "Change Password";

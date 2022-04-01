@@ -177,6 +177,7 @@ static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRef
     [_IQhueButton setTitle:NSLocalizedString(@"SETTING_HUE",nil) forState:UIControlStateNormal];
     [_IQsaturationButton setTitle:NSLocalizedString(@"SETTING_SATURATION",nil) forState:UIControlStateNormal];
     [_IQWhiteBalanceButton setTitle:NSLocalizedString(@"SETTING_AWB",nil) forState:UIControlStateNormal];
+    [_IQrevertToDefaultButton setTitle:NSLocalizedString(@"RESET_IQ",nil) forState:UIControlStateNormal];
 
     [_changeIqPwdButton setTitle:NSLocalizedString(@"change_password",nil) forState:UIControlStateNormal];
     _changeIqPwdButton.titleLabel.font = [UIFont systemFontOfSize:14];
@@ -2140,6 +2141,10 @@ static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRef
             [_WB_INCADESCENT setTitle:NSLocalizedString(@"SETTING_AWB_INCANDESCENT",nil) forState:UIControlStateNormal];
             [_WB_FLOURESCENT_H setTitle:NSLocalizedString(@"SETTING_AWB_FLUORESECENT",nil) forState:UIControlStateNormal];
             break;
+        }
+        case 4:{
+            [_ctrl.propCtrl resetIQvalue];
+            [self ShowAlert:NSLocalizedString(@"RESET_IQ_SUCCESS", nil)];
         }
       
        

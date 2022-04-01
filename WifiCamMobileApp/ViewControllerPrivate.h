@@ -100,6 +100,7 @@ SettingDelegate
 @property(weak, nonatomic) IBOutlet UISlider *IQValueSlider;
 @property(weak, nonatomic) IBOutlet UILabel  *IQCurValueLabel;
 @property(weak, nonatomic) IBOutlet UILabel  *IQsilderLabel;
+@property(weak, nonatomic) IBOutlet UIButton *IQrevertToDefaultButton;
 @property(weak, nonatomic) IBOutlet UIButton *WB_AUTO;
 @property(weak, nonatomic) IBOutlet UIButton *WB_DAYLIGHT;
 @property(weak, nonatomic) IBOutlet UIButton *WB_CLOUDY;

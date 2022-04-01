@@ -288,6 +288,8 @@
 "SETTING_HUE" = "色調";
 "SETTING_SATURATION" = "飽和度";
 "SETTING_BLC" = "背光捕捉";
+"RESET_IQ"="重置設定";
+"RESET_IQ_SUCCESS" = "重置成功";
 
 "please_input_password" = "請輸入密碼";
 "change_password" = "變更密碼";

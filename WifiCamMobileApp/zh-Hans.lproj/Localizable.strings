@@ -291,6 +291,8 @@
 "SETTING_HUE" = "色调";
 "SETTING_SATURATION" = "饱和度";
 "SETTING_BLC" = "背光捕捉";
+"RESET_IQ"="重置设定";
+"RESET_IQ_SUCCESS" = "重置成功";
 
 "please_input_password" = "请输入密码";
 "change_password" = "变更密码";

@@ -182,7 +182,16 @@
                                             <action selector="setIQtype:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="x4J-Ta-5dv"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nkU-Yn-Wxt">
+                                    <button opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I3r-iV-YVr">
+                                        <rect key="frame" x="235" y="73" width="114" height="57"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="18"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <connections>
+                                            <action selector="setIQtype:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="irj-E3-W6c"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nkU-Yn-Wxt">
                                         <rect key="frame" x="8" y="85" width="30" height="45"/>
                                         <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="18"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -406,6 +415,7 @@
                         <outlet property="IQWhiteBalanceButton" destination="9qk-BT-W6H" id="XH6-Bs-aZm"/>
                         <outlet property="IQbrightnessButton" destination="tjf-Nl-8d6" id="JCV-Ya-T3u"/>
                         <outlet property="IQhueButton" destination="fN7-Ap-ODd" id="894-rk-Xyh"/>
+                        <outlet property="IQrevertToDefaultButton" destination="I3r-iV-YVr" id="QFY-C4-P2G"/>
                         <outlet property="IQsaturationButton" destination="3bZ-qv-LN4" id="Pl9-Ce-Yvb"/>
                         <outlet property="IQsilderLabel" destination="zFY-bq-elQ" id="2VD-Ee-VcY"/>
                         <outlet property="ImageQualityButton" destination="IO2-Ub-4H7" id="jYu-OF-WAn"/>
