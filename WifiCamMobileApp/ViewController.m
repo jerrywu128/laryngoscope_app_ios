@@ -155,10 +155,36 @@ static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRef
     _mpbToggle.transform = CGAffineTransformMakeScale(1.3, 1.3);
     [self iniIQSetting];
     [self createAppAlbum];
+    //if first in , show bootPage
+    [self checkFristInApp];
+  
    
 }
 
+- (void)openBootPage{
+    
+    _appBootView.hidden = NO;
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    screenRect.origin.y = 20;
+    self.navigationController.navigationBar.hidden = YES;
+    UIGraphicsBeginImageContext(screenRect.size);
+    [[UIImage imageNamed:@"leaderImg"] drawInRect:screenRect];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    self.appBootView.backgroundColor = [UIColor colorWithPatternImage:image];
+    [self.bootPageButton setTitle:NSLocalizedString(@"I_know",nil) forState:UIControlStateNormal];
+}
 
+- (void)checkFristInApp
+{
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"isFirstIn"]){
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"isFirstIn"];
+            //iniBootPageView
+            [self openBootPage];
+        });
+    }
+}
 
 
 - (void)iniIQSetting{
@@ -1832,7 +1858,7 @@ static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRef
 
 - (IBAction)getDeviceInfoList:(id)sender
 {
-   
+  //  [_ctrl.propCtrl ];
     UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
 
         [actionSheet addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"cancel",nil) style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
@@ -2041,6 +2067,12 @@ static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRef
    [alert addAction:noButton];
    [alert addAction:yesButton];
    [self presentViewController:alert animated:YES completion:nil];
+}
+
+- (IBAction)closeBootPage:(id)sender
+{
+    _appBootView.hidden = YES;
+    self.navigationController.navigationBar.hidden = NO;
 }
 
 - (IBAction)changeIqPwdButton:(id)sender
@@ -2379,6 +2411,7 @@ static void didDecompress( void *decompressionOutputRefCon, void *sourceFrameRef
    
     
     capturePhoto = YES;
+
     [_ctrl.propCtrl PhotoCapture];
     
     

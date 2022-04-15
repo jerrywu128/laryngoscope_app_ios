@@ -11,6 +11,7 @@
 @interface HomeVC : UIViewController<AppDelegateProtocol>{
     NSString * current_ssid;
 }
+
 -(void)showReconnectAlert;
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) NSTimer *theTimer;

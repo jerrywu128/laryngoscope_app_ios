@@ -304,3 +304,4 @@
 "scan_text" =  "請掃描喉鏡上面的QrCode";
 "qrcode_tp_error" = "Qrcode格式錯誤";
 "recording" = "錄製中";
+"I_know" = "我知道了";

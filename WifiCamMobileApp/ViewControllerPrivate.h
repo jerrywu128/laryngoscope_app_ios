@@ -91,6 +91,7 @@ SettingDelegate
 @property(weak, nonatomic) IBOutlet UIButton *ImageQualityButton;
 @property(weak, nonatomic) IBOutlet UIView *ImageQualityView;
 @property(weak, nonatomic) IBOutlet UIView *IQSettingView;
+@property(weak, nonatomic) IBOutlet UIView *appBootView;
 @property(weak, nonatomic) IBOutlet UIButton *CloseIQViewButton;
 @property(weak, nonatomic) IBOutlet UIButton *CloseIQSettingViewButton;
 @property(weak, nonatomic) IBOutlet UIButton *IQbrightnessButton;
@@ -108,6 +109,7 @@ SettingDelegate
 @property(weak, nonatomic) IBOutlet UIButton *WB_FLOURESCENT_H;
 @property(weak, nonatomic) IBOutlet UIButton *changeIqPwdButton;
 @property(weak, nonatomic) IBOutlet UILabel  *recordingLabel;
+@property(weak, nonatomic) IBOutlet UIButton *bootPageButton;
 
 
 

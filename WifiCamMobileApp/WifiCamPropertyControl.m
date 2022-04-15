@@ -201,7 +201,7 @@
     dispatch_sync([[SDK instance] sdkQueue], ^{
         retVal = [[SDK instance] setCustomizeIntProperty:0xD715 value:1];
     });
-    
+  
     return retVal;
 }
 

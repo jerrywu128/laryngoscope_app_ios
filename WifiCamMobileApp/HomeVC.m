@@ -45,6 +45,8 @@ static char isSlotRecored;
 }
 @end
 
+
+
 @interface HomeVC ()
 <
 UIAlertViewDelegate,
@@ -591,7 +593,6 @@ alpha:1.0]
 {
     if (![[NSUserDefaults standardUserDefaults] boolForKey:@"isFirstIn"]){
         dispatch_async(dispatch_get_main_queue(), ^{
-            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"isFirstIn"];
            
             NSString *photoFilePath = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:@"photo"];
             NSString *videoFilePath = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:@"video"];
