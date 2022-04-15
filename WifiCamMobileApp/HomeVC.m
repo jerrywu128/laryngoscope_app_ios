@@ -354,10 +354,12 @@ alpha:1.0]
  [self.view.layer addSublayer:self.previewLayer];
     
  //setopacity range
- int scanView_width = self.scanView.bounds.size.width*0.9;
- int scanView_height = self.scanView.bounds.size.height*0.78;
+    
+ int scanView_width = self.scanView.bounds.size.width;
+ int scanView_height = self.scanView.bounds.size.height;
+    
  UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, self.previewLayer.bounds.size.width, self.previewLayer.bounds.size.height) cornerRadius:0];
- UIBezierPath *scannerPath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(self.scanView.frame.origin.x-2, self.scanView.frame.origin.y, scanView_width, scanView_height) cornerRadius:0];
+ UIBezierPath *scannerPath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(self.scanView.frame.origin.x, self.scanView.frame.origin.y, scanView_width, scanView_height) cornerRadius:0];
  [path appendPath:scannerPath];
  [path setUsesEvenOddFillRule:YES];
 

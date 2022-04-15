@@ -761,22 +761,21 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="awM-eT-e4q" customClass="ScanView">
-                                <rect key="frame" x="45" y="184" width="325" height="379"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <view contentMode="scaleToFill" id="awM-eT-e4q" customClass="ScanView">
+                                <rect key="frame" x="45" y="196" width="328" height="328"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="awM-eT-e4q" firstAttribute="leading" secondItem="cM7-Pq-zeI" secondAttribute="leadingMargin" constant="25" id="BIv-Hf-8cC"/>
-                            <constraint firstItem="awM-eT-e4q" firstAttribute="leading" secondItem="cM7-Pq-zeI" secondAttribute="leadingMargin" constant="25" id="MEB-8B-QVP"/>
-                            <constraint firstItem="awM-eT-e4q" firstAttribute="bottom" secondItem="cM7-Pq-zeI" secondAttribute="bottom" constant="-333" id="Y2M-8D-zOH"/>
-                            <constraint firstItem="awM-eT-e4q" firstAttribute="trailing" secondItem="cM7-Pq-zeI" secondAttribute="trailingMargin" constant="-24" id="ahH-kF-mul"/>
-                            <constraint firstItem="awM-eT-e4q" firstAttribute="trailing" secondItem="cM7-Pq-zeI" secondAttribute="trailingMargin" constant="-24" id="c93-ne-ELW"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="awM-eT-e4q" secondAttribute="trailing" constant="21" id="0zM-2J-lpf"/>
+                            <constraint firstItem="awM-eT-e4q" firstAttribute="top" secondItem="WJS-FM-THZ" secondAttribute="bottom" constant="152" id="Sj0-DR-g2N"/>
+                            <constraint firstItem="awM-eT-e4q" firstAttribute="leading" secondItem="cM7-Pq-zeI" secondAttribute="leadingMargin" constant="25" id="THB-p8-Aun"/>
+                            <constraint firstItem="9Iw-eH-gb0" firstAttribute="top" secondItem="awM-eT-e4q" secondAttribute="bottom" constant="168" id="bDh-j9-XbA"/>
                             <constraint firstAttribute="trailingMargin" secondItem="9Iw-eH-gb0" secondAttribute="trailing" constant="-16" id="eGv-6u-37T"/>
                             <constraint firstItem="ZGw-m4-OQV" firstAttribute="top" secondItem="9Iw-eH-gb0" secondAttribute="bottom" constant="-34" id="p2F-ct-gTt"/>
                             <constraint firstItem="9Iw-eH-gb0" firstAttribute="leading" secondItem="cM7-Pq-zeI" secondAttribute="leadingMargin" constant="-16" id="wOC-Gi-xNC"/>
-                            <constraint firstItem="awM-eT-e4q" firstAttribute="top" secondItem="WJS-FM-THZ" secondAttribute="bottom" constant="140" id="xSr-TU-BVl"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Wi-Fi Cam" id="bu3-Am-uWS"/>
@@ -1721,6 +1720,9 @@
         <image name="info" width="21" height="21"/>
         <image name="sparkles.square.fill.on.square" catalog="system" width="128" height="113"/>
         <image name="video_off" width="42" height="25"/>
+        <systemColor name="secondarySystemBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
