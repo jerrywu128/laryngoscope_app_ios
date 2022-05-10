@@ -239,7 +239,7 @@
 "SETTING_VID_TIMESCAPE_LIMIT" 	="Video Timelapse Duration";
 "SETTING_VID_TIMESCAPE_INTERVAL" 	="Video Timelapse Interval";
 "CARD_FULL_RECORDING" 	="Warning: SD card full, video recording stopped.";
-"SETTING_AWB" 	="White Balance";
+"SETTING_AWB" 	="WB";
 "ALERT_YES" 	="Yes";
 "ALERT_DOWNLOAD_CORRECT_APP" 	="Please download correct APP";
 "Media on My iPhone" = "Media on My iPhone";
@@ -285,9 +285,9 @@
 "SetWindNoiseReduction" = "Wind Noise Reduction";
 
 //----------- 20220207
-"SETTING_BRIGHTNESS" = "brightness";
-"SETTING_HUE" = "hue";
-"SETTING_SATURATION" = "saturation";
+"SETTING_BRIGHTNESS" = "Brightness";
+"SETTING_HUE" = "Hue";
+"SETTING_SATURATION" = "Saturation";
 "SETTING_BLC" = "BLC";
 "RESET_IQ"="Reset IQ";
 "RESET_IQ_SUCCESS" = "RESET IQ SUCCESS";
@@ -297,12 +297,12 @@
 "sure" = "Enter";
 "cancel" = "Cancel";
 "current_password" = "Current Password";
-"input_old_password" = "请输入旧密码";
-"input_new_password" = "请输入新密码";
-"iq_password_error" = "请确认密码是否输入错误";
-"change_password_sucess" = "变更密码成功";
-"new_password_null"="新密码不可为空";
+"input_old_password" = "Input old password";
+"input_new_password" = "Input new password";
+"iq_password_error" = "IQ password error";
+"change_password_sucess" = "Change password sucess";
+"new_password_null"="New password empty";
 "scan_text" = "Please Scan the Qrcode on the laryngoscope";
 "qrcode_tp_error" = "Qrcode Type Error";
-"recording" = "Recording";
+"recording" = "REC";
 "I_know" = "I know";

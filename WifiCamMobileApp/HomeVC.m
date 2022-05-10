@@ -350,7 +350,7 @@ alpha:1.0]
  // configure previewLayer
  self.previewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:self.captureSession];
  [self.previewLayer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
- [self.previewLayer setFrame:CGRectMake(self.view.frame.origin.x , self.view.frame.origin.y , self.view.frame.size.width, self.view.frame.size.height*0.75)];
+ [self.previewLayer setFrame:CGRectMake(self.view.frame.origin.x , self.view.frame.origin.y , self.view.frame.size.width, self.view.frame.size.height*0.8)];
  [self.view.layer addSublayer:self.previewLayer];
     
  //setopacity range

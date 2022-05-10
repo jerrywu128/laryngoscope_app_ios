@@ -20,7 +20,7 @@
 #import "GCDiscreetNotificationView.h"
 
 //#import <BuglyHotfix/Bugly.h>
-#import <GoogleSignIn/GoogleSignIn.h>
+//#import <GoogleSignIn/GoogleSignIn.h>
 
 @interface AppDelegate ()
 @property(nonatomic) BOOL enableLog;
@@ -49,9 +49,10 @@ static NSString * const kClientID = @"759186550079-prbjm58kcrideo6lh4uukdqqp2q9b
             openURL:(NSURL *)url
   sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation {
-    return [[GIDSignIn sharedInstance] handleURL:url
-                               sourceApplication:sourceApplication
-                                      annotation:annotation];
+    return YES;
+    //[[GIDSignIn sharedInstance] handleURL:url
+      //                         sourceApplication:sourceApplication
+        //                              annotation:annotation];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -63,7 +64,7 @@ static NSString * const kClientID = @"759186550079-prbjm58kcrideo6lh4uukdqqp2q9b
     [self registerDefaultsFromSettingsBundle];
 
     // Set app's client ID for |GIDSignIn|.
-    [GIDSignIn sharedInstance].clientID = kClientID;
+    //[GIDSignIn sharedInstance].clientID = kClientID;
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     if (![defaults stringForKey:@"RTMPURL"]) {

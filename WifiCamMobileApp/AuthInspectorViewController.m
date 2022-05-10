@@ -18,7 +18,7 @@
 
 #import "AuthInspectorViewController.h"
 
-#import <GoogleSignIn/GoogleSignIn.h>
+//t #import <GoogleSignIn/GoogleSignIn.h>
 
 static NSString * const kReusableCellIdentifier = @"AuthInspectorCell";
 static CGFloat const kVeryTallConstraint = 10000.f;
@@ -126,7 +126,8 @@ static CGFloat const kTableViewCellPadding = 22.f;
 
 - (NSString *)contentForRowAtIndexPath:(NSIndexPath *)indexPath {
   NSString *keyPath = _keyPaths[indexPath.section];
-  return [[[GIDSignIn sharedInstance].currentUser valueForKeyPath:keyPath] description];
+    return @"s";
+    //t [[[GIDSignIn sharedInstance].currentUser valueForKeyPath:keyPath] description];
 }
 
 - (CGFloat)heightForTableView:(UITableView *)tableView content:(NSString *)content {

@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		1D8BE2741D333E4E00E278DB /* UIActivityShare.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D8BE2731D333E4E00E278DB /* UIActivityShare.m */; };
 		1DAE681E1D3487DA0033FB66 /* DiskSpaceTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DAE681D1D3487DA0033FB66 /* DiskSpaceTool.m */; };
-		382462351E124E6B00C14B54 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 382462341E124E6B00C14B54 /* JavaScriptCore.framework */; };
-		382462371E124E8B00C14B54 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 382462361E124E8B00C14B54 /* libc++.tbd */; };
 		382838AC1E481BF80014A29B /* PlaceholderAvatar.png in Resources */ = {isa = PBXBuildFile; fileRef = 382838AB1E481BF80014A29B /* PlaceholderAvatar.png */; };
 		382838AE1E49CEC20014A29B /* DataPickerDictionary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 382838AD1E49CEC20014A29B /* DataPickerDictionary.plist */; };
 		3836D7AE1D6D6AD100824158 /* PCMDataPlayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3836D7AD1D6D6AD100824158 /* PCMDataPlayer.mm */; };
@@ -21,24 +19,13 @@
 		38B000A81E84C4F000ECCF18 /* MpbTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B000A71E84C4F000ECCF18 /* MpbTableViewController.m */; };
 		38B000AC1E84C52900ECCF18 /* MpbTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B000AB1E84C52900ECCF18 /* MpbTableViewCell.m */; };
 		38B000B81E88AC2400ECCF18 /* WifiCamTableViewSelectedCellTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B000B71E88AC2400ECCF18 /* WifiCamTableViewSelectedCellTable.m */; };
-		38B0D23E1E35E9A1009BE4C5 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38B0D23D1E35E9A1009BE4C5 /* SafariServices.framework */; };
-		38B0D2AB1E35EDAA009BE4C5 /* GoogleAppUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38B0D2A61E35EDAA009BE4C5 /* GoogleAppUtilities.framework */; };
-		38B0D2AC1E35EDAA009BE4C5 /* GoogleSignIn.bundle in Frameworks */ = {isa = PBXBuildFile; fileRef = 38B0D2A71E35EDAA009BE4C5 /* GoogleSignIn.bundle */; };
-		38B0D2AD1E35EDAA009BE4C5 /* GoogleSignIn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38B0D2A81E35EDAA009BE4C5 /* GoogleSignIn.framework */; };
-		38B0D2AE1E35EDAA009BE4C5 /* GoogleSignInDependencies.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38B0D2A91E35EDAA009BE4C5 /* GoogleSignInDependencies.framework */; };
-		38B0D2AF1E35EDAA009BE4C5 /* GoogleSymbolUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38B0D2AA1E35EDAA009BE4C5 /* GoogleSymbolUtilities.framework */; };
 		38B0D3331E36024D009BE4C5 /* SignInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38B0D3321E36024D009BE4C5 /* SignInViewController.xib */; };
-		38B0D33B1E360374009BE4C5 /* GoogleAppUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38B0D3361E360374009BE4C5 /* GoogleAppUtilities.framework */; };
 		38B0D33C1E360374009BE4C5 /* GoogleSignIn.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 38B0D3371E360374009BE4C5 /* GoogleSignIn.bundle */; };
-		38B0D33D1E360374009BE4C5 /* GoogleSignIn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38B0D3381E360374009BE4C5 /* GoogleSignIn.framework */; };
-		38B0D33E1E360374009BE4C5 /* GoogleSignInDependencies.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38B0D3391E360374009BE4C5 /* GoogleSignInDependencies.framework */; };
-		38B0D33F1E360374009BE4C5 /* GoogleSymbolUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38B0D33A1E360374009BE4C5 /* GoogleSymbolUtilities.framework */; };
 		38B0D3471E3603BE009BE4C5 /* AuthInspectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B0D3421E3603BE009BE4C5 /* AuthInspectorViewController.m */; };
 		38B0D3481E3603BE009BE4C5 /* DataPickerState.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B0D3441E3603BE009BE4C5 /* DataPickerState.m */; };
 		38B0D3491E3603BE009BE4C5 /* DataPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B0D3461E3603BE009BE4C5 /* DataPickerViewController.m */; };
 		38B0D34D1E360401009BE4C5 /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B0D34C1E360401009BE4C5 /* SignInViewController.m */; };
 		38E393701DD070E6008B8218 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6A727841907939A00F52F73 /* CoreVideo.framework */; };
-		3A23BEFC1F4913D500CB36B8 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A23BEFB1F4913D500CB36B8 /* CoreText.framework */; };
 		3A23BEFF1F49148200CB36B8 /* AppLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A23BEFE1F49148200CB36B8 /* AppLog.m */; };
 		3A85E723215CFE3C00D94C84 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A85E6E6215CFE3C00D94C84 /* libcrypto.a */; };
 		3A85E724215CFE3C00D94C84 /* libturbojpeg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A85E6E7215CFE3C00D94C84 /* libturbojpeg.a */; };
@@ -55,11 +42,12 @@
 		3A85E72F215CFE3C00D94C84 /* libswscale.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A85E722215CFE3C00D94C84 /* libswscale.a */; };
 		AE2D775E277353A6004909CF /* ConnectCameraVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AE2D775D277353A6004909CF /* ConnectCameraVC.m */; };
 		AE2D776127881C75004909CF /* ScanView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE2D776027881C75004909CF /* ScanView.m */; };
-		AE4AA345278EABCB00911023 /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE4AA344278EABCB00911023 /* NetworkExtension.framework */; };
-		AE8B4E91275B3B480067596D /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE8B4E90275B3B480067596D /* ExternalAccessory.framework */; };
 		AEA9F9AB27C7351200B92237 /* SaveMediaInAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = AEA9F9AA27C7351200B92237 /* SaveMediaInAlbum.m */; };
 		AEA9F9AE27D6FA4D00B92237 /* FileDes.m in Sources */ = {isa = PBXBuildFile; fileRef = AEA9F9AD27D6FA4B00B92237 /* FileDes.m */; };
-		B5CC60BCBDC1E4110FB38241 /* Pods_laryngoscope_app_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29173CAFD8007D4013E282ED /* Pods_laryngoscope_app_ios.framework */; };
+		AEF2690F282A1A4B0070A484 /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEF2690E282A1A4B0070A484 /* NetworkExtension.framework */; };
+		AEF26919282A1A8B0070A484 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = AEF26915282A1A8B0070A484 /* libc++.tbd */; };
+		AEF2691A282A1B410070A484 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEF26917282A1A8B0070A484 /* SafariServices.framework */; };
+		AEF2691E282A33BF0070A484 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEF26913282A1A8B0070A484 /* JavaScriptCore.framework */; };
 		BC0339EF1B26A0AC0042AE0A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC0339EE1B26A0AC0042AE0A /* Security.framework */; };
 		BC0339F21B26A0E20042AE0A /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6D5106218E9088B00A2EB3B /* CoreTelephony.framework */; };
 		BC20428A1B0F084A0064B093 /* PortraitNavVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BC2042891B0F084A0064B093 /* PortraitNavVC.m */; };
@@ -188,9 +176,6 @@
 		1D8BE2731D333E4E00E278DB /* UIActivityShare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIActivityShare.m; sourceTree = "<group>"; };
 		1DAE681C1D3487DA0033FB66 /* DiskSpaceTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiskSpaceTool.h; sourceTree = "<group>"; };
 		1DAE681D1D3487DA0033FB66 /* DiskSpaceTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiskSpaceTool.m; sourceTree = "<group>"; };
-		29173CAFD8007D4013E282ED /* Pods_laryngoscope_app_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_laryngoscope_app_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		382462341E124E6B00C14B54 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		382462361E124E8B00C14B54 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		382838AB1E481BF80014A29B /* PlaceholderAvatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlaceholderAvatar.png; sourceTree = "<group>"; };
 		382838AD1E49CEC20014A29B /* DataPickerDictionary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DataPickerDictionary.plist; sourceTree = "<group>"; };
 		3836D7AC1D6D6AD100824158 /* PCMDataPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCMDataPlayer.h; sourceTree = "<group>"; };
@@ -206,12 +191,6 @@
 		38B000AB1E84C52900ECCF18 /* MpbTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MpbTableViewCell.m; sourceTree = "<group>"; };
 		38B000B61E88AC2400ECCF18 /* WifiCamTableViewSelectedCellTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WifiCamTableViewSelectedCellTable.h; sourceTree = "<group>"; };
 		38B000B71E88AC2400ECCF18 /* WifiCamTableViewSelectedCellTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WifiCamTableViewSelectedCellTable.m; sourceTree = "<group>"; };
-		38B0D23D1E35E9A1009BE4C5 /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
-		38B0D2A61E35EDAA009BE4C5 /* GoogleAppUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleAppUtilities.framework; path = WifiCamMobileApp/Sample/GoogleAppUtilities.framework; sourceTree = "<group>"; };
-		38B0D2A71E35EDAA009BE4C5 /* GoogleSignIn.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleSignIn.bundle; path = WifiCamMobileApp/Sample/GoogleSignIn.bundle; sourceTree = "<group>"; };
-		38B0D2A81E35EDAA009BE4C5 /* GoogleSignIn.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleSignIn.framework; path = WifiCamMobileApp/Sample/GoogleSignIn.framework; sourceTree = "<group>"; };
-		38B0D2A91E35EDAA009BE4C5 /* GoogleSignInDependencies.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleSignInDependencies.framework; path = WifiCamMobileApp/Sample/GoogleSignInDependencies.framework; sourceTree = "<group>"; };
-		38B0D2AA1E35EDAA009BE4C5 /* GoogleSymbolUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleSymbolUtilities.framework; path = WifiCamMobileApp/Sample/GoogleSymbolUtilities.framework; sourceTree = "<group>"; };
 		38B0D3321E36024D009BE4C5 /* SignInViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignInViewController.xib; sourceTree = "<group>"; };
 		38B0D3361E360374009BE4C5 /* GoogleAppUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleAppUtilities.framework; sourceTree = "<group>"; };
 		38B0D3371E360374009BE4C5 /* GoogleSignIn.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GoogleSignIn.bundle; sourceTree = "<group>"; };
@@ -226,7 +205,6 @@
 		38B0D3461E3603BE009BE4C5 /* DataPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataPickerViewController.m; sourceTree = "<group>"; };
 		38B0D34B1E360401009BE4C5 /* SignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInViewController.h; sourceTree = "<group>"; };
 		38B0D34C1E360401009BE4C5 /* SignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInViewController.m; sourceTree = "<group>"; };
-		3A23BEFB1F4913D500CB36B8 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		3A23BEFD1F49148200CB36B8 /* AppLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppLog.h; sourceTree = "<group>"; };
 		3A23BEFE1F49148200CB36B8 /* AppLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppLog.m; sourceTree = "<group>"; };
 		3A85E6E6215CFE3C00D94C84 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto.a; sourceTree = "<group>"; };
@@ -289,17 +267,20 @@
 		3A85E721215CFE3C00D94C84 /* libcurl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcurl.a; sourceTree = "<group>"; };
 		3A85E722215CFE3C00D94C84 /* libswscale.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libswscale.a; sourceTree = "<group>"; };
 		3A85E731215E28E900D94C84 /* SBCapp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SBCapp.entitlements; sourceTree = "<group>"; };
-		AA61F7246359816170173ED5 /* Pods-laryngoscope_app_ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-laryngoscope_app_ios.debug.xcconfig"; path = "Target Support Files/Pods-laryngoscope_app_ios/Pods-laryngoscope_app_ios.debug.xcconfig"; sourceTree = "<group>"; };
 		AE2D775C277353A6004909CF /* ConnectCameraVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConnectCameraVC.h; sourceTree = "<group>"; };
 		AE2D775D277353A6004909CF /* ConnectCameraVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConnectCameraVC.m; sourceTree = "<group>"; };
 		AE2D775F27881C75004909CF /* ScanView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScanView.h; sourceTree = "<group>"; };
 		AE2D776027881C75004909CF /* ScanView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScanView.m; sourceTree = "<group>"; };
-		AE4AA344278EABCB00911023 /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
-		AE8B4E90275B3B480067596D /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
 		AEA9F9A927C7351200B92237 /* SaveMediaInAlbum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SaveMediaInAlbum.h; sourceTree = "<group>"; };
 		AEA9F9AA27C7351200B92237 /* SaveMediaInAlbum.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SaveMediaInAlbum.m; sourceTree = "<group>"; };
 		AEA9F9AC27D6FA4B00B92237 /* FileDes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileDes.h; sourceTree = "<group>"; };
 		AEA9F9AD27D6FA4B00B92237 /* FileDes.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileDes.m; sourceTree = "<group>"; };
+		AEF268ED282A15CD0070A484 /* code */ = {isa = PBXFileReference; lastKnownFileType = folder; name = code; path = "../../../../1.4 2/iOS/code"; sourceTree = "<group>"; };
+		AEF2690E282A1A4B0070A484 /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
+		AEF26913282A1A8B0070A484 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		AEF26915282A1A8B0070A484 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		AEF26916282A1A8B0070A484 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		AEF26917282A1A8B0070A484 /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
 		BC0339EE1B26A0AC0042AE0A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		BC2042881B0F084A0064B093 /* PortraitNavVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PortraitNavVC.h; sourceTree = "<group>"; };
 		BC2042891B0F084A0064B093 /* PortraitNavVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PortraitNavVC.m; sourceTree = "<group>"; };
@@ -485,7 +466,6 @@
 		E6FCC2FA1959732F006159D0 /* WifiCamStaticData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WifiCamStaticData.h; sourceTree = "<group>"; };
 		E6FCC2FB1959732F006159D0 /* WifiCamStaticData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WifiCamStaticData.m; sourceTree = "<group>"; };
 		E6FF9734186D767F00D8511B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		E9C031257D657E24A801C8CD /* Pods-laryngoscope_app_ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-laryngoscope_app_ios.release.xcconfig"; path = "Target Support Files/Pods-laryngoscope_app_ios/Pods-laryngoscope_app_ios.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -494,22 +474,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				E6FF9735186D767F00D8511B /* QuartzCore.framework in Frameworks */,
-				AE4AA345278EABCB00911023 /* NetworkExtension.framework in Frameworks */,
 				3A85E72F215CFE3C00D94C84 /* libswscale.a in Frameworks */,
-				3A23BEFC1F4913D500CB36B8 /* CoreText.framework in Frameworks */,
 				E627C6D51890C597001D2000 /* SystemConfiguration.framework in Frameworks */,
-				38B0D23E1E35E9A1009BE4C5 /* SafariServices.framework in Frameworks */,
-				38B0D2AB1E35EDAA009BE4C5 /* GoogleAppUtilities.framework in Frameworks */,
-				38B0D2AC1E35EDAA009BE4C5 /* GoogleSignIn.bundle in Frameworks */,
 				3A85E72E215CFE3C00D94C84 /* libcurl.a in Frameworks */,
-				38B0D2AD1E35EDAA009BE4C5 /* GoogleSignIn.framework in Frameworks */,
 				3A85E723215CFE3C00D94C84 /* libcrypto.a in Frameworks */,
-				38B0D33D1E360374009BE4C5 /* GoogleSignIn.framework in Frameworks */,
-				38B0D2AE1E35EDAA009BE4C5 /* GoogleSignInDependencies.framework in Frameworks */,
-				38B0D2AF1E35EDAA009BE4C5 /* GoogleSymbolUtilities.framework in Frameworks */,
-				382462371E124E8B00C14B54 /* libc++.tbd in Frameworks */,
+				AEF26919282A1A8B0070A484 /* libc++.tbd in Frameworks */,
 				BCB5E6B11BA9039D005D9ADE /* libz.tbd in Frameworks */,
-				382462351E124E6B00C14B54 /* JavaScriptCore.framework in Frameworks */,
 				BC0339EF1B26A0AC0042AE0A /* Security.framework in Frameworks */,
 				38E393701DD070E6008B8218 /* CoreVideo.framework in Frameworks */,
 				BC975B1B1C86CB190084415B /* CoreBluetooth.framework in Frameworks */,
@@ -518,9 +488,11 @@
 				BCB5E6B71BA903B1005D9ADE /* libsqlite3.tbd in Frameworks */,
 				3A85E72D215CFE3C00D94C84 /* libssl.a in Frameworks */,
 				BCB5E6B51BA903AB005D9ADE /* libbz2.tbd in Frameworks */,
+				AEF2690F282A1A4B0070A484 /* NetworkExtension.framework in Frameworks */,
 				BCB5E6B31BA903A4005D9ADE /* libiconv.tbd in Frameworks */,
 				BCB5E6AE1BA90389005D9ADE /* libxml2.tbd in Frameworks */,
 				BC57EC731B058351000DC9B1 /* libMWPhotoBrowser.a in Frameworks */,
+				AEF2691E282A33BF0070A484 /* JavaScriptCore.framework in Frameworks */,
 				3A85E724215CFE3C00D94C84 /* libturbojpeg.a in Frameworks */,
 				BC7061DF1C31009000C19E4A /* VideoToolbox.framework in Frameworks */,
 				E6E734E118BB408E00A9BF04 /* Social.framework in Frameworks */,
@@ -531,14 +503,11 @@
 				BC33444A1AE897B600C8BF57 /* Photos.framework in Frameworks */,
 				E6BA7EB5185027C400FA101F /* CoreGraphics.framework in Frameworks */,
 				E6BA7EB7185027C400FA101F /* UIKit.framework in Frameworks */,
-				38B0D33B1E360374009BE4C5 /* GoogleAppUtilities.framework in Frameworks */,
 				E69A60AD1A0AFFFA00F3F0D1 /* OpenGLES.framework in Frameworks */,
 				3A85E725215CFE3C00D94C84 /* libavutil.a in Frameworks */,
 				E61903591A022B4900718032 /* CFNetwork.framework in Frameworks */,
 				3A85E728215CFE3C00D94C84 /* libavresample.a in Frameworks */,
 				E61903551A022B1100718032 /* MobileCoreServices.framework in Frameworks */,
-				38B0D33F1E360374009BE4C5 /* GoogleSymbolUtilities.framework in Frameworks */,
-				38B0D33E1E360374009BE4C5 /* GoogleSignInDependencies.framework in Frameworks */,
 				E61903541A022B0600718032 /* CoreLocation.framework in Frameworks */,
 				3A85E72B215CFE3C00D94C84 /* libavdevice.a in Frameworks */,
 				E61903521A022AF300718032 /* CoreMotion.framework in Frameworks */,
@@ -554,34 +523,14 @@
 				3A85E729215CFE3C00D94C84 /* libicatch_wificam_sdk.a in Frameworks */,
 				E609F4BB1872851400BB1A0A /* AssetsLibrary.framework in Frameworks */,
 				E609F4B91872850500BB1A0A /* MessageUI.framework in Frameworks */,
-				AE8B4E91275B3B480067596D /* ExternalAccessory.framework in Frameworks */,
 				E6BA7EB3185027C400FA101F /* Foundation.framework in Frameworks */,
-				B5CC60BCBDC1E4110FB38241 /* Pods_laryngoscope_app_ios.framework in Frameworks */,
+				AEF2691A282A1B410070A484 /* SafariServices.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		382462331E124E6B00C14B54 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				AE4AA344278EABCB00911023 /* NetworkExtension.framework */,
-				AE8B4E90275B3B480067596D /* ExternalAccessory.framework */,
-				3A23BEFB1F4913D500CB36B8 /* CoreText.framework */,
-				38B0D2A61E35EDAA009BE4C5 /* GoogleAppUtilities.framework */,
-				38B0D2A71E35EDAA009BE4C5 /* GoogleSignIn.bundle */,
-				38B0D2A81E35EDAA009BE4C5 /* GoogleSignIn.framework */,
-				38B0D2A91E35EDAA009BE4C5 /* GoogleSignInDependencies.framework */,
-				38B0D2AA1E35EDAA009BE4C5 /* GoogleSymbolUtilities.framework */,
-				38B0D23D1E35E9A1009BE4C5 /* SafariServices.framework */,
-				382462361E124E8B00C14B54 /* libc++.tbd */,
-				382462341E124E6B00C14B54 /* JavaScriptCore.framework */,
-				29173CAFD8007D4013E282ED /* Pods_laryngoscope_app_ios.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		3836D7AB1D6D6AA800824158 /* PCMDataPlayer */ = {
 			isa = PBXGroup;
 			children = (
@@ -649,15 +598,6 @@
 				382838AD1E49CEC20014A29B /* DataPickerDictionary.plist */,
 			);
 			name = res;
-			sourceTree = "<group>";
-		};
-		3A4EA1F7865646AA55713CCA /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				AA61F7246359816170173ED5 /* Pods-laryngoscope_app_ios.debug.xcconfig */,
-				E9C031257D657E24A801C8CD /* Pods-laryngoscope_app_ios.release.xcconfig */,
-			);
-			path = Pods;
 			sourceTree = "<group>";
 		};
 		3A85E6E5215CFE3C00D94C84 /* SDK */ = {
@@ -752,6 +692,18 @@
 				AEA9F9AD27D6FA4B00B92237 /* FileDes.m */,
 			);
 			path = Function;
+			sourceTree = "<group>";
+		};
+		AEF2690D282A1A4B0070A484 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AEF26916282A1A8B0070A484 /* CoreText.framework */,
+				AEF26913282A1A8B0070A484 /* JavaScriptCore.framework */,
+				AEF26915282A1A8B0070A484 /* libc++.tbd */,
+				AEF26917282A1A8B0070A484 /* SafariServices.framework */,
+				AEF2690E282A1A4B0070A484 /* NetworkExtension.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		BC330CF01B0B3768006CF592 /* Home */ = {
@@ -1038,8 +990,7 @@
 				E6BA7EB1185027C400FA101F /* Frameworks and Libraries */,
 				E6BA7EB8185027C400FA101F /* WifiCamMobileApp */,
 				E6BA7EB0185027C400FA101F /* Products */,
-				382462331E124E6B00C14B54 /* Frameworks */,
-				3A4EA1F7865646AA55713CCA /* Pods */,
+				AEF2690D282A1A4B0070A484 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1125,6 +1076,7 @@
 		E6BA7EF618505DDE00FA101F /* PhotoGallery */ = {
 			isa = PBXGroup;
 			children = (
+				AEF268ED282A15CD0070A484 /* code */,
 				BCF5002C1B4FA31E008DBEB5 /* Views */,
 				BCF5002B1B4FA314008DBEB5 /* ViewControllers */,
 				E650E945194AFF820072D0E8 /* MpbSDKEventListener.h */,
@@ -1193,12 +1145,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E6BA7EE4185027C500FA101F /* Build configuration list for PBXNativeTarget "laryngoscope_app_ios" */;
 			buildPhases = (
-				3C82E399757F6BE6D5BDBE3B /* [CP] Check Pods Manifest.lock */,
 				E6BA7EAB185027C400FA101F /* Sources */,
 				E6BA7EAC185027C400FA101F /* Frameworks */,
 				E6BCD380188FAEEC00ACB899 /* Run Script */,
 				E6BA7EAD185027C400FA101F /* Resources */,
-				FDF6A7C2ED1E78128DCC1E0F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1334,31 +1284,9 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3C82E399757F6BE6D5BDBE3B /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-laryngoscope_app_ios-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		E6BCD380188FAEEC00ACB899 /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 12;
+			buildActionMask = 8;
 			files = (
 			);
 			inputPaths = (
@@ -1366,41 +1294,9 @@
 			name = "Run Script";
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
 			shellScript = "# xcode-build-bump.sh\n\n# @desc Auto-increment the build number every time the project is run.\n\n# @usage\n\n# 1. Select: your Target in Xcode\n\n# 2. Select: Build Phases Tab\n\n# 3. Select: Add Build Phase -> Add Run Script\n\n# 4. Paste code below in to new \"Run Script\" section\n\n# 5. Drag the \"Run Script\" below \"Link Binaries With Libraries\"\n\n# 6. Insure that your starting build number is set to a whole integer and not a float (e.g. 1, not 1.0)\n\n\n\n\nbuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\n\nbuildNumber=$(($buildNumber + 1))\n\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"\n\n# update build number and version number to Setting bundle\n/usr/libexec/PlistBuddy -c \"Set :PreferenceSpecifiers:2:DefaultValue $buildNumber\" \"${PROJECT_DIR}/${PROJECT_NAME}/Settings.bundle/Root.plist\"\n\n\n# update version number to Setting bundle\nVERSIONNUM=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\n\n/usr/libexec/PlistBuddy -c \"Set :CFBundleShortVersionString $VERSIONNUM\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"\n\n/usr/libexec/PlistBuddy -c \"Set :PreferenceSpecifiers:1:DefaultValue $VERSIONNUM\" \"${PROJECT_DIR}/WifiCamMobileApp/Settings.bundle/Root.plist\"\n\n";
-		};
-		FDF6A7C2ED1E78128DCC1E0F /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-laryngoscope_app_ios/Pods-laryngoscope_app_ios-frameworks.sh",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ffmpeg-kit-ios-full/ffmpegkit.framework/ffmpegkit",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ffmpeg-kit-ios-full/libavcodec.framework/libavcodec",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ffmpeg-kit-ios-full/libavdevice.framework/libavdevice",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ffmpeg-kit-ios-full/libavfilter.framework/libavfilter",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ffmpeg-kit-ios-full/libavformat.framework/libavformat",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ffmpeg-kit-ios-full/libavutil.framework/libavutil",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ffmpeg-kit-ios-full/libswresample.framework/libswresample",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ffmpeg-kit-ios-full/libswscale.framework/libswscale",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ffmpegkit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libavcodec.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libavdevice.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libavfilter.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libavformat.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libavutil.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libswresample.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libswscale.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-laryngoscope_app_ios/Pods-laryngoscope_app_ios-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1626,7 +1522,6 @@
 		};
 		E6BA7EE5185027C500FA101F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AA61F7246359816170173ED5 /* Pods-laryngoscope_app_ios.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1638,6 +1533,7 @@
 				CODE_SIGN_ENTITLEMENTS = WifiCamMobileApp/SBCapp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 456XUMZS96;
 				ENABLE_BITCODE = YES;
 				EXCLUDED_ARCHS = "";
@@ -1645,8 +1541,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/google_signin_sdk_4_0_1",
-					"$(PROJECT_DIR)/WifiCamMobileApp/Sample",
 					"$(PROJECT_DIR)/WifiCamMobileApp",
 				);
 				GCC_INPUT_FILETYPE = sourcecode.cpp.objcpp;
@@ -1665,14 +1559,14 @@
 					"\"$(SRCROOT)/../SDK\"",
 				);
 				LLVM_LTO = NO;
-				MARKETING_VERSION = V0.04.07;
+				MARKETING_VERSION = V1.00.00;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
 				);
 				OTHER_OSACOMPILEFLAGS = ENABLE_BITCODE;
-				PRODUCT_BUNDLE_IDENTIFIER = LA10000apps;
+				PRODUCT_BUNDLE_IDENTIFIER = com.honestmc.laryngoscopeapp;
 				PRODUCT_NAME = "原妙医学";
 				PROVISIONING_PROFILE = "";
 				RUN_CLANG_STATIC_ANALYZER = YES;
@@ -1685,7 +1579,6 @@
 		};
 		E6BA7EE6185027C500FA101F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E9C031257D657E24A801C8CD /* Pods-laryngoscope_app_ios.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1697,14 +1590,13 @@
 				CODE_SIGN_ENTITLEMENTS = WifiCamMobileApp/SBCapp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 456XUMZS96;
 				ENABLE_BITCODE = YES;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/google_signin_sdk_4_0_1",
-					"$(PROJECT_DIR)/WifiCamMobileApp/Sample",
 					"$(PROJECT_DIR)/WifiCamMobileApp",
 				);
 				GCC_INPUT_FILETYPE = sourcecode.cpp.objcpp;
@@ -1723,14 +1615,14 @@
 					"\"$(SRCROOT)/../SDK\"",
 				);
 				LLVM_LTO = NO;
-				MARKETING_VERSION = V0.04.07;
+				MARKETING_VERSION = V1.00.00;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
 				);
 				OTHER_OSACOMPILEFLAGS = ENABLE_BITCODE;
-				PRODUCT_BUNDLE_IDENTIFIER = LA10000apps;
+				PRODUCT_BUNDLE_IDENTIFIER = com.honestmc.laryngoscopeapp;
 				PRODUCT_NAME = "原妙医学";
 				PROVISIONING_PROFILE = "";
 				RUN_CLANG_STATIC_ANALYZER = YES;
