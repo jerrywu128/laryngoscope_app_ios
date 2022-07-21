@@ -113,6 +113,7 @@ NSFetchedResultsControllerDelegate
                 NSLog(@"%@", error);
                 if (!error) {
                     //根據名稱判斷是否鏈接成功
+                   
                     if ([[self getCurrentWifi] isEqualToString:self->_wifi_SSID]) {
                         NSLog(@"鏈接成功");
                         [self _connect:@[@(self->_idx), self->_wifi_SSID]];
